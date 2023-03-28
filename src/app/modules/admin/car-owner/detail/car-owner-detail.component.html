@@ -1,0 +1,102 @@
+<div class="sm:absolute sm:inset-0 flex flex-col flex-auto min-w-0 sm:overflow-hidden dark:bg-transparent">
+
+    <!-- Header -->
+    <div class="relative flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between py-8 px-6 md:px-8">
+        <!-- Title -->
+        <div class="text-4xl font-extrabold tracking-tight">Thông tin chủ xe</div>
+    </div>
+
+    <div class="flex flex-col flex-auto items-center sm:mb-18 overflow-hidden sm:overflow-y-auto">
+        <div class="flex flex-col items-center px-10 w-full">
+            <div class="grid grid-cols-2 w-full gap-8">
+                <div class="col-span-1 flex flex-col items-center justify-between bg-card rounded-lg p-8">
+                    <div class="infor">
+                        <div class="relative w-24 h-24">
+                            <img class="w-full h-full rounded-full" *ngIf="carOwner.avatarUrl"
+                                [src]="carOwner.avatarUrl" alt="User avatar">
+                            <mat-icon class="icon-size-24" *ngIf="!carOwner.avatarUrl"
+                                [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                        </div>
+                        <div class="flex flex-col items-center justify-center w-full">
+                            <div
+                                class="w-full whitespace-nowrap text-ellipsis overflow-hidden text-center leading-normal font-semibold text-lg">
+                                {{carOwner.name}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex w-full">
+                        <ng-container *ngIf="carOwner.status">
+                            <button mat-raised-button color="warn" class="w-full"
+                                (click)="updateCarOwnerStatus(carOwner.id, false)">
+                                <mat-icon [svgIcon]="'heroicons_outline:lock-closed'"></mat-icon>
+                            </button>
+                        </ng-container>
+                        <ng-container *ngIf="!carOwner.status">
+                            <button mat-raised-button color="primary" class="w-full"
+                                (click)="updateCarOwnerStatus(carOwner.id, true)">
+                                <mat-icon [svgIcon]="'heroicons_outline:lock-open'"></mat-icon>
+                            </button>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="col-span-1 flex flex-col bg-card rounded-lg p-8">
+                    <div class="flex justify-items-center gap-3 mb-6">
+                        <mat-icon svgIcon="heroicons_outline:phone"></mat-icon>
+                        <span class="font-semibold ">
+                            Số điện thoại:
+                        </span>
+                        <span>
+                            {{carOwner.phone}}
+                        </span>
+                    </div>
+                    <div class="flex justify-items-center gap-3 mb-6">
+                        <mat-icon svgIcon="heroicons_outline:users"></mat-icon>
+                        <span class="font-semibold ">
+                            Giới tính:
+                        </span>
+                        <span>
+                            {{carOwner.gender}}
+                        </span>
+                    </div>
+                    <div class="flex justify-items-center gap-3 mb-6">
+                        <mat-icon svgIcon="heroicons_outline:shield-exclamation"></mat-icon>
+                        <span class="font-semibold ">
+                            Địa chỉ:
+                        </span>
+                        <span>
+                            {{carOwner.address}}
+                        </span>
+                    </div>
+                    <div class="flex justify-items-center gap-3 mb-6">
+                        <mat-icon svgIcon="heroicons_outline:status-online"></mat-icon>
+                        <span class="font-semibold ">
+                            Trạng thái:
+                        </span>
+                        <span>
+                            {{carOwner.status | accountStatus}}
+                        </span>
+                    </div>
+                    <div class="flex justify-items-center gap-3 mb-6">
+                        <mat-icon svgIcon="heroicons_outline:identification"></mat-icon>
+                        <span class="font-semibold ">
+                            Ngân hàng:
+                        </span>
+                        <span>
+                            {{carOwner.bankName || "No information"}}
+                        </span>
+                    </div>
+                    <div class="flex justify-items-center gap-3">
+                        <mat-icon svgIcon="heroicons_outline:identification"></mat-icon>
+                        <span class="font-semibold ">
+                            Số tài khoản:
+                        </span>
+                        <span>
+                            {{carOwner.bankAccountNumber || "No information"}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

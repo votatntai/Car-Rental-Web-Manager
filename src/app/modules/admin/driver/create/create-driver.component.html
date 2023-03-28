@@ -1,0 +1,114 @@
+<div class="flex flex-col flex-auto -m-6">
+
+    <!-- Header -->
+    <div class="flex flex-0 items-center justify-between h-16 pr-3 sm:pr-5 pl-6 sm:pl-8 shadow">
+        <span class="font-semibold text-lg">
+            Create driver
+        </span>
+        <button mat-icon-button (click)="matDialogRef.close()" [tabIndex]="-1">
+            <mat-icon class="text-current" [svgIcon]="'heroicons_outline:x'"></mat-icon>
+        </button>
+    </div>
+
+    <div class="flex flex-col sm:flex-row flex-auto items-center sm:items-start p-8 pb-6 sm:pb-8">
+
+        <form [formGroup]="createDriverForm" class="w-full">
+
+            <!-- Username -->
+            <div class="mb-3">
+                <mat-form-field class="w-full">
+                    <mat-label>Username</mat-label>
+                    <input matInput [formControlName]="'username'" />
+                    <mat-error *ngIf="createDriverForm.get('username').invalid && createDriverForm.get('username').touched 
+                    && createDriverForm.get('username').errors?.invalidUsername">
+                        Username must be between 5 and 20 characters, no spaces.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-3">
+                <mat-form-field class="w-full">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" [formControlName]="'password'" />
+                    <mat-error *ngIf="createDriverForm.get('password').invalid && createDriverForm.get('password').touched 
+                        && createDriverForm.get('password').errors?.invalidPassword">
+                        Password must be more than 8 characters, contain capital letters, numbers.</mat-error>
+                </mat-form-field>
+            </div>
+
+            <!-- Confirm -->
+            <div class="mb-3">
+                <mat-form-field class="w-full">
+                    <mat-label>Confirm</mat-label>
+                    <input matInput type="password" [formControlName]="'confirmPassword'" />
+                    <mat-error class="text-red-500" *ngIf="createDriverForm.get('confirmPassword').invalid && createDriverForm.get('confirmPassword').touched 
+                    && createDriverForm.get('confirmPassword').errors?.invalidConfirmPassword">
+                        Password does not match.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 w-full mb-3">
+                <!-- Name -->
+                <mat-form-field class="w-full">
+                    <mat-label>Name</mat-label>
+                    <input matInput type="text" [formControlName]="'name'" />
+                </mat-form-field>
+
+                <!-- Gender -->
+                <mat-form-field class="w-full">
+                    <mat-label>Gender</mat-label>
+                    <mat-select (selectionChange)="onGenderChange($event.value)">
+                        <mat-option value="Nam">Nam</mat-option>
+                        <mat-option value="Nữ">Nữ</mat-option>
+                        <mat-option value="Khác">Khác</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <!-- Address -->
+            <mat-form-field class="w-full mb-3">
+                <mat-label>Address</mat-label>
+                <input matInput type="text" [formControlName]="'address'" />
+            </mat-form-field>
+
+            <div class="grid grid-cols-2 gap-3 w-full mb-3">
+                <!-- Bank name -->
+                <mat-form-field class="w-full">
+                    <mat-label>Bank Name</mat-label>
+                    <input matInput type="text" [formControlName]="'bankName'" />
+                </mat-form-field>
+
+                <!-- Bank account number -->
+                <mat-form-field class="w-full">
+                    <mat-label>Bank Account Number</mat-label>
+                    <input matInput type="text" [formControlName]="'bankAccountNumber'" />
+                </mat-form-field>
+            </div>
+
+
+            <!-- Phone -->
+            <div class="mb-3">
+                <mat-form-field class="w-full">
+                    <mat-label>Phone</mat-label>
+                    <input matInput type="text" [formControlName]="'phone'" />
+                    <mat-error class="text-red-500"
+                        *ngIf="createDriverForm.get('phone').invalid && createDriverForm.get('phone').touched && createDriverForm.get('phone').errors?.phone">
+                        Please enter a valid phone number.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="flex justify-end">
+                <!-- Submit button -->
+                <button mat-raised-button [color]="'primary'" (click)="createDriver()">
+                    <span>Create</span>
+                    <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+</div>

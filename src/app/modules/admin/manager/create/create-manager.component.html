@@ -1,0 +1,93 @@
+<div class="flex flex-col flex-auto -m-6">
+
+    <!-- Header -->
+    <div class="flex flex-0 items-center justify-between h-16 pr-3 sm:pr-5 pl-6 sm:pl-8 shadow">
+        <span class="font-semibold text-lg">
+            Tạo tài khoản cho quản lý
+        </span>
+        <button mat-icon-button (click)="matDialogRef.close()" [tabIndex]="-1">
+            <mat-icon class="text-current" [svgIcon]="'heroicons_outline:x'"></mat-icon>
+        </button>
+    </div>
+
+    <div class="flex flex-col sm:flex-row flex-auto items-center sm:items-start p-8 pb-6 sm:pb-8">
+
+        <form [formGroup]="createManagerForm" class="w-full">
+
+            <!-- Username -->
+            <div class="mb-3">
+                <mat-form-field class="w-full">
+                    <mat-label>Tên đăng nhập</mat-label>
+                    <input matInput [formControlName]="'username'" />
+                    <mat-error *ngIf="createManagerForm.get('username').invalid && createManagerForm.get('username').touched 
+                    && createManagerForm.get('username').errors?.invalidUsername">
+                        Tài khoản phải ít hơn 20 ký tự và không chứa khoảng trắng.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-3">
+                <mat-form-field class="w-full">
+                    <mat-label>Mật khẩu</mat-label>
+                    <input matInput type="password" [formControlName]="'password'" />
+                    <mat-error class="text-red-500" *ngIf="createManagerForm.get('password').invalid && createManagerForm.get('password').touched 
+                        && createManagerForm.get('password').errors?.invalidPassword">
+                        Mật khẩu phải trên 8 ký tự chứa chữ in hoa và số.</mat-error>
+                </mat-form-field>
+            </div>
+
+            <!-- Confirm -->
+            <div class="mb-3">
+                <mat-form-field class="w-full">
+                    <mat-label>Xác nhận</mat-label>
+                    <input matInput type="password" [formControlName]="'confirmPassword'" />
+                    <mat-error *ngIf="createManagerForm.get('confirmPassword').invalid && createManagerForm.get('confirmPassword').touched 
+                        && createManagerForm.get('confirmPassword').errors?.invalidConfirmPassword">
+                        Mật khẩu không khớp.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 w-full mb-3">
+                <!-- Name -->
+                <mat-form-field class="w-full">
+                    <mat-label>Tên</mat-label>
+                    <input matInput type="text" [formControlName]="'name'" />
+                </mat-form-field>
+
+                <!-- Gender -->
+                <mat-form-field class="w-full">
+                    <mat-label>Giới tính</mat-label>
+                    <mat-select (selectionChange)="onGenderChange($event.value)">
+                        <mat-option value="Nam">Nam</mat-option>
+                        <mat-option value="Nữ">Nữ</mat-option>
+                        <mat-option value="Khác">Khác</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <!-- Phone -->
+            <div class="mb-3">
+                <mat-form-field class="w-full">
+                    <mat-label>Số điện thoại</mat-label>
+                    <input matInput type="text" [formControlName]="'phone'" />
+                    <mat-error
+                        *ngIf="createManagerForm.get('phone').invalid && createManagerForm.get('phone').touched && createManagerForm.get('phone').errors?.phone">
+                        Vui lòng nhập số điện thoại đúng định dạng.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="flex justify-end">
+                <!-- Submit button -->
+                <button mat-raised-button [color]="'primary'" (click)="createManager()">
+                    <span>Tạo</span>
+                    <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+</div>

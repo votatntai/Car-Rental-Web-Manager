@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="96" height="32" viewBox="0 0 96 32" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <g clip-path="url(#clip0)">
+    <path d="M16 6.75556V0L1.02839 14.6389C0.462304 15.1924 0.457197 16.1016 1.01703 16.6615L3.55556 19.2" fill="#2196F3"/>
+    <path d="M16 6.75556V0L30.9716 14.6389C31.5377 15.1924 31.5428 16.1016 30.983 16.6615L28.4444 19.2" fill="#1878C6"/>
+    <path d="M3.55556 19.2L9.6 13.1556H16V19.2" fill="#1565C0"/>
+    <path d="M28.4444 19.2L22.4 13.1556H16V19.2" fill="#10519D"/>
+    <path d="M16 25.9556H9.95555L12.9778 22.7556L16 25.9556Z" fill="#1565C0"/>
+    <path d="M16 32L22.0444 25.9556L16 25.9556V32Z" fill="#1878C6"/>
+    <path d="M16 32L9.95555 25.9556H16V32Z" fill="#2196F3"/>
+    <path d="M16 25.9556H22.0444L19.0222 22.7556L16 25.9556Z" fill="#10519D"/>
+    <path d="M7.72363 21.7502C7.18605 22.3085 7.19441 23.1944 7.74243 23.7424L9.95556 25.9556L16 19.5556V13.1556" fill="#2196F3"/>
+    <path d="M24.2764 21.7502C24.814 22.3085 24.8056 23.1944 24.2576 23.7424L22.0444 25.9556L16 19.5556V13.1556" fill="#1878C6"/>
+  </g>
+  <defs>
+    <clipPath id="clip0">
+      <rect width="96" height="32" fill="white"/>
+    </clipPath>
+    <style bx:fonts="Inter">@import url(https://fonts.googleapis.com/css2?family=Inter%3Aital%2Cwght%400%2C100%3B0%2C200%3B0%2C300%3B0%2C400%3B0%2C500%3B0%2C600%3B0%2C700%3B0%2C800%3B0%2C900&amp;display=swap);</style>
+  </defs>
+  <text style="fill: rgb(255, 255, 255); font-family: Inter; font-size: 22.4px; font-weight: 700; white-space: pre;" transform="matrix(0.980326, 0, 0, 0.974468, 1.940655, 0.556605)" x="33.725" y="23.317" bx:origin="0.482218 0.479785">FCAR</text>
+  <text style="fill: rgb(56, 56, 56); font-family: Arial, sans-serif; font-size: 1.5px; white-space: pre;" x="57.898" y="45.818">Enter your text here</text>
+</svg>

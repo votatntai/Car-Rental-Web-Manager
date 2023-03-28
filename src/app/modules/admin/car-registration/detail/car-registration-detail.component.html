@@ -1,0 +1,151 @@
+<div class="sm:absolute sm:inset-0 flex flex-col flex-auto min-w-0 sm:overflow-hidden dark:bg-transparent">
+
+    <!-- Header -->
+    <div class="relative flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between py-8 px-6 md:px-10">
+        <!-- Title -->
+        <div class="text-4xl font-extrabold tracking-tight">Car Registration Detail</div>
+        <div class="flex shrink-0 items-center mt-6 sm:mt-0 sm:ml-4 gap-3">
+            <button class="flex gap-2" mat-raised-button [color]="'primary'">
+                <mat-icon [svgIcon]="'heroicons_outline:check'"></mat-icon>
+                Confirm
+            </button>
+            <button class="flex gap-2" mat-raised-button [color]="'warn'">
+                <mat-icon [svgIcon]="'heroicons_outline:x'"></mat-icon>
+                Refuse
+            </button>
+        </div>
+    </div>
+
+    <div class="flex flex-col flex-auto items-center sm:mb-18 overflow-hidden sm:overflow-y-auto">
+        <div class="flex flex-col items-center px-10 w-full">
+            <div class="grid grid-cols-2 w-full gap-8">
+                <div class="col-span-1 flex flex-col items-center justify-between p-8  bg-card rounded-lg">
+                    <div class="header">
+                        <div class="relative w-24 h-24">
+                            <img class="w-full h-full rounded-full" *ngIf="carRegistration.carOwner.avatarUrl"
+                                [src]="carRegistration.carOwner.avatarUrl" alt="User avatar">
+                            <mat-icon class="icon-size-24" *ngIf="!carRegistration.carOwner.avatarUrl"
+                                [svgIcon]="'heroicons_outline:user'"></mat-icon>
+                        </div>
+                        <div class="flex flex-col items-center justify-center w-full">
+                            <div
+                                class="w-full whitespace-nowrap text-ellipsis overflow-hidden text-center leading-normal font-semibold text-lg">
+                                {{carRegistration.carOwner.name}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="thumb my-8">
+                        <div class="image flex gap-3">
+                            <img class="rounded-lg w-24 h-24 object-cover"
+                                src="https://web-assets.cdn.dealersolutions.com.au/modular.multisite.dealer.solutions/wp-content/uploads/2018/03/31104034/GR86-Image.jpg"
+                                alt="">
+                            <img class="rounded-lg w-24 h-24 object-cover"
+                                src="https://web-assets.cdn.dealersolutions.com.au/modular.multisite.dealer.solutions/wp-content/uploads/2018/03/31104034/GR86-Image.jpg"
+                                alt="">
+                            <img class="rounded-lg w-24 h-24 object-cover"
+                                src="https://web-assets.cdn.dealersolutions.com.au/modular.multisite.dealer.solutions/wp-content/uploads/2018/03/31104034/GR86-Image.jpg"
+                                alt="">
+                            <img class="rounded-lg w-24 h-24 object-cover"
+                                src="https://web-assets.cdn.dealersolutions.com.au/modular.multisite.dealer.solutions/wp-content/uploads/2018/03/31104034/GR86-Image.jpg"
+                                alt="">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 w-full gap-4">
+                        <div class="col-span-1">
+                            <div class="flex justify-items-center gap-3 mb-6">
+                                <mat-icon svgIcon="heroicons_outline:identification"></mat-icon>
+                                <span class="font-semibold ">
+                                    License Plate:
+                                </span>
+                                <span>
+                                    {{carRegistration.licensePlate}}
+                                </span>
+                            </div>
+                            <div class="flex justify-items-center gap-3 mb-6">
+                                <mat-icon svgIcon="heroicons_outline:credit-card"></mat-icon>
+                                <span class="font-semibold ">
+                                    Price:
+                                </span>
+                                <span>
+                                    {{carRegistration.price | number:'1.0-2'}} VNĐ
+                                </span>
+                            </div>
+                            <div class="flex justify-items-center gap-3 mb-6">
+                                <mat-icon svgIcon="heroicons_outline:tag"></mat-icon>
+                                <span class="font-semibold ">
+                                    Model:
+                                </span>
+                                <span>
+                                    {{carRegistration.model}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-span-1">
+                            <div class="flex justify-items-center gap-3 mb-6">
+                                <mat-icon svgIcon="heroicons_outline:identification"></mat-icon>
+                                <span class="font-semibold ">
+                                    Name:
+                                </span>
+                                <span>
+                                    {{carRegistration.name}}
+                                </span>
+                            </div>
+                            <div class="flex justify-items-center gap-3 mb-6">
+                                <mat-icon svgIcon="heroicons_outline:location-marker"></mat-icon>
+                                <span class="font-semibold ">
+                                    Location:
+                                </span>
+                                <span>
+                                    {{carRegistration.location}}
+                                </span>
+                            </div>
+                            <div class="flex justify-items-center gap-3 mb-6">
+                                <mat-icon svgIcon="heroicons_outline:library"></mat-icon>
+                                <span class="font-semibold ">
+                                    Production Company:
+                                </span>
+                                <span>
+                                    {{carRegistration.productionCompany}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-span-1 p-8 flex flex-col bg-card rounded-lg">
+                    <div class="text-xl font-bold mb-3">Calendar</div>
+                    <!-- Calendar -->
+                    <mat-table class="mat-elevation-z0 rounded-md" [dataSource]="dataSource">
+                        <ng-container matColumnDef="weekday">
+                            <mat-header-cell *matHeaderCellDef class="header-cell">Day</mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="day-cell ">{{element.weekday}}</mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="startTime">
+                            <mat-header-cell *matHeaderCellDef class="header-cell">Start Time</mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="start-cell">{{element.startTime}}</mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="endTime">
+                            <mat-header-cell *matHeaderCellDef class="header-cell">End Time</mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="end-cell">{{element.endTime}}</mat-cell>
+                        </ng-container>
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+                </div>
+
+            </div>
+        </div>
+        <div class="flex flex-col items-center py-8 w-full">
+            <div class="grid grid-cols-2 w-full gap-8">
+                <div class="col-span-1 flex flex-col items-center justify-between px-8">
+
+                </div>
+                <div class="col-span-1">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

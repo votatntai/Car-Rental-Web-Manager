@@ -1,0 +1,83 @@
+<div class="sm:absolute sm:inset-0 flex flex-col flex-auto min-w-0 sm:overflow-hidden dark:bg-transparent">
+
+    <!-- Header -->
+    <div class="relative flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between py-8 px-6 md:px-8">
+        <!-- Title -->
+        <div class="text-4xl font-extrabold tracking-tight">Thông tin của quản lý</div>
+    </div>
+
+    <div class="flex flex-col flex-auto items-center sm:mb-18 overflow-hidden sm:overflow-y-auto">
+        <div class="flex flex-col items-center px-10 w-full">
+            <div class="grid grid-cols-2 w-full gap-8">
+                <div class="col-span-1 flex flex-col items-center justify-between bg-card rounded-lg p-8">
+                    <div class="infor">
+                        <div class="relative w-24 h-24">
+                            <img class="w-full h-full rounded-full" *ngIf="manager.avatarUrl" [src]="manager.avatarUrl"
+                                alt="User avatar">
+                            <mat-icon class="icon-size-24" *ngIf="!manager.avatarUrl"
+                                [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                        </div>
+                        <div class="flex flex-col items-center justify-center w-full">
+                            <div
+                                class="w-full whitespace-nowrap text-ellipsis overflow-hidden text-center leading-normal font-semibold text-lg">
+                                {{manager.name}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex mt-8 w-full">
+                        <ng-container *ngIf="manager.status">
+                            <button mat-raised-button color="warn" class="w-full"
+                                (click)="updateManagerStatus(manager.id, false)">
+                                <mat-icon [svgIcon]="'heroicons_outline:lock-closed'"></mat-icon>
+                            </button>
+                        </ng-container>
+                        <ng-container *ngIf="!manager.status">
+                            <button mat-raised-button color="primary" class="w-full"
+                                (click)="updateManagerStatus(manager.id, true)">
+                                <mat-icon [svgIcon]="'heroicons_outline:lock-open'"></mat-icon>
+                            </button>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="col-span-1 flex flex-col bg-card rounded-lg p-8">
+                    <div class="flex justify-items-center gap-3 mb-6">
+                        <mat-icon svgIcon="heroicons_outline:phone"></mat-icon>
+                        <span class="font-semibold ">
+                            Số điện thoại:
+                        </span>
+                        <span>
+                            {{manager.phone}}
+                        </span>
+                    </div>
+                    <div class="flex justify-items-center gap-3 mb-6">
+                        <mat-icon svgIcon="heroicons_outline:users"></mat-icon>
+                        <span class="font-semibold ">
+                            Giới tính:
+                        </span>
+                        <span>
+                            {{manager.gender}}
+                        </span>
+                    </div>
+                    <div class="flex justify-items-center gap-3 mb-6">
+                        <mat-icon svgIcon="heroicons_outline:shield-exclamation"></mat-icon>
+                        <span class="font-semibold ">
+                            Chức vụ:
+                        </span>
+                        <span>
+                            {{manager.role}}
+                        </span>
+                    </div>
+                    <div class="flex justify-items-center gap-3">
+                        <mat-icon svgIcon="heroicons_outline:status-online"></mat-icon>
+                        <span class="font-semibold ">
+                            Trạng thái:
+                        </span>
+                        <span>
+                            {{manager.status | accountStatus}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

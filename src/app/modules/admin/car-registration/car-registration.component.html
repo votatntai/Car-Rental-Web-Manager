@@ -1,0 +1,143 @@
+<div class="sm:absolute sm:inset-0 flex flex-col flex-auto min-w-0 sm:overflow-hidden bg-card dark:bg-transparent">
+
+    <!-- Header -->
+    <div
+        class="relative flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between py-8 px-6 md:px-8 border-b">
+        <!-- Loader -->
+        <div class="absolute inset-x-0 bottom-0" *ngIf="isLoading">
+            <mat-progress-bar [mode]="'indeterminate'"></mat-progress-bar>
+        </div>
+        <!-- Title -->
+        <div class="text-4xl font-extrabold tracking-tight">Quản lý phiếu đăng ký xe</div>
+        <!-- Actions -->
+        <div class="flex shrink-0 items-center mt-6 sm:mt-0 sm:ml-4 gap-3">
+            <!-- <button mat-raised-button [color]="'primary'" (click)="openCreateMachineDialog()">
+                <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
+            </button> -->
+            <!-- Search -->
+            <mat-form-field class="fuse-mat-dense fuse-mat-rounded min-w-64" [subscriptSizing]="'dynamic'">
+                <mat-icon class="icon-size-5" matPrefix [svgIcon]="'heroicons_solid:search'"></mat-icon>
+                <input matInput [formControl]="searchInputControl" [autocomplete]="'off'" [placeholder]="'Tìm kiếm'">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <!-- Car registration list -->
+    <div class="flex flex-col flex-auto sm:mb-18 overflow-hidden sm:overflow-y-auto">
+        <ng-container *ngIf="(carRegistrations$ | async) as carRegistrations">
+            <div class="grid">
+                <!-- Header -->
+                <div class="car-registration-grid z-10 sticky top-0 grid gap-4 py-4 px-6 md:px-8 shadow text-md font-semibold text-secondary bg-gray-50 dark:bg-black dark:bg-opacity-5"
+                    matSort matSortDisableClear>
+                    <div>Ảnh</div>
+                    <div [mat-sort-header]="'name'">Tên</div>
+                    <div class="hidden sm:block">
+                        Biển số
+                    </div>
+                    <div class="hidden sm:block">
+                        Giá
+                    </div>
+                    <div class="hidden sm:block">
+                        Hãng
+                    </div>
+                    <div class="hidden sm:block">Địa chỉ</div>
+                    <div class="hidden sm:block">Thời gian</div>
+                    <div class="hidden sm:block">Chi tiết</div>
+                </div>
+                <!-- Rows -->
+                <ng-container *ngIf="carRegistrations.length > 0; else noMachines">
+                    <ng-container *ngIf="(carRegistrations$ | async) as carRegistrations">
+                        <ng-container *ngFor="let carRegistration of carRegistrations; trackBy: trackByFn">
+                            <div class="car-registration-grid grid items-center gap-4 py-3 px-6 md:px-8 border-b">
+
+                                <!-- Image -->
+                                <div class="flex items-center">
+                                    <div
+                                        class="relative flex flex-0 items-center justify-center w-12 h-12 mr-6 rounded overflow-hidden border">
+                                        <img class="w-8" *ngIf="carRegistration.avartarUrl"
+                                            [alt]="'Machine thumbnail image'" [src]="carRegistration.avartarUrl">
+                                        <div class="flex items-center justify-center w-full h-full text-xs font-semibold leading-none text-center uppercase"
+                                            *ngIf="!carRegistration.avartarUrl">
+                                            NO THUMB
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Name -->
+                                <div class="truncate">
+                                    {{carRegistration.name}}
+                                </div>
+
+                                <!-- Gender -->
+                                <div class="hidden truncate sm:block">
+                                    {{carRegistration.licensePlate}}
+                                </div>
+
+                                <!-- Phone -->
+                                <div class="hidden truncate sm:block">
+                                    {{carRegistration.price | number:'1.0-2'}}
+                                </div>
+
+                                <!-- Phone -->
+                                <div class="hidden truncate sm:block">
+                                    {{carRegistration.productionCompany}}
+                                </div>
+
+                                <!-- Rented -->
+                                <div class="hidden truncate sm:block">
+                                    {{carRegistration.location}}
+                                </div>
+
+                                <!-- Status -->
+                                <div class="hidden truncate sm:block">
+                                    {{carRegistration.createAt | date:'dd-MM-YYYY'}}
+                                </div>
+
+                                <!-- Action -->
+                                <div class="hidden truncate sm:block">
+                                    <div class="flex gap-3">
+                                        <span [routerLink]="['/materials/car-registrations', carRegistration.id]">
+                                            <mat-icon class="text-blue-500 icon-size-5 cursor-pointer"
+                                                [svgIcon]="'heroicons_outline:eye'"></mat-icon>
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
+
+            </div>
+
+            <mat-paginator
+                class="sm:absolute sm:inset-x-0 sm:bottom-0 border-b sm:border-t sm:border-b-0 z-10 bg-gray-50 dark:bg-transparent"
+                [ngClass]="{'pointer-events-none': isLoading}" [length]="pagination.totalRow"
+                [pageIndex]="pagination.pageNumber" [pageSize]="pagination.pageSize"
+                [pageSizeOptions]="[5, 10, 25, 100]" [showFirstLastButtons]="true"></mat-paginator>
+
+        </ng-container>
+
+        <ng-template #noMachines>
+            <div class="p-8 sm:p-16 border-t text-4xl font-semibold tracking-tight text-center">Không tìm thấy phiếu
+                đăng ký nào!
+            </div>
+        </ng-template>
+
+    </div>
+
+</div>
+
+<!-- Notification -->
+<a class="cursor-pointer" *ngIf="flashMessage">
+    <fuse-alert class="absolute bottom-0 right-0 z-999" [type]="'success'" [appearance]="'border'"
+        *ngIf="flashMessage === 'success'">
+        <span fuseAlertTitle>Thành công</span>
+        {{message}}
+    </fuse-alert>
+    <fuse-alert class="absolute bottom-0 right-0 z-999" [type]="'error'" [appearance]="'border'"
+        *ngIf="flashMessage === 'error'">
+        <span fuseAlertTitle>Có lỗi xảy ra</span>
+        {{message}}
+    </fuse-alert>
+</a>
