@@ -11,29 +11,35 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { Route, RouterModule } from '@angular/router';
 import { FuseAlertModule } from '@fuse/components/alert';
+import { CalculateDaysPipeModule } from '@fuse/pipes/days-calculate/days-caculate-pipe.module';
+import { PaymentPipeModule } from '@fuse/pipes/payment/payment-pipe.module';
 import { AccountStatusPipeModule } from '@fuse/pipes/status/status-pipe.module';
 import { OrderComponent } from 'app/modules/admin/order/order.component';
+import { OrderDetailComponent } from './detail/order-detail.component';
+import { OrderDetailResolver } from './detail/order-detail.resolvers';
+import { OrdersResolver } from './order.resolvers';
 
 const orderRoutes: Route[] = [
     {
         path: '',
         component: OrderComponent,
-        // resolve: {
-        //     order: OrdersResolver
-        // },
+        resolve: {
+            order: OrdersResolver
+        },
     },
-    // {
-    //     path: ':id',
-    //     component: OrderDetailComponent,
-    //     resolve: {
-    //         orderDetail: OrderDetailResolver
-    //     }
-    // }
+    {
+        path: ':id',
+        component: OrderDetailComponent,
+        resolve: {
+            orderDetail: OrderDetailResolver
+        }
+    }
 ];
 
 @NgModule({
     declarations: [
         OrderComponent,
+        OrderDetailComponent
     ],
     imports: [
         CommonModule,
@@ -47,6 +53,8 @@ const orderRoutes: Route[] = [
         MatPaginatorModule,
         MatSortModule,
         AccountStatusPipeModule,
+        CalculateDaysPipeModule,
+        PaymentPipeModule,
         MatDialogModule,
         MatSelectModule,
         FuseAlertModule

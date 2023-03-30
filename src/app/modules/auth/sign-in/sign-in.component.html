@@ -8,9 +8,9 @@
             </div>
 
             <!-- Title -->
-            <div class="mt-8 text-4xl font-extrabold tracking-tight leading-tight">Sign in</div>
+            <div class="mt-8 text-4xl font-extrabold tracking-tight leading-tight">Đăng nhập</div>
             <div class="flex items-baseline mt-0.5 font-medium">
-                <div>Use your administrator account</div>
+                <div>Sử dụng tài khoản quản lý của bạn</div>
             </div>
 
             <!-- Alert -->
@@ -36,7 +36,7 @@
                     <mat-label>Username</mat-label>
                     <input id="username" matInput [formControlName]="'username'">
                     <mat-error *ngIf="signInForm.get('username').hasError('required')">
-                        Username is required
+                        Tên đăng nhập không được để trống
                     </mat-error>
                 </mat-form-field>
 
@@ -53,14 +53,14 @@
                             [svgIcon]="'heroicons_solid:eye-off'"></mat-icon>
                     </button>
                     <mat-error>
-                        Password is required
+                        Mật khẩu không được để trống
                     </mat-error>
                 </mat-form-field>
 
                 <!-- Actions -->
                 <div class="inline-flex items-center justify-between w-full mt-1.5">
                     <mat-checkbox class="-ml-2" [color]="'primary'" [formControlName]="'rememberMe'">
-                        Remember me
+                        Ghi nhớ đăng nhập
                     </mat-checkbox>
                     <!-- <a class="text-md font-medium text-primary-500 hover:underline"
                         [routerLink]="['/forgot-password']">Forgot password?
@@ -71,7 +71,7 @@
                 <button class="fuse-mat-button-large w-full mt-6" mat-flat-button [color]="'primary'"
                     [disabled]="signInForm.disabled" (click)="signIn()">
                     <span *ngIf="!signInForm.disabled">
-                        Sign in
+                        Đăng nhập
                     </span>
                     <mat-progress-spinner *ngIf="signInForm.disabled" [diameter]="24"
                         [mode]="'indeterminate'"></mat-progress-spinner>
@@ -128,25 +128,24 @@
                 <div>Fcar</div>
             </div>
             <div class="mt-6 text-lg tracking-tight leading-6 text-gray-400">
-                Fcar is a premium car rental company that provides top-quality vehicles and professional drivers to
-                individuals and businesses alike. With a focus on safety, comfort, and reliability, Fcar is the ideal
-                choice for those who want to enjoy a hassle-free ride.
+                Fcar là công ty cho thuê xe cao cấp cung cấp phương tiện chất lượng hàng đầu và tài xế chuyên nghiệp cho
+                các cá nhân cũng như doanh nghiệp. Tập trung vào sự an toàn, thoải mái và độ tin cậy, Fcar là lựa chọn
+                lý tưởng cho những ai muốn tận hưởng một chuyến đi không rắc rối.
             </div>
             <div class="mt-6 text-lg tracking-tight leading-6 text-gray-400">
-                The company's fleet consists of a variety of vehicles, ranging from compact cars to luxury sedans, all
-                meticulously maintained and regularly serviced to ensure the utmost safety and comfort for passengers.
-                Fcar's drivers are trained professionals with years of experience behind the wheel, and they are
-                dedicated to providing exceptional customer service to all passengers.
+                Đội xe của công ty bao gồm nhiều loại xe khác nhau, từ xe nhỏ gọn đến xe sedan sang trọng, tất cả đều
+                được bảo dưỡng tỉ mỉ và bảo dưỡng thường xuyên để đảm bảo sự an toàn và thoải mái nhất cho hành khách.
+                Các tài xế của Fcar là những chuyên gia được đào tạo với nhiều năm kinh nghiệm ngồi sau tay lái và họ
+                tận tâm cung cấp dịch vụ khách hàng đặc biệt cho tất cả hành khách.
             </div>
             <div class="mt-6 text-lg tracking-tight leading-6 text-gray-400">
-                Whether you need a ride to the airport, a business meeting, or a special event, Fcar has you covered.
-                The company offers flexible booking options and competitive pricing, making it easy and affordable for
-                everyone to enjoy a comfortable and stress-free ride.
-
+                Cho dù bạn cần một chuyến đi đến sân bay, một cuộc họp kinh doanh hay một sự kiện đặc biệt, Fcar sẽ đáp
+                ứng cho bạn. Công ty cung cấp các tùy chọn đặt chỗ linh hoạt và giá cả cạnh tranh, giúp mọi người dễ
+                dàng và hợp túi tiền để tận hưởng một chuyến đi thoải mái và không căng thẳng.
             </div>
             <div class="mt-6 text-lg tracking-tight leading-6 text-gray-400">
-                With Fcar, you can rest assured that you'll arrive at your destination safely and on time, and you'll
-                enjoy the peace of mind that comes with knowing that you're in good hands.
+                Với Fcar, bạn có thể yên tâm rằng bạn sẽ đến đích an toàn và đúng giờ, đồng thời bạn sẽ tận hưởng sự an
+                tâm khi biết rằng mình đang ở trong tay những người tốt.
             </div>
             <div class="flex items-center mt-8">
                 <div class="flex flex-0 items-center -space-x-1.5">
@@ -159,8 +158,8 @@
                     <img class="flex-0 w-10 h-10 rounded-full ring-4 ring-offset-1 ring-gray-800 ring-offset-gray-800 object-cover"
                         src="assets/images/avatars/male-16.jpg">
                 </div>
-                <div class="ml-4 font-medium tracking-tight text-gray-400">More than 17k people joined us, it's your
-                    turn</div>
+                <div class="ml-4 font-medium tracking-tight text-gray-400">Hơn 17k người đã tham gia cùng chúng tôi, đã
+                    đến lượt bạn</div>
             </div>
         </div>
     </div>

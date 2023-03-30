@@ -1,112 +1,126 @@
-<div class="absolute inset-0 min-w-0 text-center overflow-auto print:overflow-visible" cdkScrollable>
+<div class="sm:absolute sm:inset-0 flex flex-col flex-auto min-w-0 sm:overflow-hidden bg-card dark:bg-transparent">
 
-    <!-- Main -->
-    <div class="inline-block p-6 sm:p-10 text-left print:p-0">
-
-        <!-- Invoice -->
-        <div
-            class="w-240 p-8 rounded-2xl shadow bg-card print:w-auto print:rounded-none print:shadow-none print:bg-transparent">
-
-            <div class="flex items-start justify-between">
-                <div class="grid grid-cols-2 gap-x-4 gap-y-1">
-                    <div class="text-4xl tracking-tight text-secondary">ORDER</div>
-                    <div></div>
-                    <div class="font-medium tracking-tight text-secondary">ORDER DATE</div>
-                    <div class="font-medium">Jul 19, 2022</div>
-                    <div class="font-medium tracking-tight text-secondary">TOTAL DUE</div>
-                    <div class="font-medium">$235,000.00</div>
-                    <div class="font-medium tracking-tight text-secondary">STATUS</div>
-                    <div class="font-medium">PENDING</div>
-                </div>
-                <div class="grid auto-cols-max grid-flow-col gap-x-8 -mr-8 py-6 px-8 rounded-l-2xl bg-accent dark">
-                    <div class="place-self-center w-24">
-                        <img class="w-24" src="assets/images/logo/logo.svg">
-                    </div>
-                    <div class="pl-10 border-l text-md">
-                        <div class="font-medium">Fcar Inc.</div>
-                        <div>2810 Country Club Road</div>
-                        <div>Cranford, NJ 07016</div>
-                        <div>+66 123 455 87</div>
-                        <div>support@fcar.com</div>
-                        <div>www.fcar.com</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-md">
-                <div class="text-xl font-medium">Brian Hughes</div>
-            </div>
-
-            <div class="grid grid-cols-12 gap-x-1 mt-12">
-                <!-- Columns -->
-                <div class="col-span-7 font-medium text-md text-secondary">SERVICE</div>
-                <div class="font-medium text-md text-right text-secondary">RATE</div>
-                <div class="font-medium text-md text-right text-secondary">QTY</div>
-                <div class="col-span-2 font-medium text-md text-right text-secondary">TOTAL</div>
-
-                <!-- Divider -->
-                <div class="col-span-12 my-4 border-b"></div>
-
-                <!-- Item -->
-                <div class="col-span-7 text-lg font-medium">RENTAL TIME</div>
-                <div class="self-center text-right">$75.00</div>
-                <div class="self-center text-right">240</div>
-                <div class="col-span-2 self-center text-right">$18,000.00</div>
-
-                <!-- Divider -->
-                <div class="col-span-12 my-4 border-b"></div>
-
-                <!-- Item -->
-                <div class="col-span-7 text-lg font-medium">UNIT PRICE</div>
-                <div class="self-center text-right">$60.50</div>
-                <div class="self-center text-right">350</div>
-                <div class="col-span-2 self-center text-right">$21,175.00</div>
-
-                <!-- Divider -->
-                <div class="col-span-12 my-4 border-b"></div>
-
-                <!-- Item -->
-                <div class="col-span-7 text-lg font-medium">DELIVERY FEE</div>
-                <div class="self-center text-right">$25.00</div>
-                <div class="self-center text-right">50</div>
-                <div class="col-span-2 self-center text-right">$1,250.00</div>
-
-                <!-- Divider -->
-                <div class="col-span-12 my-4 border-b"></div>
-
-                <!-- Item -->
-                <div class="col-span-7 text-lg font-medium">DEPOSIT</div>
-                <div class="self-center text-right">$26.50</div>
-                <div class="self-center text-right">260</div>
-                <div class="col-span-2 self-center text-right">$6,890.00</div>
-
-                <!-- Divider -->
-                <div class="col-span-12 my-4 border-b"></div>
-
-                <!-- Spacer -->
-                <div class="col-span-12 mt-16"></div>
-
-                <!-- Subtotal -->
-                <div class="col-span-10 self-center font-medium tracking-tight text-secondary">SUBTOTAL</div>
-                <div class="col-span-2 text-right text-lg">$227,315.00</div>
-
-                <!-- Divider -->
-                <div class="col-span-12 my-3 border-b"></div>
-
-                <!-- Discount -->
-                <div class="col-span-10 self-center font-medium tracking-tight text-secondary">DISCOUNT</div>
-                <div class="col-span-2 text-right text-lg">$3,680.75</div>
-
-                <!-- Divider -->
-                <div class="col-span-12 my-3 border-b"></div>
-
-                <!-- Total -->
-                <div class="col-span-10 self-center text-2xl font-medium tracking-tight text-secondary">TOTAL</div>
-                <div class="col-span-2 text-right text-2xl font-medium">$235,000.00</div>
-            </div>
-
+    <!-- Header -->
+    <div
+        class="relative flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between py-8 px-6 md:px-8 border-b">
+        <!-- Loader -->
+        <div class="absolute inset-x-0 bottom-0" *ngIf="isLoading">
+            <mat-progress-bar [mode]="'indeterminate'"></mat-progress-bar>
         </div>
+        <!-- Title -->
+        <div class="text-4xl font-extrabold tracking-tight">Quản lý đơn hàng</div>
+        <!-- Actions -->
+        <div class="flex shrink-0 items-center mt-6 sm:mt-0 sm:ml-4 gap-3">
+            <!-- Search -->
+            <mat-form-field class="fuse-mat-dense fuse-mat-rounded min-w-64" [subscriptSizing]="'dynamic'">
+                <mat-icon class="icon-size-5" matPrefix [svgIcon]="'heroicons_solid:search'"></mat-icon>
+                <input matInput [formControl]="searchInputControl" [autocomplete]="'off'" [placeholder]="'Tìm kiếm'">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <!-- Orders list -->
+    <div class="flex flex-col flex-auto sm:mb-18 overflow-hidden sm:overflow-y-auto">
+        <ng-container *ngIf="(orders$ | async) as orders">
+            <div class="grid">
+                <!-- Header -->
+                <div class="order-grid z-10 sticky top-0 grid gap-4 py-4 px-6 md:px-8 shadow text-md font-semibold text-secondary bg-gray-50 dark:bg-black dark:bg-opacity-5"
+                    matSort matSortDisableClear>
+                    <div>Khách hàng</div>
+                    <div [mat-sort-header]="'createAt'">Thời gian tạo</div>
+                    <div class="hidden sm:block">
+                        Đơn giá
+                    </div>
+                    <div class="hidden sm:block">
+                        Tổng cộng
+                    </div>
+                    <div class="hidden sm:block">
+                        Thanh toán
+                    </div>
+                    <div class="hidden sm:block">Trạng thái</div>
+                    <div class="hidden sm:block">Chi tiết</div>
+                </div>
+                <!-- Rows -->
+                <ng-container *ngIf="orders.length > 0; else noOrders">
+                    <ng-container *ngIf="(orders$ | async) as orders">
+                        <ng-container *ngFor="let order of orders; trackBy: trackByFn">
+                            <div class="order-grid grid items-center gap-4 py-3 px-6 md:px-8 border-b">
+
+                                <!-- Customer -->
+                                <div class="truncate">
+                                    {{order.customer.name}}
+                                </div>
+
+                                <!-- Name -->
+                                <div class="truncate">
+                                    {{order.createAt | date: 'dd-MM-YYYY'}}
+                                </div>
+
+                                <!-- Gender -->
+                                <div class="hidden sm:block">
+                                    {{order.unitPrice}}
+                                </div>
+
+                                <!-- Phone -->
+                                <div class="hidden sm:block">
+                                    {{order.amount}}
+                                </div>
+
+                                <!-- Phone -->
+                                <div class="hidden sm:block">
+                                    {{order.isPaid | payment}}
+                                </div>
+
+                                <!-- Status -->
+                                <div class="hidden sm:block">
+                                    {{order.status}}
+                                </div>
+
+                                <!-- Action -->
+                                <div class="hidden sm:block">
+                                    <div class="flex gap-3">
+                                        <span [routerLink]="['/comercials/orders', order.id]">
+                                            <mat-icon class="text-blue-500 icon-size-5 cursor-pointer"
+                                                [svgIcon]="'heroicons_outline:eye'"></mat-icon>
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
+
+            </div>
+
+            <mat-paginator
+                class="sm:absolute sm:inset-x-0 sm:bottom-0 border-b sm:border-t sm:border-b-0 z-10 bg-gray-50 dark:bg-transparent"
+                [ngClass]="{'pointer-events-none': isLoading}" [length]="pagination.totalRow"
+                [pageIndex]="pagination.pageNumber" [pageSize]="pagination.pageSize"
+                [pageSizeOptions]="[5, 10, 25, 100]" [showFirstLastButtons]="true"></mat-paginator>
+
+        </ng-container>
+
+        <ng-template #noOrders>
+            <div class="p-8 sm:p-16 border-t text-4xl font-semibold tracking-tight text-center">Không tìm thấy tài khoản
+                nào!
+            </div>
+        </ng-template>
 
     </div>
 
 </div>
+
+<!-- Notification -->
+<a class="cursor-pointer" *ngIf="flashMessage">
+    <fuse-alert class="absolute bottom-0 right-0 z-999" [type]="'success'" [appearance]="'border'"
+        *ngIf="flashMessage === 'success'">
+        <span fuseAlertTitle>Thành công</span>
+        {{message}}
+    </fuse-alert>
+    <fuse-alert class="absolute bottom-0 right-0 z-999" [type]="'error'" [appearance]="'border'"
+        *ngIf="flashMessage === 'error'">
+        <span fuseAlertTitle>Có lỗi xảy ra</span>
+        {{message}}
+    </fuse-alert>
+</a>
