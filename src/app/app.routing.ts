@@ -1,8 +1,8 @@
 import { Route } from '@angular/router';
+import { InitialDataResolver } from 'app/app.resolvers';
 import { AuthGuard } from 'app/core/auth/guards/auth.guard';
 import { NoAuthGuard } from 'app/core/auth/guards/noAuth.guard';
 import { LayoutComponent } from 'app/layout/layout.component';
-import { InitialDataResolver } from 'app/app.resolvers';
 
 // @formatter:off
 /* eslint-disable max-len */
@@ -98,7 +98,9 @@ export const appRoutes: Route[] = [
         },
         children: [
             { path: 'machines', loadChildren: () => import('app/modules/admin/machine/machine.module').then(m => m.MachineModule) },
-            { path: 'car-registrations', loadChildren: () => import('app/modules/admin/car-registration/car-registration.module').then(m => m.CarRegistrationModule) },
+            {
+                path: 'car-registrations', loadChildren: () => import('app/modules/admin/car-registration/car-registration.module').then(m => m.CarRegistrationModule)
+            },
         ]
     },
 

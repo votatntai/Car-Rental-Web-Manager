@@ -3,20 +3,83 @@
     <!-- Main -->
     <div class="inline-block p-6 sm:p-10 text-left print:p-0">
 
+        <div class="flex gap-3 mb-6">
+            <fuse-card class="flex flex-col items-center justify-center max-w-80 w-full p-8 pb-6 filter-shopping">
+                <ng-container *ngIf="order.orderDetails[0].driver">
+                    <img class="w-32 h-32 rounded-full" src="assets/images/avatars/male-04.jpg" alt="Card cover image">
+                    <div class="text-secondary leading-tight text-center mt-8">Tài xế</div>
+                    <div class="text-2xl font-semibold leading-tight text-center mt-1">{{
+                        order.orderDetails[0].driver.name }}</div>
+                    <hr class="w-full border-t mt-8 mb-0">
+                    <div class="w-full flex items-center justify-between my-4 px-2">
+                        <div class="flex flex-col items-center">
+                            <span class="font-bold">{{ order.orderDetails[0].driver.star || 'Chưa có' }}</span>
+                            <span class="text-sm font-medium text-secondary">ĐÁNH GIÁ</span>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <span class="font-bold">{{ 0 }}</span>
+                            <span class="text-sm font-medium text-secondary">SỐ CHUYẾN</span>
+                        </div>
+                    </div>
+                    <a class="px-6 mt-8" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                        Đổi tài xế
+                    </a>
+                </ng-container>
+                <ng-container *ngIf="!order.orderDetails[0].driver">
+                    <a class="flex" mat-flat-button [color]="'accent'" [routerLink]="['./']">
+                        Đơn hàng không có tài xế
+                    </a>
+                </ng-container>
+            </fuse-card>
+
+            <fuse-card class="flex flex-col items-center max-w-80 w-full p-8 pb-6 filter-shopping">
+                <img class="w-32 h-32 rounded-full" src="assets/images/avatars/male-04.jpg" alt="Card cover image">
+                <div class="text-secondary leading-tight text-center mt-8">Khách hàng</div>
+                <div class="text-2xl font-semibold leading-tight text-center mt-1">{{ order.customer.name }}</div>
+            </fuse-card>
+
+            <fuse-card class="flex flex-col max-w-80 w-full filter-shopping">
+                <img class="object-cover" src="assets/images/cards/sneakers-01-320x200.jpg" alt="Card cover image">
+                <ng-container *ngIf="order.promotion">
+                    <div class="flex flex-col m-8 mb-0 justify-between">
+                        <div class="flex flex-col">
+                            <div class="text-2xl leading-tight">Black sneakers with white stripes</div>
+                            <div class="text-3xl font-semibold mt-2">240.00 %</div>
+                        </div>
+                        <hr class="border-b my-6">
+                        <div class="flex items-center text-md">
+                            <span class="text-secondary whitespace-nowrap mr-3">Hạn sử dụng đến:</span>
+                            <span class="mr-2">22-22-2222</span>
+                        </div>
+                        <div class="mt-6 -mx-8">
+                            <button class="w-full rounded-none" mat-flat-button [color]="'primary'">
+                                Mã khuyến mãi
+                            </button>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="!order.promotion">
+                    <a class="mt-5 mx-10" mat-flat-button [color]="'accent'" [routerLink]="['./']">
+                        Không có mã khuyến mãi
+                    </a>
+                </ng-container>
+            </fuse-card>
+        </div>
+
         <!-- Invoice -->
         <div
             class="w-240 p-8 rounded-2xl shadow bg-card print:w-auto print:rounded-none print:shadow-none print:bg-transparent">
 
             <div class="flex items-start justify-between">
                 <div class="grid grid-cols-2 gap-x-4 gap-y-1">
-                    <div class="text-4xl tracking-tight text-secondary">ORDER</div>
+                    <div class="text-4xl tracking-tight text-secondary">ĐƠN HÀNG</div>
                     <div></div>
-                    <div class="font-medium tracking-tight text-secondary">ORDER DATE</div>
-                    <div class="font-medium">Jul 19, 2022</div>
-                    <div class="font-medium tracking-tight text-secondary">TOTAL DUE</div>
-                    <div class="font-medium">$235,000.00</div>
-                    <div class="font-medium tracking-tight text-secondary">STATUS</div>
-                    <div class="font-medium">PENDING</div>
+                    <div class="font-medium tracking-tight text-secondary">NGÀY TẠO</div>
+                    <div class="font-medium">{{ order.createAt | date:'dd-MM-YYYY' }}</div>
+                    <div class="font-medium tracking-tight text-secondary">GIÁ TRỊ ĐƠN HÀNG</div>
+                    <div class="font-medium">{{ order.amount | number:'1.0-2' }} VNĐ</div>
+                    <div class="font-medium tracking-tight text-secondary">TRẠNG THÁI</div>
+                    <div class="font-medium">{{ order.status }}</div>
                 </div>
                 <div class="grid auto-cols-max grid-flow-col gap-x-8 -mr-8 py-6 px-8 rounded-l-2xl bg-accent dark">
                     <div class="place-self-center w-24">
@@ -34,21 +97,21 @@
             </div>
 
             <div class="text-md">
-                <div class="text-xl font-medium">{{ order.customer.name }}</div>
+                <div class="text-xl font-medium">Khách hàng - {{ order.customer.name }}</div>
             </div>
 
             <div class="grid grid-cols-12 gap-x-1 mt-12">
                 <!-- Columns -->
-                <div class="col-span-7 font-medium text-md text-secondary">SERVICE</div>
-                <div class="font-medium text-md text-right text-secondary">RATE</div>
-                <div class="font-medium text-md text-right text-secondary">UNIT</div>
-                <div class="col-span-2 font-medium text-md text-right text-secondary">PRICE</div>
+                <div class="col-span-7 font-medium text-md text-secondary">DỊCH VỤ</div>
+                <div class="font-medium text-md text-right text-secondary">SỐ LƯỢNG</div>
+                <div class="font-medium text-md text-right text-secondary">ĐƠN VỊ</div>
+                <div class="col-span-2 font-medium text-md text-right text-secondary">GIÁ</div>
 
                 <!-- Divider -->
                 <div class="col-span-12 my-4 border-b"></div>
 
                 <!-- Item -->
-                <div class="col-span-7 text-lg font-medium">RENTAL TIME</div>
+                <div class="col-span-7 text-lg font-medium">THỜI GIAN THUÊ</div>
                 <div class="self-center text-right">{{ order.rentalTime }}</div>
                 <div class="self-center text-right">Ngày</div>
                 <div class="col-span-2 self-center text-right">{{ order.unitPrice | number:'1.0-2' }} VNĐ</div>
@@ -57,7 +120,7 @@
                 <div class="col-span-12 my-4 border-b"></div>
 
                 <!-- Item -->
-                <div class="col-span-7 text-lg font-medium">DELIVERY FEE</div>
+                <div class="col-span-7 text-lg font-medium">PHÍ GIAO XE</div>
                 <div class="self-center text-right">{{ order.deliveryDistance }}</div>
                 <div class="self-center text-right">Km</div>
                 <div class="col-span-2 self-center text-right">{{ order.deliveryFee | number:'1.0-2' }} VNĐ</div>
@@ -66,7 +129,7 @@
                 <div class="col-span-12 my-4 border-b"></div>
 
                 <!-- Item -->
-                <div class="col-span-7 text-lg font-medium">PROMOTION</div>
+                <div class="col-span-7 text-lg font-medium">KHUYẾN MÃI</div>
                 <div class="self-center text-right">{{ order.promotion?.discount || 0 }}</div>
                 <div class="self-center text-right">%</div>
                 <div class="col-span-2 self-center text-right">{{ order.promotion != null ? order.amount *
@@ -77,7 +140,7 @@
                 <div class="col-span-12 my-4 border-b"></div>
 
                 <!-- Item -->
-                <div class="col-span-7 text-lg font-medium">DEPOSIT</div>
+                <div class="col-span-7 text-lg font-medium">ĐÃ CỌC</div>
                 <div class="self-center text-right">30</div>
                 <div class="self-center text-right">%</div>
                 <div class="col-span-2 self-center text-right">{{ order.deposit | number:'1.0-2' }} VNĐ</div>
@@ -89,26 +152,35 @@
                 <div class="col-span-12 mt-16"></div>
 
                 <!-- Subtotal -->
-                <div class="col-span-10 self-center font-medium tracking-tight text-secondary">SUBTOTAL</div>
-                <div class="col-span-2 text-right text-lg">{{ order.amount | number:'1.0-2' }}</div>
+                <div class="col-span-10 self-center font-medium tracking-tight text-secondary">TẠM TÍNH</div>
+                <div class="col-span-2 text-right text-lg">{{ order.amount | number:'1.0-2' }} VNĐ</div>
 
                 <!-- Divider -->
                 <div class="col-span-12 my-3 border-b"></div>
 
                 <!-- Discount -->
-                <div class="col-span-10 self-center font-medium tracking-tight text-secondary">DISCOUNT</div>
+                <div class="col-span-10 self-center font-medium tracking-tight text-secondary">KHUYẾN MÃI</div>
                 <div class="col-span-2 text-right text-lg">{{ order.promotion != null ? order.amount *
-                    order.promotion.discount : 0 }}</div>
+                    order.promotion.discount : 0 | number:'1.0-2' }} CNĐ</div>
 
                 <!-- Divider -->
                 <div class="col-span-12 my-3 border-b"></div>
 
                 <!-- Total -->
-                <div class="col-span-10 self-center text-2xl font-medium tracking-tight text-secondary">TOTAL</div>
+                <div class="col-span-10 self-center text-2xl font-medium tracking-tight text-secondary">TỔNG CỘNG</div>
                 <div class="col-span-2 text-right text-2xl font-medium">{{ order.promotion != null ? order.amount -
-                    order.amount * order.promotion.discount : order.amount }}</div>
+                    order.amount * order.promotion.discount : order.amount | number:'1.0-2' }} VNĐ</div>
             </div>
 
+        </div>
+
+        <div class="flex gap-8 justify-between mt-5">
+            <button class="w-full" mat-flat-button [color]="'warn'">
+                Từ chối đơn hàng
+            </button>
+            <button class="w-full" mat-flat-button [color]="'primary'">
+                Xác nhận đơn hàng
+            </button>
         </div>
 
     </div>

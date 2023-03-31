@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { fuseAnimations } from '@fuse/animations';
-import { debounceTime, map, merge, Observable, Subject, switchMap, takeUntil } from 'rxjs';
+import { debounceTime, map, merge, Observable, Subject, switchMap, take, takeUntil } from 'rxjs';
 import { OrderService } from './order.service';
 import { Order, OrderPagination } from './order.type';
 
@@ -41,10 +41,6 @@ export class OrderComponent implements OnInit, AfterViewInit {
     ngOnInit() {
         // Get the products
         this.orders$ = this._orderService.orders$;
-
-        this.orders$.subscribe(a => {
-            console.log(a);
-        })
 
         // Get the pagination
         this._orderService.pagination$

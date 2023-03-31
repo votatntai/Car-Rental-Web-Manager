@@ -1,8 +1,8 @@
 import { AdditionalCharge } from "app/modules/types/additional-charge.type";
-import { Model } from "app/modules/types/model.type";
 import { ProductCompany } from "app/modules/types/product-company.type";
 import { CarOwner } from "../car-owner/car-owner.type";
 import { Driver } from "../driver/driver.type";
+import { Model } from "../model/module.type";
 import { Showroom } from "../showroom/showroom.type";
 
 export interface Machine {

@@ -12,11 +12,14 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { Route, RouterModule } from '@angular/router';
 import { FuseAlertModule } from '@fuse/components/alert';
+import { FuseCardModule } from '@fuse/components/card';
 import { AccountStatusPipeModule } from '@fuse/pipes/status/status-pipe.module';
 import { CarRegistrationComponent } from 'app/modules/admin/car-registration/car-registration.component';
 import { CarRegistrationsResolver } from './car-registration.resolvers';
+import { CreateCarComponent } from './create-car/create-car.component';
 import { CarRegistrationDetailComponent } from './detail/car-registration-detail.component';
 import { CarRegistrationDetailResolver } from './detail/car-registration-detail.resolvers';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 const machineRoutes: Route[] = [
     {
@@ -31,14 +34,15 @@ const machineRoutes: Route[] = [
         component: CarRegistrationDetailComponent,
         resolve: {
             machineDetail: CarRegistrationDetailResolver
-        }
+        },
     }
 ];
 
 @NgModule({
     declarations: [
         CarRegistrationComponent,
-        CarRegistrationDetailComponent
+        CarRegistrationDetailComponent,
+        CreateCarComponent
     ],
     imports: [
         CommonModule,
@@ -55,7 +59,9 @@ const machineRoutes: Route[] = [
         MatDialogModule,
         MatSelectModule,
         FuseAlertModule,
-        MatTableModule
+        MatTableModule,
+        FuseCardModule,
+        MatAutocompleteModule
     ],
 })
 export class CarRegistrationModule {

@@ -11,14 +11,14 @@ export const defaultNavigation: FuseNavigationItem[] = [
         children: [
             {
                 id: 'materials.machines',
-                title: 'Xe',
+                title: 'Quản Lý Xe',
                 type: 'basic',
                 icon: 'heroicons_outline:truck',
                 link: '/materials/machines'
             },
             {
                 id: 'materials.carRegistration',
-                title: 'Xe đăng ký',
+                title: 'Quản Lý Đăng Ký Xe',
                 type: 'basic',
                 icon: 'heroicons_outline:pencil-alt',
                 link: '/materials/car-registrations'
@@ -34,7 +34,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
         children: [
             {
                 id: 'comercials.orders',
-                title: 'Đơn hàng',
+                title: 'Quản Lý Đơn hàng',
                 type: 'basic',
                 icon: 'heroicons_outline:library',
                 link: '/comercials/orders'
@@ -52,14 +52,14 @@ export const compactNavigation: FuseNavigationItem[] = [
         children: [
             {
                 id: 'materials.machines',
-                title: 'Xe',
+                title: 'Quản Lý Xe',
                 type: 'basic',
                 icon: 'heroicons_outline:truck',
                 link: '/materials/machines'
             },
             {
                 id: 'materials.carRegistration',
-                title: 'Xe đăng ký',
+                title: 'Quản Lý Đăng Ký Xe',
                 type: 'basic',
                 icon: 'heroicons_outline:pencil-alt',
                 link: '/materials/car-registrations'
@@ -75,7 +75,7 @@ export const compactNavigation: FuseNavigationItem[] = [
         children: [
             {
                 id: 'comercials.orders',
-                title: 'Đơn hàng',
+                title: 'Quản Lý Đơn hàng',
                 type: 'basic',
                 icon: 'heroicons_outline:library',
                 link: '/comercials/orders'
@@ -93,14 +93,14 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         children: [
             {
                 id: 'materials.machines',
-                title: 'Xe',
+                title: 'Quản Lý Xe',
                 type: 'basic',
                 icon: 'heroicons_outline:truck',
                 link: '/materials/machines'
             },
             {
                 id: 'materials.carRegistration',
-                title: 'Xe đăng ký',
+                title: 'Quản Lý Đăng Ký Xe',
                 type: 'basic',
                 icon: 'heroicons_outline:pencil-alt',
                 link: '/materials/car-registrations'
@@ -116,7 +116,7 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         children: [
             {
                 id: 'comercials.orders',
-                title: 'Đơn hàng',
+                title: 'Quản Lý Đơn hàng',
                 type: 'basic',
                 icon: 'heroicons_outline:library',
                 link: '/comercials/orders'
@@ -134,14 +134,14 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         children: [
             {
                 id: 'materials.machines',
-                title: 'Xe',
+                title: 'Quản Lý Xe',
                 type: 'basic',
                 icon: 'heroicons_outline:truck',
                 link: '/materials/machines'
             },
             {
                 id: 'materials.carRegistration',
-                title: 'Xe đăng ký',
+                title: 'Quản Lý Đăng Ký Xe',
                 type: 'basic',
                 icon: 'heroicons_outline:pencil-alt',
                 link: '/materials/car-registrations'
@@ -157,7 +157,7 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         children: [
             {
                 id: 'comercials.orders',
-                title: 'Đơn hàng',
+                title: 'Quản Lý Đơn hàng',
                 type: 'basic',
                 icon: 'heroicons_outline:library',
                 link: '/comercials/orders'

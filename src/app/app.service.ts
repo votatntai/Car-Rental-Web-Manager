@@ -43,6 +43,8 @@ export class AppService {
 
     public listenServiceWorker() {
         this._messaging.messages.subscribe((event: any) => {
+            console.log(event);
+
             const now: Date = new Date();
             const currentTime: string = now.toLocaleTimeString();
 
@@ -51,8 +53,13 @@ export class AppService {
                 title: event.notification.title,
                 body: event.notification.body,
                 isRead: false,
-                createAt: currentTime
+                createAt: currentTime,
+                type: event.data.type,
+                link: event.data.link
             };
+
+            console.log(newNotification);
+
 
             var currentNotifications = this._notofications.getValue();
             var notifications = currentNotifications ? [newNotification, ...currentNotifications].slice(0, this._pagination.value.pageSize) : [newNotification];

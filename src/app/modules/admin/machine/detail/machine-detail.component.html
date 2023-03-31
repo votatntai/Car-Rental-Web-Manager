@@ -7,284 +7,129 @@
     </div>
 
     <div class="flex flex-col flex-auto items-center overflow-hidden sm:overflow-y-auto">
-        <div class="flex flex-col items-center px-10 w-full">
-            <div class="grid grid-cols-2 w-full gap-8">
-                <div class="col-span-1 flex flex-col items-center justify-between p-8 bg-card rounded-lg">
-                    <div class="infor">
-                        <div class="relative w-24 h-24">
-                            <img class="w-full h-full rounded-full" *ngIf="machine.images.length > 0"
-                                [src]="machine.images[0]" alt="User avatar">
-                            <mat-icon class="icon-size-24" *ngIf="machine.images.length == 0"
-                                [svgIcon]="'heroicons_outline:ticket'"></mat-icon>
-                        </div>
-                        <div class="flex flex-col items-center justify-center w-full">
-                            <div
-                                class="w-full whitespace-nowrap text-ellipsis overflow-hidden text-center leading-normal font-semibold text-lg">
-                                {{machine.name}}
+        <div class="flex flex-col px-10 w-full">
+            <div class="grid grid-cols-4 w-full gap-4">
+                <fuse-card class="flex flex-col w-full filter-listing">
+                    <img class="object-cover"
+                        src="https://web-assets.cdn.dealersolutions.com.au/modular.multisite.dealer.solutions/wp-content/uploads/2018/03/31104034/GR86-Image.jpg"
+                        alt="Card cover image">
+                    <div class="m-8 mb-4">
+                        <div class="flex justify-between">
+                            <div class="flex flex-col">
+                                <div class="text-secondary text-md">{{ machine.productionCompany.name }} - {{
+                                    machine.name }}</div>
+                                <div class="text-2xl font-semibold text-green-500 leading-tight mt-1">{{ machine.price |
+                                    number:'1.0-2' }} VNĐ</div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="thumb my-8">
-                        <div class="flex gap-3">
-                            <img class="rounded-lg w-24 h-24 object-cover cursor-pointer"
-                                src="https://web-assets.cdn.dealersolutions.com.au/modular.multisite.dealer.solutions/wp-content/uploads/2018/03/31104034/GR86-Image.jpg"
-                                alt="">
-                            <img class="rounded-lg w-24 h-24 object-cover"
-                                src="https://web-assets.cdn.dealersolutions.com.au/modular.multisite.dealer.solutions/wp-content/uploads/2018/03/31104034/GR86-Image.jpg"
-                                alt="">
-                            <img class="rounded-lg w-24 h-24 object-cover"
-                                src="https://web-assets.cdn.dealersolutions.com.au/modular.multisite.dealer.solutions/wp-content/uploads/2018/03/31104034/GR86-Image.jpg"
-                                alt="">
-                            <img class="rounded-lg w-24 h-24 object-cover"
-                                src="https://web-assets.cdn.dealersolutions.com.au/modular.multisite.dealer.solutions/wp-content/uploads/2018/03/31104034/GR86-Image.jpg"
-                                alt="">
+                        <hr class="border-b my-4">
+                        <div class="flex flex-col text-md">
+                            <span class="whitespace-nowrap">Sản xuất năm <b> {{
+                                    machine.model.yearOfManufacture}}</b></span>
+                            <span class="whitespace-nowrap"><b>{{ machine.model.seater }}</b> chỗ ngồi</span>
+                            <span class="whitespace-nowrap">Sử dụng <b>{{ machine.model.fuelType }}</b></span>
+                        </div>
+                        <hr class="border-b my-4">
+                        <div class="mt-3 -mx-3">
+                            <a class="px-3" mat-button [color]="'primary'" [routerLink]="['./']">
+                                Xem trên bản đồ
+                            </a>
                         </div>
                     </div>
-
-                    <div class="flex w-full">
-                        <!-- <ng-container *ngIf="machine.status">
-                            <button mat-raised-button color="warn" class="w-full"
-                                (click)="updateMachineStatus(machine.id, false)">
-                                <mat-icon [svgIcon]="'heroicons_outline:lock-closed'"></mat-icon>
-                            </button>
-                        </ng-container>
-                        <ng-container *ngIf="!machine.status">
-                            <button mat-raised-button color="primary" class="w-full"
-                                (click)="updateMachineStatus(machine.id, true)">
-                                <mat-icon [svgIcon]="'heroicons_outline:lock-open'"></mat-icon>
-                            </button>
-                        </ng-container> -->
-                    </div>
-                </div>
-                <div class="col-span-1 flex flex-col p-8 bg-card rounded-lg">
-                    <div class="text-xl font-bold mb-6">Thông tin chi tiết</div>
-                    <div class="grid grid-cols-2">
-                        <div class="col-span-1">
-                            <div class="flex justify-items-center gap-3 mb-6">
-                                <mat-icon svgIcon="heroicons_outline:identification"></mat-icon>
-                                <span class="font-semibold ">
-                                    Biển số:
-                                </span>
-                                <span>
-                                    {{machine.licensePlate}}
-                                </span>
-                            </div>
-                            <div class="flex justify-items-center gap-3 mb-6">
-                                <mat-icon svgIcon="heroicons_outline:credit-card"></mat-icon>
-                                <span class="font-semibold ">
-                                    Giá:
-                                </span>
-                                <span class="font-bold text-green-500">
-                                    {{machine.price | number:'1.0-2'}} VNĐ
-                                </span>
-                            </div>
-                            <div class="flex justify-items-center gap-3 mb-6">
-                                <mat-icon svgIcon="heroicons_outline:tag"></mat-icon>
-                                <span class="font-semibold ">
-                                    Model:
-                                </span>
-                                <span>
-                                    {{machine.model.name}}
-                                </span>
-                            </div>
-                            <div class="flex justify-items-center gap-3 mb-6">
-                                <mat-icon svgIcon="heroicons_outline:library"></mat-icon>
-                                <span class="font-semibold ">
-                                    Hãng:
-                                </span>
-                                <span>
-                                    {{machine.productionCompany.name}}
-                                </span>
-                            </div>
+                </fuse-card>
+                <fuse-card class="flex flex-col items-center w-full p-8 pb-6 filter-info">
+                    <img class="w-32 h-32 rounded-full" src="assets/images/avatars/male-04.jpg" alt="Card cover image">
+                    <div class="text-secondary leading-tight text-center mt-8">Chủ xe</div>
+                    <div class="text-2xl font-semibold leading-tight text-center mt-1">{{ machine.carOwner.name }}</div>
+                    <hr class="w-full border-t mt-8 mb-0">
+                    <div class="flex flex-col my-4">
+                        <div class="flex items-center">
+                            <mat-icon class="icon-size-5 mr-3" [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+                            <span class="leading-none">{{ machine.carOwner.address }}</span>
                         </div>
-                        <div class="col-span-1">
-                            <div class="flex justify-items-center gap-3 mb-6">
-                                <mat-icon svgIcon="heroicons_outline:clock"></mat-icon>
-                                <span class="font-semibold ">
-                                    Thời gian nhận xe:
-                                </span>
-                                <span>
-                                    {{machine.receiveStartTime | timeSpan}} - {{machine.receiveEndTime | timeSpan}}
-                                </span>
-                            </div>
-                            <div class="flex justify-items-center gap-3 mb-6">
-                                <mat-icon svgIcon="heroicons_outline:clock"></mat-icon>
-                                <span class="font-semibold ">
-                                    Thời gian trả xe:
-                                </span>
-                                <span>
-                                    {{machine.returnStartTime | timeSpan}} - {{machine.returnEndTime | timeSpan}}
-                                </span>
-                            </div>
-                            <div class="flex justify-items-center gap-3 mb-6">
-                                <mat-icon svgIcon="heroicons_outline:key"></mat-icon>
-                                <span class="font-semibold ">
-                                    Đã được thuê:
-                                </span>
-                                <span>
-                                    {{machine.rented}} lần
-                                </span>
-                            </div>
-                            <div class="flex justify-items-center gap-3">
-                                <mat-icon [ngClass]="machine.status === 'Blocked' ? 'text-red-500' : 'text-green-500'"
-                                    svgIcon="heroicons_outline:status-online"></mat-icon>
-                                <span class="font-semibold ">
-                                    Trạng thái:
-                                </span>
-                                <span>
-                                    {{machine.status}}
-                                </span>
-                            </div>
+                        <div class="flex items-center mt-4">
+                            <mat-icon class="icon-size-5 mr-3" [svgIcon]="'heroicons_solid:phone'"></mat-icon>
+                            <span class="leading-none">{{ machine.carOwner.phone }}</span>
+                        </div>
+                        <div class="flex items-center mt-4">
+                            <mat-icon class="icon-size-5 mr-3" [svgIcon]="'heroicons_solid:user'"></mat-icon>
+                            <span class="leading-none">{{ machine.carOwner.gender }}</span>
                         </div>
                     </div>
-
-                </div>
-            </div>
-        </div>
-        <div class="flex flex-col items-center py-8 px-10 w-full">
-            <div class="grid grid-cols-2 w-full gap-8">
-                <div class="col-span-1 flex flex-col p-8 bg-card rounded-lg">
-
-                    <!-- Owner -->
-                    <div class="text-xl font-bold mb-6">Chủ xe</div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="col-span-1">
-                            <div class="flex justify-items-center gap-3 mb-6">
-                                <mat-icon svgIcon="heroicons_outline:phone"></mat-icon>
-                                <span class="font-semibold ">
-                                    Số điện thoại:
-                                </span>
-                                <span>
-                                    {{machine.carOwner.phone}}
-                                </span>
-                            </div>
-                            <div class="flex justify-items-center gap-3 mb-6">
-                                <mat-icon svgIcon="heroicons_outline:users"></mat-icon>
-                                <span class="font-semibold ">
-                                    Giới tính:
-                                </span>
-                                <span>
-                                    {{machine.carOwner.gender}}
-                                </span>
-                            </div>
-                            <div class="flex justify-items-center gap-3 mb-6">
-                                <mat-icon svgIcon="heroicons_outline:shield-exclamation"></mat-icon>
-                                <span class="font-semibold ">
-                                    Địa chỉ:
-                                </span>
-                                <span>
-                                    {{machine.carOwner.address}}
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-span-1">
-                            <div class="flex justify-items-center gap-3 mb-6">
-                                <mat-icon [ngClass]="machine.carOwner.status ? 'text-green-500' : 'text-red-500'"
-                                    svgIcon="heroicons_outline:status-online"></mat-icon>
-                                <span class="font-semibold ">
-                                    Trạng thái:
-                                </span>
-                                <span>
-                                    {{machine.carOwner.status | accountStatus}}
-                                </span>
-                            </div>
-                            <div class="flex justify-items-center gap-3 mb-6">
-                                <mat-icon svgIcon="heroicons_outline:identification"></mat-icon>
-                                <span class="font-semibold ">
-                                    Ngân hàng:
-                                </span>
-                                <span>
-                                    {{machine.carOwner.bankName || "No information"}}
-                                </span>
-                            </div>
-                            <div class="flex justify-items-center gap-3">
-                                <mat-icon svgIcon="heroicons_outline:identification"></mat-icon>
-                                <span class="font-semibold ">
-                                    Số tài khoản:
-                                </span>
-                                <span>
-                                    {{machine.carOwner.bankAccountNumber || "No information"}}
-                                </span>
-                            </div>
-                        </div>
+                    <hr class="w-full border-t mt-0 mb-8">
+                    <div class="text-center text-secondary">Chủ xe có thể sở hữu nhiều xe và có thể trở thành tài xế
                     </div>
-
-
-                </div>
-                <div class="col-span-1 flex flex-col p-8 bg-card rounded-lg">
-
-                    <!-- Driver -->
-                    <div class="text-xl font-bold mb-6">Tài xế</div>
+                </fuse-card>
+                <fuse-card class="flex flex-col items-center justify-center w-full p-8 pb-6 filter-info">
                     <ng-container *ngIf="!machine.driver">
-                        <div>Không có thông tin tài xế</div>
+                        <img class="w-32 h-32 rounded-full" src="assets/images/avatars/male-04.jpg"
+                            alt="Card cover image">
+                        <div class="text-secondary leading-tight text-center mt-8">Tài xế</div>
+                        <div class="text-2xl font-semibold leading-tight text-center mt-1">{{ machine.driver.name }}
+                        </div>
+                        <hr class="w-full border-t mt-8 mb-0">
+                        <div class="flex flex-col my-4">
+                            <div class="flex items-center">
+                                <mat-icon class="icon-size-5 mr-3"
+                                    [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+                                <span class="leading-none">{{ machine.driver.address }}</span>
+                            </div>
+                            <div class="flex items-center mt-4">
+                                <mat-icon class="icon-size-5 mr-3" [svgIcon]="'heroicons_solid:phone'"></mat-icon>
+                                <span class="leading-none">{{ machine.driver.phone }}</span>
+                            </div>
+                            <div class="flex items-center mt-4">
+                                <mat-icon class="icon-size-5 mr-3" [svgIcon]="'heroicons_solid:user'"></mat-icon>
+                                <span class="leading-none">{{ machine.driver.gender }}</span>
+                            </div>
+                        </div>
+                        <hr class="w-full border-t mt-0 mb-8">
+                        <div class="text-center text-secondary">Tài xế này được chỉ định riêng cho chiếc xe này
+                        </div>
                     </ng-container>
                     <ng-container *ngIf="machine.driver">
-                        <div class="grid grid-cols-2">
-                            <div class="col-span-1">
-                                <div class="flex justify-items-center gap-3 mb-6">
-                                    <mat-icon svgIcon="heroicons_outline:phone"></mat-icon>
-                                    <span class="font-semibold ">
-                                        Số điện thoại:
-                                    </span>
-                                    <span>
-                                        {{machine.driver.phone}}
-                                    </span>
-                                </div>
-                                <div class="flex justify-items-center gap-3 mb-6">
-                                    <mat-icon svgIcon="heroicons_outline:users"></mat-icon>
-                                    <span class="font-semibold ">
-                                        Giới tính:
-                                    </span>
-                                    <span>
-                                        {{machine.driver.gender}}
-                                    </span>
-                                </div>
-                                <div class="flex justify-items-center gap-3 mb-6">
-                                    <mat-icon svgIcon="heroicons_outline:shield-exclamation"></mat-icon>
-                                    <span class="font-semibold ">
-                                        Địa chỉ:
-                                    </span>
-                                    <span>
-                                        {{machine.driver.address}}
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-span-1">
-                                <div class="flex justify-items-center gap-3 mb-6">
-                                    <mat-icon [ngClass]="machine.carOwner.status ? 'text-green-500' : 'text-red-500'"
-                                        svgIcon="heroicons_outline:status-online"></mat-icon>
-                                    <span class="font-semibold ">
-                                        Trạng thái:
-                                    </span>
-                                    <span>
-                                        {{machine.driver.accountStatus | accountStatus}}
-                                    </span>
-                                </div>
-                                <div class="flex justify-items-center gap-3 mb-6">
-                                    <mat-icon svgIcon="heroicons_outline:identification"></mat-icon>
-                                    <span class="font-semibold ">
-                                        Ngân hàng:
-                                    </span>
-                                    <span>
-                                        {{machine.driver.bankName || "No information"}}
-                                    </span>
-                                </div>
-                                <div class="flex justify-items-center gap-3">
-                                    <mat-icon svgIcon="heroicons_outline:identification"></mat-icon>
-                                    <span class="font-semibold ">
-                                        Số tài khoản:
-                                    </span>
-                                    <span>
-                                        {{machine.driver.bankAccountNumber || "No information"}}
-                                    </span>
-                                </div>
+                        <div class="flex flex-col gap-3 items-center">
+                            <mat-icon class="icon-size-18" svgIcon="heroicons_outline:zoom-out"></mat-icon>
+                            <div class="text-center text-secondary">
+                                Chưa có tài xế được chỉ định
                             </div>
                         </div>
-
-
                     </ng-container>
-                </div>
+                </fuse-card>
+                <fuse-card class="flex flex-col w-full p-8 pt-6 filter-list">
+                    <div class="flex items-center justify-between">
+                        <div class="text-2xl font-semibold leading-tight">Phụ phí</div>
+                    </div>
+                    <div class="flex flex-col my-2">
+                        <div class="my-2">
+                            <div>Số km tối đa được đi</div>
+                            <div class="text-secondary text-md">{{ machine.additionalCharge.maximumDistance }} km/ngày
+                            </div>
+                        </div>
+                        <div class="my-2">
+                            <div>Phí vượt quá khoảng cách quy định</div>
+                            <div class="text-secondary text-md">{{ machine.additionalCharge.distanceSurcharge |
+                                number:'1.0-2' }} VNĐ/km</div>
+                        </div>
+                        <div class="my-2">
+                            <div>Phí vượt quá thời gian quy định</div>
+                            <div class="text-secondary text-md">{{ machine.additionalCharge.timeSurcharge |
+                                number:'1.0-2' }} VNĐ/giờ</div>
+                        </div>
+                        <div class="my-2">
+                            <div>Phí dịch vụ</div>
+                            <div class="text-secondary text-md">{{ 25000 | number:'1.0-2' }} VNĐ</div>
+                        </div>
+                        <div class="my-2">
+                            <div>Phí bảo hiểm</div>
+                            <div class="text-secondary text-md">{{ 25000 | number:'1.0-2' }} VNĐ</div>
+                        </div>
+                        <div class="my-2">
+                            <div>Phí tài xế</div>
+                            <div class="text-secondary text-md">{{ 250000 | number:'1.0-2' }} VNĐ/ngày</div>
+                        </div>
+                    </div>
+                </fuse-card>
             </div>
         </div>
     </div>

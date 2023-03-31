@@ -4,6 +4,8 @@ export interface Notification {
     body: string,
     isRead: boolean,
     createAt: string,
+    type: string,
+    link: string,
 }
 
 export interface NotificationPagination {
