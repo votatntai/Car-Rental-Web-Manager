@@ -1,6 +1,6 @@
 import { Calendar } from "./calendar.type";
 
-export interface CarRegistrationCalendar {
+export interface CarCalendar {
     description?: string,
     calendar: Calendar
 }

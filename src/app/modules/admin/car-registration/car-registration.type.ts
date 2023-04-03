@@ -1,5 +1,5 @@
 import { AdditionalCharge } from "app/modules/types/additional-charge.type";
-import { CarRegistrationCalendar } from "app/modules/types/car-registration-calendar.type";
+import { CarCalendar } from "app/modules/types/car-registration-calendar.type";
 import { CarOwner } from "../car-owner/car-owner.type";
 import { Driver } from "../driver/driver.type";
 
@@ -17,12 +17,14 @@ export interface CarRegistration {
     model: string,
     location: string,
     createAt: string,
+    chassis: string,
     description: string,
     images: string[],
-    calendars: CarRegistrationCalendar[],
+    calendars: CarCalendar[],
     carOwner: CarOwner,
     additionalCharge: AdditionalCharge,
-    driver?: Driver
+    driver?: Driver,
+    status: boolean
 }
 
 export interface CarRegistrationPagination {

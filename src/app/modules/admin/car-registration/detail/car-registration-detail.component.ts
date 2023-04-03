@@ -2,12 +2,12 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewEnca
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { fuseAnimations } from '@fuse/animations';
-import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { Subject, take, takeUntil } from 'rxjs';
 import { ModelService } from '../../model/model.service';
 import { CarRegistrationService } from '../car-registration.service';
 import { CarRegistration } from '../car-registration.type';
 import { CreateCarComponent } from '../create-car/create-car.component';
+import { CarInformationComponent } from './car-information/car-information.component';
 
 @Component({
     selector: 'app-car-registration-detail',
@@ -23,6 +23,8 @@ export class CarRegistrationDetailComponent implements OnInit {
 
     dataSource: MatTableDataSource<any>;
     displayedColumns: string[] = ['weekday', 'startTime', 'endTime'];
+    flashMessage: 'success' | 'error' | null = null;
+    message: string = null;
 
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -62,14 +64,37 @@ export class CarRegistrationDetailComponent implements OnInit {
     openCreateCarDialog() {
         this._modelService.getModels().pipe(take(1)).subscribe(response => {
             this._dialog.open(CreateCarComponent, {
-                width: '720px',
+                width: '1080px',
                 data: {
+                    carRegistration: this.carRegistration,
                     models: response.data
                 },
                 autoFocus: false
-            }).afterClosed().subscribe(a => {
-                console.log(a);
+            }).afterClosed().subscribe(result => {
+                // After dialog closed
+                if (result === 'success') {
+                    this.showFlashMessage(result, 'Phê duyệt nhật thành công', 3000);
+                } else {
+                    this.showFlashMessage(result, 'Đã có lỗi khôn mong muống vui lòng liên hệ bộ phận hổ trợ', 3000);
+                }
             })
+        })
+    }
+
+    private showFlashMessage(type: 'success' | 'error', message: string, time: number): void {
+        this.flashMessage = type;
+        this.message = message;
+        this._changeDetectorRef.markForCheck();
+        setTimeout(() => {
+            this.flashMessage = this.message = null;
+            this._changeDetectorRef.markForCheck();
+        }, time);
+    }
+
+    openCarInformationDialog() {
+        this._dialog.open(CarInformationComponent, {
+            width: '1080px',
+            data: this.carRegistration
         })
     }
 

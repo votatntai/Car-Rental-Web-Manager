@@ -41,7 +41,7 @@
                         Hãng
                     </div>
                     <div class="hidden sm:block">Địa chỉ</div>
-                    <div class="hidden sm:block">Thời gian</div>
+                    <div class="hidden sm:block">Trạng thái</div>
                     <div class="hidden sm:block">Chi tiết</div>
                 </div>
                 <!-- Rows -->
@@ -89,8 +89,9 @@
                                 </div>
 
                                 <!-- Status -->
-                                <div class="hidden truncate sm:block">
-                                    {{carRegistration.createAt | date:'dd-MM-YYYY'}}
+                                <div class="hidden truncate sm:block font-semibold"
+                                    [ngClass]="carRegistration.status ? 'text-green-500' : ''">
+                                    {{carRegistration.status | registrationStatus}}
                                 </div>
 
                                 <!-- Action -->

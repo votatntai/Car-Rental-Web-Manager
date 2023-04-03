@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, Observable, of, switchMap, throwError } from 'rxjs';
 import { AuthUtils } from 'app/core/auth/auth.utils';
 import { UserService } from 'app/core/user/user.service';
+import { AppService } from 'app/app.service';
 
 @Injectable()
 export class AuthService {
@@ -13,7 +14,7 @@ export class AuthService {
      */
     constructor(
         private _httpClient: HttpClient,
-        private _userService: UserService
+        private _userService: UserService,
     ) {
     }
 
@@ -77,6 +78,9 @@ export class AuthService {
                 // Store the user on the user service
                 this._httpClient.get<any>('/api/auth/users', { observe: 'body' }).subscribe(user => {
                     this._userService.user = user;
+
+                    // Register device token for user
+                    this.registerDeviceToken(localStorage.getItem('deviceToken')).subscribe();
                 })
 
                 // Return a new observable with the response
@@ -174,5 +178,24 @@ export class AuthService {
 
         // If the access token exists and it didn't expire, sign in using it
         return this.signInUsingToken();
+    }
+
+    /**
+* Register device token for notification
+*/
+    private registerDeviceToken(deviceToken: string): Observable<boolean> {
+        // Sign in using the token
+        return this._httpClient.post('/api/device-tokens', {
+            deviceToken: deviceToken
+        }).pipe(
+            catchError(() =>
+                // Return false
+                of(false)
+            ),
+            switchMap((response: boolean) => {
+                // Return true
+                return of(response);
+            })
+        );
     }
 }

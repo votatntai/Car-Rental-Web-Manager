@@ -86,11 +86,11 @@ export class MachineService {
     createMachine(data) {
         return this.machines$.pipe(
             take(1),
-            switchMap((machines) => this._httpClient.post<Machine>('/api/cars/machine', data).pipe(
+            switchMap((machines) => this._httpClient.post<Machine>('/api/cars', data).pipe(
                 map((newMachine) => {
 
                     // Update machine list with current page size
-                    this._machines.next([newMachine, ...machines].slice(0, this._pagination.value.pageSize));
+                    // this._machines.next([newMachine, ...machines].slice(0, this._pagination.value.pageSize));
 
                     return newMachine;
                 })

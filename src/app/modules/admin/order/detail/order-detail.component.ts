@@ -31,8 +31,6 @@ export class OrderDetailComponent implements OnInit {
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(order => {
 
-                console.log(order);
-
                 // Update the order
                 this.order = order;
 

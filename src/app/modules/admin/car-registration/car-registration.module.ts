@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -19,7 +20,10 @@ import { CarRegistrationsResolver } from './car-registration.resolvers';
 import { CreateCarComponent } from './create-car/create-car.component';
 import { CarRegistrationDetailComponent } from './detail/car-registration-detail.component';
 import { CarRegistrationDetailResolver } from './detail/car-registration-detail.resolvers';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { AgmCoreModule } from '@agm/core';
+import { RegistrationStatusPipeModule } from '@fuse/pipes/registration-status/registration-status-pipe.module';
+import { CarInformationComponent } from './detail/car-information/car-information.component';
 
 const machineRoutes: Route[] = [
     {
@@ -42,7 +46,8 @@ const machineRoutes: Route[] = [
     declarations: [
         CarRegistrationComponent,
         CarRegistrationDetailComponent,
-        CreateCarComponent
+        CreateCarComponent,
+        CarInformationComponent
     ],
     imports: [
         CommonModule,
@@ -56,12 +61,18 @@ const machineRoutes: Route[] = [
         MatPaginatorModule,
         MatSortModule,
         AccountStatusPipeModule,
+        RegistrationStatusPipeModule,
         MatDialogModule,
         MatSelectModule,
         FuseAlertModule,
         MatTableModule,
         FuseCardModule,
-        MatAutocompleteModule
+        MatAutocompleteModule,
+        GooglePlaceModule,
+        AgmCoreModule
+    ],
+    schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
     ],
 })
 export class CarRegistrationModule {

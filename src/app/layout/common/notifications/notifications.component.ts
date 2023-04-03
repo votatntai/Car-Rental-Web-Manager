@@ -42,6 +42,7 @@ export class NotificationsComponent implements OnInit, OnDestroy {
      * On init
      */
     ngOnInit(): void {
+
         // Subscribe to notification changes
         this._appService.notifications$
             .pipe(takeUntil(this._unsubscribeAll))
@@ -80,6 +81,9 @@ export class NotificationsComponent implements OnInit, OnDestroy {
      * Open the notifications panel
      */
     openPanel(): void {
+
+        this._appService.getNotifications().subscribe();
+
         // Return if the notifications panel or its origin is not defined
         if (!this._notificationsPanel || !this._notificationsOrigin) {
             return;

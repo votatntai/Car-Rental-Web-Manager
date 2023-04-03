@@ -17,8 +17,8 @@ export class UpdateDriverComponent implements OnInit {
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: Driver,
-        private _driverService: DriverService,
         public matDialogRef: MatDialogRef<UpdateDriverComponent>,
+        private _driverService: DriverService,
         private _formBuilder: UntypedFormBuilder
     ) {
 

@@ -126,7 +126,7 @@ export class DriverService {
                 map((updatedDriver) => {
 
                     // Find and replace updated driver
-                    const index = drivers.findIndex(item => item.id === id);
+                    const index = drivers.findIndex(item => item.accountId === id);
                     drivers[index] = updatedDriver;
                     this._drivers.next(drivers);
 

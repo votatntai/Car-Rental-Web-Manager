@@ -101,16 +101,18 @@ export class CarRegistrationService {
     /**
 * Update car registration
 */
-    updateCarRegistration(id: string, data) {
+    updateCarRegistration(id: string, data: any) {
         return this.carRegistrations$.pipe(
             take(1),
             switchMap((carRegistrations) => this._httpClient.put<CarRegistration>('/api/car-registrations/' + id, data).pipe(
                 map((updatedCarRegistration) => {
 
                     // Find and replace updated car registration
-                    const index = carRegistrations.findIndex(item => item.id === id);
-                    carRegistrations[index] = updatedCarRegistration;
-                    this._carRegistrations.next(carRegistrations);
+                    if (carRegistrations) {
+                        const index = carRegistrations.findIndex(item => item.id === id);
+                        carRegistrations[index] = updatedCarRegistration;
+                        this._carRegistrations.next(carRegistrations);
+                    }
 
                     // Update car registration
                     this._carRegistration.next(updatedCarRegistration);

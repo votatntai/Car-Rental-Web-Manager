@@ -54,13 +54,23 @@
                 </mat-form-field>
             </div>
 
-            <!-- <mat-form-field>
-                <mat-select placeholder="Transmission Type" formControlName="transmissionType" disabled>
-                    <mat-option value="Automatic">Automatic</mat-option>
-                    <mat-option value="Manual">Manual</mat-option>
-                    <mat-option value="Semi-automatic">Semi-automatic</mat-option>
-                </mat-select>
-            </mat-form-field> -->
+            <mat-form-field class="w-full">
+                <mat-label>Tìm kiếm địa chỉ</mat-label>
+                <input matInput ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places"
+                    (onAddressChange)="handleAddressChange($event)" placeholder="Tìm kiếm địa chỉ" />
+            </mat-form-field>
+
+            <agm-map class="w-full h-100" [latitude]="latitude" [longitude]="longitude" [zoom]="zoom"
+                (mapClick)="mapClicked($event)">
+                <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+            </agm-map>
+
+            <div class="flex w-full justify-end mt-6">
+                <button class="flex gap-2" mat-raised-button [color]="'primary'" (click)="createCar()">
+                    <mat-icon [svgIcon]="'heroicons_outline:check'"></mat-icon>
+                    Xác nhận
+                </button>
+            </div>
         </form>
 
     </div>

@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireMessaging } from '@angular/fire/compat/messaging';
-import { BehaviorSubject, mergeMapTo, Observable, tap } from 'rxjs';
+import { BehaviorSubject, catchError, mergeMapTo, Observable, of, switchMap, take, tap } from 'rxjs';
+import { AuthService } from './core/auth/auth.service';
+import { UserService } from './core/user/user.service';
 import { Notification, NotificationPagination } from './modules/types/notification.type';
 
 @Injectable({ providedIn: 'root' })
@@ -35,7 +37,7 @@ export class AppService {
             .pipe(mergeMapTo(this._messaging.tokenChanges))
             .subscribe(
                 (token) => {
-                    console.log('Permission granted! Save to the server!', token);
+                    localStorage.setItem('deviceToken', token);
                 },
                 (error) => { console.error(error); },
             );
@@ -43,8 +45,6 @@ export class AppService {
 
     public listenServiceWorker() {
         this._messaging.messages.subscribe((event: any) => {
-            console.log(event);
-
             const now: Date = new Date();
             const currentTime: string = now.toLocaleTimeString();
 
@@ -57,9 +57,6 @@ export class AppService {
                 type: event.data.type,
                 link: event.data.link
             };
-
-            console.log(newNotification);
-
 
             var currentNotifications = this._notofications.getValue();
             var notifications = currentNotifications ? [newNotification, ...currentNotifications].slice(0, this._pagination.value.pageSize) : [newNotification];

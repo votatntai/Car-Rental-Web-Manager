@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { fuseAnimations } from '@fuse/animations';
-import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { Subject, takeUntil } from 'rxjs';
 import { MachineService } from '../machine.service';
 import { Machine } from '../machine.type';
+import { MachineDetailMapsViewComponent } from './maps-view/machine-detail-maps-view.component';
 
 @Component({
     selector: 'app-machine-detail',
@@ -22,7 +23,7 @@ export class MachineDetailComponent implements OnInit {
     constructor(
         private _machineService: MachineService,
         private _changeDetectorRef: ChangeDetectorRef,
-        private _fuseConfirmationService: FuseConfirmationService,
+        private _dialog: MatDialog,
     ) { }
 
     ngOnInit() {
@@ -47,4 +48,11 @@ export class MachineDetailComponent implements OnInit {
     //     })
     // }
 
+    openMapsViewDialog() {
+        this._dialog.open(MachineDetailMapsViewComponent, {
+            width: '1080px',
+            data: this.machine,
+            autoFocus: false
+        })
+    }
 }

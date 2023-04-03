@@ -1,5 +1,5 @@
 export interface Driver {
-    id: string,
+    accountId: string,
     name: string,
     gender: string,
     phone: string,

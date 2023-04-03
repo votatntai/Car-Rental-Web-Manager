@@ -1,3 +1,4 @@
+import { AgmCoreModule } from '@agm/core';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
@@ -42,6 +43,10 @@ const routerConfig: ExtraOptions = {
 
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFireMessagingModule,
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyBii-9iMQPhlgbCYreTxxRJUP3x4j4_FnA',
+            libraries: ['places'],
+        })
     ],
     bootstrap: [
         AppComponent
