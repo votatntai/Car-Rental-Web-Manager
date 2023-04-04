@@ -55,8 +55,6 @@ export class OrderService {
             }
         }).pipe(
             tap((response) => {
-                console.log(response);
-
                 this._pagination.next(response.pagination);
                 this._orders.next(response.data);
             }),

@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
-    baseUrl: 'https://localhost:7277',
+    baseUrl: 'https://api-carrental.azurewebsites.net',
     firebaseConfig: {
         apiKey: "AIzaSyDYXbOmPpcvD-tTFqRZuDvt75nvjHou1EI",
         authDomain: "car-rental-236aa.firebaseapp.com",
@@ -10,5 +10,5 @@ export const environment = {
         appId: "1:805399031928:web:308457cd9b7b8ea441fd8d",
         measurementId: "G-2GZT37VSQL"
     },
-    googleMapsApiKey: ''
+    googleMapsApiKey: 'AIzaSyBK6yF5ofk_HYGaT_9Qc417UrJrChWirio'
 };
