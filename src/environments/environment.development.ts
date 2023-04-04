@@ -9,5 +9,6 @@ export const environment = {
         messagingSenderId: "805399031928",
         appId: "1:805399031928:web:308457cd9b7b8ea441fd8d",
         measurementId: "G-2GZT37VSQL"
-    }
+    },
+    googleMapsApiKey: 'AIzaSyBK6yF5ofk_HYGaT_9Qc417UrJrChWirio'
 };

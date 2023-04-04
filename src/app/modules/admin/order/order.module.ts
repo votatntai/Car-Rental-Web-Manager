@@ -13,6 +13,7 @@ import { Route, RouterModule } from '@angular/router';
 import { FuseAlertModule } from '@fuse/components/alert';
 import { FuseCardModule } from '@fuse/components/card';
 import { CalculateDaysPipeModule } from '@fuse/pipes/days-calculate/days-caculate-pipe.module';
+import { OrderStatusPipeModule } from '@fuse/pipes/order-status/order-status-pipe.module';
 import { PaymentPipeModule } from '@fuse/pipes/payment/payment-pipe.module';
 import { AccountStatusPipeModule } from '@fuse/pipes/status/status-pipe.module';
 import { OrderComponent } from 'app/modules/admin/order/order.component';
@@ -54,6 +55,7 @@ const orderRoutes: Route[] = [
         MatPaginatorModule,
         MatSortModule,
         AccountStatusPipeModule,
+        OrderStatusPipeModule,
         CalculateDaysPipeModule,
         PaymentPipeModule,
         MatDialogModule,

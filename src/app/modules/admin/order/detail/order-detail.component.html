@@ -79,7 +79,7 @@
                     <div class="font-medium tracking-tight text-secondary">GIÁ TRỊ ĐƠN HÀNG</div>
                     <div class="font-medium">{{ order.amount | number:'1.0-2' }} VNĐ</div>
                     <div class="font-medium tracking-tight text-secondary">TRẠNG THÁI</div>
-                    <div class="font-medium">{{ order.status }}</div>
+                    <div class="font-medium">{{ order.status | orderStatus}}</div>
                 </div>
                 <div class="grid auto-cols-max grid-flow-col gap-x-8 -mr-8 py-6 px-8 rounded-l-2xl bg-accent dark">
                     <div class="place-self-center w-24">
@@ -174,15 +174,16 @@
 
         </div>
 
-        <div class="flex gap-8 justify-between mt-5">
-            <button class="w-full" mat-flat-button [color]="'warn'">
-                Từ chối đơn hàng
-            </button>
-            <button class="w-full" mat-flat-button [color]="'primary'">
-                Xác nhận đơn hàng
-            </button>
-        </div>
-
+        <ng-container *ngIf="order.status == 'Pending'">
+            <div class="flex gap-8 justify-between mt-5">
+                <button class="w-full" mat-flat-button [color]="'warn'">
+                    Từ chối đơn hàng
+                </button>
+                <button class="w-full" mat-flat-button [color]="'primary'" (click)="openConfirmDialog()">
+                    Xác nhận đơn hàng
+                </button>
+            </div>
+        </ng-container>
     </div>
 
 </div>

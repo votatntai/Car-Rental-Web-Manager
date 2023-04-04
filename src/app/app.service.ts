@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireMessaging } from '@angular/fire/compat/messaging';
-import { BehaviorSubject, catchError, mergeMapTo, Observable, of, switchMap, take, tap } from 'rxjs';
+import { BehaviorSubject, mergeMapTo, Observable, tap } from 'rxjs';
 import { AuthService } from './core/auth/auth.service';
-import { UserService } from './core/user/user.service';
 import { Notification, NotificationPagination } from './modules/types/notification.type';
 
 @Injectable({ providedIn: 'root' })
@@ -30,6 +29,7 @@ export class AppService {
     constructor(
         private _httpClient: HttpClient,
         private _messaging: AngularFireMessaging,
+        private _authService: AuthService
     ) { }
 
     public requestPermission() {
@@ -37,7 +37,10 @@ export class AppService {
             .pipe(mergeMapTo(this._messaging.tokenChanges))
             .subscribe(
                 (token) => {
-                    localStorage.setItem('deviceToken', token);
+                    var accessToken = localStorage.getItem('accessToken');
+                    if (accessToken) {
+                        this._authService.registerDeviceToken(token);
+                    }
                 },
                 (error) => { console.error(error); },
             );
@@ -52,10 +55,12 @@ export class AppService {
                 id: event.messageId,
                 title: event.notification.title,
                 body: event.notification.body,
-                isRead: false,
-                createAt: currentTime,
-                type: event.data.type,
-                link: event.data.link
+                data: {
+                    isRead: false,
+                    createAt: currentTime,
+                    type: event.data.type,
+                    link: event.data.link
+                }
             };
 
             var currentNotifications = this._notofications.getValue();

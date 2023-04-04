@@ -80,7 +80,10 @@ export class AuthService {
                     this._userService.user = user;
 
                     // Register device token for user
-                    this.registerDeviceToken(localStorage.getItem('deviceToken')).subscribe();
+                    var deviceToken = localStorage.getItem('deviceToken');
+                    if (deviceToken) {
+                        this.registerDeviceToken(deviceToken).subscribe();
+                    }
                 })
 
                 // Return a new observable with the response
@@ -183,7 +186,7 @@ export class AuthService {
     /**
 * Register device token for notification
 */
-    private registerDeviceToken(deviceToken: string): Observable<boolean> {
+    registerDeviceToken(deviceToken: string): Observable<boolean> {
         // Sign in using the token
         return this._httpClient.post('/api/device-tokens', {
             deviceToken: deviceToken

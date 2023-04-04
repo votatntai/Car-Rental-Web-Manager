@@ -34,10 +34,10 @@
                     <div class="hidden sm:block">
                         Tổng cộng
                     </div>
+                    <div class="hidden sm:block">Trạng thái</div>
                     <div class="hidden sm:block">
                         Thanh toán
                     </div>
-                    <div class="hidden sm:block">Trạng thái</div>
                     <div class="hidden sm:block">Chi tiết</div>
                 </div>
                 <!-- Rows -->
@@ -66,14 +66,14 @@
                                     {{order.amount}}
                                 </div>
 
+                                <!-- Status -->
+                                <div class="hidden sm:block truncate">
+                                    {{order.status | orderStatus}}
+                                </div>
+
                                 <!-- Phone -->
                                 <div class="hidden sm:block">
                                     {{order.isPaid | payment}}
-                                </div>
-
-                                <!-- Status -->
-                                <div class="hidden sm:block">
-                                    {{order.status}}
                                 </div>
 
                                 <!-- Action -->

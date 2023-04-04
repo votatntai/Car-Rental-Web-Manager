@@ -39,11 +39,13 @@ export class OrderDetailComponent implements OnInit {
             })
     }
 
-    // Update status for order
-    updateOrderStatus(id: string, status: boolean) {
-        this._fuseConfirmationService.open().afterClosed().subscribe(result => {
+    // Update status for driver
+    openConfirmDialog() {
+        this._fuseConfirmationService.open({
+            message: 'Bạn thật sự muốn xác nhận đơn hàng này chứ'
+        }).afterClosed().subscribe(result => {
             if (result === 'confirmed') {
-                this._orderService.updateOrderAccountStatus(id, status).subscribe();
+                this._orderService.updateOrderStatus(this.order.id).subscribe();
             }
         })
     }

@@ -55,6 +55,8 @@ export class OrderService {
             }
         }).pipe(
             tap((response) => {
+                console.log(response);
+
                 this._pagination.next(response.pagination);
                 this._orders.next(response.data);
             }),
@@ -83,10 +85,10 @@ export class OrderService {
     /**
  * Get order by id
  */
-    updateOrderAccountStatus(id: string, status: boolean) {
+    updateOrderStatus(id: string, status: 'ManagerConfirmed' | '' = 'ManagerConfirmed') {
         return this.orders$.pipe(
             take(1),
-            switchMap(() => this._httpClient.put<Order>('/api/orders/' + id, { accountStatus: status }).pipe(
+            switchMap(() => this._httpClient.put<Order>('/api/orders/status/' + id, { status: status }).pipe(
                 map((updatedOrder) => {
 
                     // Update current order

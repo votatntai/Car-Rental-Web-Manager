@@ -118,7 +118,7 @@ export class NotificationsComponent implements OnInit, OnDestroy {
      */
     toggleRead(notification: Notification): void {
         // Toggle the read status
-        notification.isRead = !notification.isRead;
+        notification.data.isRead = !notification.data.isRead;
 
         // Update the notification
         // this._notificationsService.update(notification.id, notification).subscribe();
@@ -202,7 +202,7 @@ export class NotificationsComponent implements OnInit, OnDestroy {
         let count = 0;
 
         if (this.notifications && this.notifications.length) {
-            count = this.notifications.filter(notification => !notification.isRead).length;
+            count = this.notifications.filter(notification => !notification.data.isRead).length;
         }
 
         this.unreadCount = count;

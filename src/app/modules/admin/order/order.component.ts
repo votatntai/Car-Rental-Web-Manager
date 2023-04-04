@@ -41,6 +41,9 @@ export class OrderComponent implements OnInit, AfterViewInit {
     ngOnInit() {
         // Get the products
         this.orders$ = this._orderService.orders$;
+        this.orders$.subscribe(a => {
+            console.log(a);
+        })
 
         // Get the pagination
         this._orderService.pagination$

@@ -44,7 +44,7 @@ const routerConfig: ExtraOptions = {
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFireMessagingModule,
         AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyBii-9iMQPhlgbCYreTxxRJUP3x4j4_FnA',
+            apiKey: environment.googleMapsApiKey,
             libraries: ['places'],
         })
     ],

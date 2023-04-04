@@ -20,7 +20,8 @@
         ],
         "types": [
             "googlemaps"
-        ]
+        ],
+        "forceConsistentCasingInFileNames": false,
     },
     "angularCompilerOptions": {
         "enableI18nLegacyMessageIdFormat": false

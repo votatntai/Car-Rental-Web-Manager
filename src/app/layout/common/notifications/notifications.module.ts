@@ -7,24 +7,25 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NotificationsComponent } from 'app/layout/common/notifications/notifications.component';
 import { SharedModule } from 'app/shared/shared.module';
+import { NotificationLinksPipeModule } from '@fuse/pipes/notification-link/notification-link-pipe.module';
 
 @NgModule({
     declarations: [
         NotificationsComponent
     ],
-    imports     : [
+    imports: [
         RouterModule,
         OverlayModule,
         PortalModule,
         MatButtonModule,
         MatIconModule,
         MatTooltipModule,
-        SharedModule
+        SharedModule,
+        NotificationLinksPipeModule
     ],
-    exports     : [
+    exports: [
         NotificationsComponent
     ]
 })
-export class NotificationsModule
-{
+export class NotificationsModule {
 }
