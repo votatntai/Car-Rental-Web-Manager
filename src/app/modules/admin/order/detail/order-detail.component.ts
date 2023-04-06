@@ -1,9 +1,11 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { Subject, takeUntil } from 'rxjs';
 import { OrderService } from '../order.service';
 import { Order } from '../order.type';
+import { DenyOrderComponent } from './deny-order/deny-order.component';
 
 @Component({
     selector: 'app-order-detail',
@@ -23,6 +25,7 @@ export class OrderDetailComponent implements OnInit {
         private _orderService: OrderService,
         private _changeDetectorRef: ChangeDetectorRef,
         private _fuseConfirmationService: FuseConfirmationService,
+        private _dialog: MatDialog
     ) { }
 
     ngOnInit() {
@@ -47,6 +50,13 @@ export class OrderDetailComponent implements OnInit {
             if (result === 'confirmed') {
                 this._orderService.updateOrderStatus(this.order.id).subscribe();
             }
+        })
+    }
+
+    openDenyOrderDialog() {
+        this._dialog.open(DenyOrderComponent, {
+            width: '480px',
+            data: this.order
         })
     }
 

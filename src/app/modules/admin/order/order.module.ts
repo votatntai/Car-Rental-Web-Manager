@@ -17,6 +17,7 @@ import { OrderStatusPipeModule } from '@fuse/pipes/order-status/order-status-pip
 import { PaymentPipeModule } from '@fuse/pipes/payment/payment-pipe.module';
 import { AccountStatusPipeModule } from '@fuse/pipes/status/status-pipe.module';
 import { OrderComponent } from 'app/modules/admin/order/order.component';
+import { DenyOrderComponent } from './detail/deny-order/deny-order.component';
 import { OrderDetailComponent } from './detail/order-detail.component';
 import { OrderDetailResolver } from './detail/order-detail.resolvers';
 import { OrdersResolver } from './order.resolvers';
@@ -41,7 +42,8 @@ const orderRoutes: Route[] = [
 @NgModule({
     declarations: [
         OrderComponent,
-        OrderDetailComponent
+        OrderDetailComponent,
+        DenyOrderComponent
     ],
     imports: [
         CommonModule,

@@ -1,0 +1,27 @@
+<div class="flex flex-col flex-auto -m-6">
+
+    <!-- Header -->
+    <div class="flex flex-0 items-center justify-between h-16 pr-3 sm:pr-5 pl-6 sm:pl-8">
+        <span class="font-semibold text-lg">
+            Lý do từ chối đơn hàng
+        </span>
+        <button mat-icon-button (click)="matDialogRef.close()" [tabIndex]="-1">
+            <mat-icon class="text-current" [svgIcon]="'heroicons_outline:x'"></mat-icon>
+        </button>
+    </div>
+    <div class="flex flex-col sm:flex-row flex-auto items-center sm:items-start p-8 pb-6 sm:pb-8 w-full">
+
+        <form [formGroup]="denyForm" class="w-full">
+            <mat-form-field class="w-full">
+                <textarea matInput placeholder="Lý do" rows="3" [formControlName]="'description'"></textarea>
+            </mat-form-field>
+
+            <div class="flex justify-end">
+                <!-- Submit button -->
+                <button mat-raised-button [color]="'primary'" (click)="denyOrder()">
+                    <span>Xác nhận</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

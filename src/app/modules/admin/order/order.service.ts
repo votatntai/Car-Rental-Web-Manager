@@ -119,18 +119,13 @@ export class OrderService {
     /**
     * Update order
     */
-    updateOrder(id: string, data) {
+    cancelOrder(id: string, data: any) {
         return this.orders$.pipe(
             take(1),
-            switchMap((orders) => this._httpClient.put<Order>('/api/orders/' + id, data).pipe(
+            switchMap(() => this._httpClient.put<Order>('/api/orders/status/' + id, data).pipe(
                 map((updatedOrder) => {
 
-                    // Find and replace updated order
-                    const index = orders.findIndex(item => item.id === id);
-                    orders[index] = updatedOrder;
-                    this._orders.next(orders);
-
-                    // Update order
+                    // Update current order
                     this._order.next(updatedOrder);
 
                     return updatedOrder;

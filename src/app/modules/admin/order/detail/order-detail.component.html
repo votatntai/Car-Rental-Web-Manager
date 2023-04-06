@@ -121,7 +121,7 @@
 
                 <!-- Item -->
                 <div class="col-span-7 text-lg font-medium">PHÍ GIAO XE</div>
-                <div class="self-center text-right">{{ order.deliveryDistance }}</div>
+                <div class="self-center text-right">{{ order.deliveryDistance | number:'1.2-2'}}</div>
                 <div class="self-center text-right">Km</div>
                 <div class="col-span-2 self-center text-right">{{ order.deliveryFee | number:'1.0-2' }} VNĐ</div>
 
@@ -176,13 +176,19 @@
 
         <ng-container *ngIf="order.status == 'Pending'">
             <div class="flex gap-8 justify-between mt-5">
-                <button class="w-full" mat-flat-button [color]="'warn'">
+                <button class="w-full" mat-flat-button [color]="'warn'" (click)="openDenyOrderDialog()">
                     Từ chối đơn hàng
                 </button>
                 <button class="w-full" mat-flat-button [color]="'primary'" (click)="openConfirmDialog()">
                     Xác nhận đơn hàng
                 </button>
             </div>
+        </ng-container>
+        <ng-container *ngIf="order.status == 'Canceled'">
+            <fuse-alert class="mt-5" [type]="'error'" [appearance]="'border'">
+                Đơn hàng này đã bị từ chối với lý do <span class="text-red-500">{{ order.description }}</span>
+                {{message}}
+            </fuse-alert>
         </ng-container>
     </div>
 
