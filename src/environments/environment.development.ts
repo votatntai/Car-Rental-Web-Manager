@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
-    baseUrl: 'https://api-carrental.azurewebsites.net',
+    baseUrl: ' https://localhost:7277',
     firebaseConfig: {
         apiKey: "AIzaSyDYXbOmPpcvD-tTFqRZuDvt75nvjHou1EI",
         authDomain: "car-rental-236aa.firebaseapp.com",

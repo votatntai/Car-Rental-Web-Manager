@@ -6,7 +6,7 @@ import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { map, Observable, startWith } from 'rxjs';
 import { MachineService } from '../../machine/machine.service';
-import { Model } from '../../model/module.type';
+import { Model } from '../../model/model.type';
 import { CarRegistrationService } from '../car-registration.service';
 import { CarRegistration } from '../car-registration.type';
 

@@ -1,4 +1,4 @@
-import { ProductCompany } from "./product-company.type";
+import { ProductionCompany } from "./production-company.type";
 
 export interface Model {
     id: string,
@@ -11,5 +11,5 @@ export interface Model {
     transmissionType: string,
     fuelType: string,
     fuelConsumption: string,
-    productionCompany: ProductCompany,
+    productionCompany: ProductionCompany,
 }

@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable, switchMap, take, tap } from 'rxjs';
-import { Model, ModelPagination } from './module.type';
+import { Model, ModelPagination } from './model.type';
+import { ProductionCompany, ProductionCompanyPagination } from 'app/modules/types/production-company.type';
 
 @Injectable({ providedIn: 'root' })
 export class ModelService {
@@ -9,6 +10,9 @@ export class ModelService {
     private _model: BehaviorSubject<Model | null> = new BehaviorSubject(null);
     private _models: BehaviorSubject<Model[] | null> = new BehaviorSubject(null);
     private _pagination: BehaviorSubject<ModelPagination | null> = new BehaviorSubject(null);
+    private _productionCompany: BehaviorSubject<ProductionCompany | null> = new BehaviorSubject(null);
+    private _productionCompanies: BehaviorSubject<ProductionCompany[] | null> = new BehaviorSubject(null);
+    private _pcPagination: BehaviorSubject<ProductionCompanyPagination | null> = new BehaviorSubject(null);
 
     constructor(private _httpClient: HttpClient) { }
 
@@ -34,6 +38,27 @@ export class ModelService {
     }
 
     /**
+* Getter for model
+*/
+    get productionCompany$(): Observable<ProductionCompany> {
+        return this._productionCompany.asObservable();
+    }
+
+    /**
+     * Getter for models
+     */
+    get productionCompanies$(): Observable<ProductionCompany[]> {
+        return this._productionCompanies.asObservable();
+    }
+
+    /**
+ * Getter for pagination
+ */
+    get pcPagination$(): Observable<ProductionCompanyPagination> {
+        return this._pcPagination.asObservable();
+    }
+
+    /**
  * Get models
  *
  *
@@ -43,8 +68,9 @@ export class ModelService {
  * @param model
  * @param search
  */
-    getModels(pageNumber: number = 0, pageSize: number = 10, sort: string = 'name', model: 'asc' | 'desc' | '' = 'asc', search?: string):
+    getModels(pageNumber: number = 0, pageSize: number = 20, sort: string = 'name', model: 'asc' | 'desc' | '' = 'asc', search?: string):
         Observable<{ pagination: ModelPagination; data: Model[] }> {
+
         return this._httpClient.get<{ pagination: ModelPagination; data: Model[] }>('/api/models', {
             params: {
                 pageSize: '' + pageSize,
@@ -55,8 +81,39 @@ export class ModelService {
             }
         }).pipe(
             tap((response) => {
+
                 this._pagination.next(response.pagination);
                 this._models.next(response.data);
+            }),
+        );
+    }
+
+    /**
+* Get production companies
+*
+*
+* @param page
+* @param size
+* @param sort
+* @param model
+* @param search
+*/
+    getProductionCompanies(pageNumber: number = 0, pageSize: number = 20, sort: string = 'name', model: 'asc' | 'desc' | '' = 'asc', search?: string):
+        Observable<{ pagination: ProductionCompanyPagination; data: ProductionCompany[] }> {
+
+        return this._httpClient.get<{ pagination: ProductionCompanyPagination; data: ProductionCompany[] }>('/api/production-companies', {
+            params: {
+                pageSize: '' + pageSize,
+                pageNumber: '' + pageNumber,
+                sort,
+                model,
+                name: search || ''
+            }
+        }).pipe(
+            tap((response) => {
+
+                this._pcPagination.next(response.pagination);
+                this._productionCompanies.next(response.data);
             }),
         );
     }
@@ -78,24 +135,6 @@ export class ModelService {
                 })
             ))
         );
-    }
-
-    /**
- * Get model by id
- */
-    updateModelAccountStatus(id: string, status: boolean) {
-        return this.models$.pipe(
-            take(1),
-            switchMap(() => this._httpClient.put<Model>('/api/models/' + id, { accountStatus: status }).pipe(
-                map((updatedModel) => {
-
-                    // Update current model
-                    this._model.next(updatedModel);
-
-                    return updatedModel;
-                })
-            ))
-        )
     }
 
     /**

@@ -1,10 +1,10 @@
 import { AdditionalCharge } from "app/modules/types/additional-charge.type";
 import { CarCalendar } from "app/modules/types/car-registration-calendar.type";
-import { ProductCompany } from "app/modules/types/product-company.type";
+import { ProductionCompany } from "app/modules/types/production-company.type";
 import { Location } from "../../types/location.type";
 import { CarOwner } from "../car-owner/car-owner.type";
 import { Driver } from "../driver/driver.type";
-import { Model } from "../model/module.type";
+import { Model } from "../model/model.type";
 import { Showroom } from "../showroom/showroom.type";
 
 export interface Machine {
@@ -28,7 +28,7 @@ export interface Machine {
     star: number,
     status: string,
     carCalendars: CarCalendar[],
-    productionCompany: ProductCompany,
+    productionCompany: ProductionCompany,
     images: string[]
 }
 

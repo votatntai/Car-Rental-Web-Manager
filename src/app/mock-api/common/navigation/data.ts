@@ -23,6 +23,13 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 icon: 'heroicons_outline:pencil-alt',
                 link: '/materials/car-registrations'
             },
+            {
+                id: 'materials.models',
+                title: 'Quản Lý Mẫu Xe',
+                type: 'basic',
+                icon: 'heroicons_outline:database',
+                link: '/materials/models'
+            },
         ]
     },
     {
@@ -63,6 +70,13 @@ export const compactNavigation: FuseNavigationItem[] = [
                 type: 'basic',
                 icon: 'heroicons_outline:pencil-alt',
                 link: '/materials/car-registrations'
+            },
+            {
+                id: 'materials.models',
+                title: 'Quản Lý Mẫu Xe',
+                type: 'basic',
+                icon: 'heroicons_outline:database',
+                link: '/materials/models'
             },
         ]
     },
@@ -105,6 +119,13 @@ export const futuristicNavigation: FuseNavigationItem[] = [
                 icon: 'heroicons_outline:pencil-alt',
                 link: '/materials/car-registrations'
             },
+            {
+                id: 'materials.models',
+                title: 'Quản Lý Mẫu Xe',
+                type: 'basic',
+                icon: 'heroicons_outline:database',
+                link: '/materials/models'
+            },
         ]
     },
     {
@@ -145,6 +166,13 @@ export const horizontalNavigation: FuseNavigationItem[] = [
                 type: 'basic',
                 icon: 'heroicons_outline:pencil-alt',
                 link: '/materials/car-registrations'
+            },
+            {
+                id: 'materials.models',
+                title: 'Quản Lý Mẫu Xe',
+                type: 'basic',
+                icon: 'heroicons_outline:database',
+                link: '/materials/models'
             },
         ]
     },

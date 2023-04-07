@@ -1,4 +1,4 @@
-import { ProductCompany } from "app/modules/types/product-company.type";
+import { ProductionCompany } from "app/modules/types/production-company.type";
 
 export interface Model {
     id: string,
@@ -11,7 +11,7 @@ export interface Model {
     transmissionType: string,
     fuelType: string,
     fuelConsumption: string,
-    productionCompany: ProductCompany,
+    productionCompany: ProductionCompany,
 }
 
 export interface ModelPagination {

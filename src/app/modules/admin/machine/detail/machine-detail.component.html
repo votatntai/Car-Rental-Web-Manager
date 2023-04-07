@@ -8,8 +8,18 @@
 
     <div class="flex flex-col flex-auto items-center overflow-hidden sm:overflow-y-auto">
         <div class="flex flex-col px-10 w-full">
-            <div class="grid grid-cols-4 w-full gap-4">
+            <div class="grid grid-cols-3 w-full gap-4">
                 <fuse-card class="flex flex-col w-full filter-listing">
+                    <ng-container *ngIf="machine.driver">
+                        <div class="relative">
+                            <div class="absolute flex flex-col top-0 right-0 p-3">
+                                <div class="rounded-full cursor-pointer border-2 border-green-500 px-4 py-2"
+                                    #tooltip="matTooltip" matTooltip="{{ machine.driver.name }}">
+                                    <span class="text-green-500">Xe có tài xế</span>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
                     <img class="object-cover"
                         src="https://web-assets.cdn.dealersolutions.com.au/modular.multisite.dealer.solutions/wp-content/uploads/2018/03/31104034/GR86-Image.jpg"
                         alt="Card cover image">
@@ -59,42 +69,6 @@
                     <hr class="w-full border-t mt-0 mb-8">
                     <div class="text-center text-secondary">Chủ xe có thể sở hữu nhiều xe và có thể trở thành tài xế
                     </div>
-                </fuse-card>
-                <fuse-card class="flex flex-col items-center justify-center w-full p-8 pb-6 filter-info">
-                    <ng-container *ngIf="machine.driver">
-                        <img class="w-32 h-32 rounded-full" src="assets/images/avatars/male-04.jpg"
-                            alt="Card cover image">
-                        <div class="text-secondary leading-tight text-center mt-8">Tài xế</div>
-                        <div class="text-2xl font-semibold leading-tight text-center mt-1">{{ machine.driver.name }}
-                        </div>
-                        <hr class="w-full border-t mt-8 mb-0">
-                        <div class="flex flex-col my-4">
-                            <div class="flex items-center">
-                                <mat-icon class="icon-size-5 mr-3"
-                                    [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
-                                <span class="leading-none">{{ machine.driver.address }}</span>
-                            </div>
-                            <div class="flex items-center mt-4">
-                                <mat-icon class="icon-size-5 mr-3" [svgIcon]="'heroicons_solid:phone'"></mat-icon>
-                                <span class="leading-none">{{ machine.driver.phone }}</span>
-                            </div>
-                            <div class="flex items-center mt-4">
-                                <mat-icon class="icon-size-5 mr-3" [svgIcon]="'heroicons_solid:user'"></mat-icon>
-                                <span class="leading-none">{{ machine.driver.gender }}</span>
-                            </div>
-                        </div>
-                        <hr class="w-full border-t mt-0 mb-8">
-                        <div class="text-center text-secondary">Tài xế này được chỉ định riêng cho chiếc xe này
-                        </div>
-                    </ng-container>
-                    <ng-container *ngIf="!machine.driver">
-                        <div class="flex flex-col gap-3 items-center">
-                            <mat-icon class="icon-size-18" svgIcon="heroicons_outline:zoom-out"></mat-icon>
-                            <div class="text-center text-secondary">
-                                Chưa có tài xế được chỉ định
-                            </div>
-                        </div>
-                    </ng-container>
                 </fuse-card>
                 <fuse-card class="flex flex-col w-full p-8 pt-6 filter-list">
                     <div class="flex items-center justify-between">

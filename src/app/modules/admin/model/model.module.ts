@@ -18,39 +18,43 @@ import { FuseCardModule } from '@fuse/components/card';
 import { DayTranslatePipeModule } from '@fuse/pipes/day-translate/day-translate.module';
 import { AccountStatusPipeModule } from '@fuse/pipes/status/status-pipe.module';
 import { TimeSpanPipeModule } from '@fuse/pipes/time-span/time-span-pipe.module';
-import { MachineComponent } from 'app/modules/admin/machine/machine.component';
-import { MachineDetailComponent } from './detail/machine-detail.component';
-import { MachineDetailResolver } from './detail/machine-detail.resolvers';
-import { MachineDetailMapsViewComponent } from './detail/maps-view/machine-detail-maps-view.component';
-import { MachinesResolver } from './machine.resolvers';
+import { ModelComponent } from 'app/modules/admin/model/model.component';
+import { ModelsResolver } from './model.resolvers';
+import { CreateModelComponent } from './create/create-model.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+
+// import { ModelDetailComponent } from './detail/model-detail.component';
+// import { ModelDetailResolver } from './detail/model-detail.resolvers';
+// import { ModelsResolver } from './model.resolvers';
 
 
-const machineRoutes: Route[] = [
+const modelRoutes: Route[] = [
     {
         path: '',
-        component: MachineComponent,
+        component: ModelComponent,
         resolve: {
-            machine: MachinesResolver
+            model: ModelsResolver
         },
     },
-    {
-        path: ':id',
-        component: MachineDetailComponent,
-        resolve: {
-            machineDetail: MachineDetailResolver
-        }
-    }
+    // {
+    //     path: ':id',
+    //     component: ModelDetailComponent,
+    //     resolve: {
+    //         modelDetail: ModelDetailResolver
+    //     }
+    // }
 ];
 
 @NgModule({
     declarations: [
-        MachineComponent,
-        MachineDetailComponent,
-        MachineDetailMapsViewComponent
+        ModelComponent,
+        CreateModelComponent
+        // ModelDetailComponent,
+        // ModelDetailMapsViewComponent
     ],
     imports: [
         CommonModule,
-        RouterModule.forChild(machineRoutes),
+        RouterModule.forChild(modelRoutes),
         MatIconModule,
         MatFormFieldModule,
         MatInputModule,
@@ -68,11 +72,13 @@ const machineRoutes: Route[] = [
         FuseAlertModule,
         FuseCardModule,
         AgmCoreModule,
-        MatTableModule
+        MatTableModule,
+        MatAutocompleteModule,
+        FuseAlertModule
     ],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA
     ],
 })
-export class MachineModule {
+export class ModelModule {
 }

@@ -1,0 +1,130 @@
+<div class="sm:absolute sm:inset-0 flex flex-col flex-auto min-w-0 sm:overflow-hidden bg-card dark:bg-transparent">
+
+    <!-- Header -->
+    <div
+        class="relative flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between py-8 px-6 md:px-8 bmodel-b">
+        <!-- Loader -->
+        <div class="absolute inset-x-0 bottom-0" *ngIf="isLoading">
+            <mat-progress-bar [mode]="'indeterminate'"></mat-progress-bar>
+        </div>
+        <!-- Title -->
+        <div class="text-4xl font-extrabold tracking-tight">Quản lý mẫu xe</div>
+        <!-- Actions -->
+        <div class="flex shrink-0 items-center mt-6 sm:mt-0 sm:ml-4 gap-3">
+            <!-- Search -->
+            <button mat-raised-button [color]="'primary'" (click)="openCreateModelDialog()">
+                <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
+            </button>
+            <!-- Search -->
+            <mat-form-field class="fuse-mat-dense fuse-mat-rounded min-w-64" [subscriptSizing]="'dynamic'">
+                <mat-icon class="icon-size-5" matPrefix [svgIcon]="'heroicons_solid:search'"></mat-icon>
+                <input matInput [formControl]="searchInputControl" [autocomplete]="'off'" [placeholder]="'Tìm kiếm'">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <!-- Models list -->
+    <div class="flex flex-col flex-auto sm:mb-18 overflow-hidden sm:overflow-y-auto">
+        <ng-container *ngIf="(models$ | async) as models">
+            <div class="grid">
+                <!-- Header -->
+                <div class="model-grid z-10 sticky top-0 grid gap-4 py-4 px-6 md:px-8 shadow text-md font-semibold text-secondary bg-gray-50 dark:bg-black dark:bg-opacity-5"
+                    matSort matSortDisableClear>
+                    <div>Tên mẫu xe</div>
+                    <div>Tên hãng xe</div>
+                    <div class="hidden sm:block">
+                        Số ghế
+                    </div>
+                    <div class="hidden sm:block">
+                        Truyền động
+                    </div>
+                    <div class="hidden sm:block">Loại nhiên liệu</div>
+                    <div class="hidden sm:block">
+                        Năm sản xuất
+                    </div>
+                    <div class="hidden sm:block">Chi tiết</div>
+                </div>
+                <!-- Rows -->
+                <ng-container *ngIf="models.length > 0; else noModels">
+                    <ng-container *ngIf="(models$ | async) as models">
+                        <ng-container *ngFor="let model of models; trackBy: trackByFn">
+                            <div class="model-grid grid items-center gap-4 py-3 px-6 md:px-8 bmodel-b">
+
+                                <!-- Customer -->
+                                <div class="truncate">
+                                    {{model.name}}
+                                </div>
+
+                                <!-- Name -->
+                                <div class="truncate">
+                                    {{model.productionCompany.name }}
+                                </div>
+
+                                <!-- Gender -->
+                                <div class="hidden sm:block">
+                                    {{model.seater}}
+                                </div>
+
+                                <!-- Phone -->
+                                <div class="hidden sm:block">
+                                    {{model.transmissionType}}
+                                </div>
+
+                                <!-- Status -->
+                                <div class="hidden sm:block truncate">
+                                    {{model.fuelType }}
+                                </div>
+
+                                <!-- Phone -->
+                                <div class="hidden sm:block">
+                                    {{model.yearOfManufacture}}
+                                </div>
+
+                                <!-- Action -->
+                                <div class="hidden sm:block">
+                                    <div class="flex gap-3">
+                                        <span [routerLink]="['/comercials/models', model.id]">
+                                            <mat-icon class="text-blue-500 icon-size-5 cursor-pointer"
+                                                [svgIcon]="'heroicons_outline:eye'"></mat-icon>
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
+
+            </div>
+
+            <mat-paginator
+                class="sm:absolute sm:inset-x-0 sm:bottom-0 bmodel-b sm:bmodel-t sm:bmodel-b-0 z-10 bg-gray-50 dark:bg-transparent"
+                [ngClass]="{'pointer-events-none': isLoading}" [length]="pagination.totalRow"
+                [pageIndex]="pagination.pageNumber" [pageSize]="pagination.pageSize"
+                [pageSizeOptions]="[5, 10, 25, 100]" [showFirstLastButtons]="true"></mat-paginator>
+
+        </ng-container>
+
+        <ng-template #noModels>
+            <div class="p-8 sm:p-16 bmodel-t text-4xl font-semibold tracking-tight text-center">Không tìm thấy mẫu xe
+                nào!
+            </div>
+        </ng-template>
+
+    </div>
+
+</div>
+
+<!-- Notification -->
+<a class="cursor-pointer" *ngIf="flashMessage">
+    <fuse-alert class="absolute bottom-0 right-0 z-999" [type]="'success'" [appearance]="'bmodel'"
+        *ngIf="flashMessage === 'success'">
+        <span fuseAlertTitle>Thành công</span>
+        {{message}}
+    </fuse-alert>
+    <fuse-alert class="absolute bottom-0 right-0 z-999" [type]="'error'" [appearance]="'bmodel'"
+        *ngIf="flashMessage === 'error'">
+        <span fuseAlertTitle>Có lỗi xảy ra</span>
+        {{message}}
+    </fuse-alert>
+</a>
