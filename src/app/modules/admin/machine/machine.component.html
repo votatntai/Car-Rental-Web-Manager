@@ -11,6 +11,14 @@
         <div class="text-4xl font-extrabold tracking-tight">Quản lý xe</div>
         <!-- Actions -->
         <div class="flex shrink-0 items-center mt-6 sm:mt-0 sm:ml-4 gap-3">
+            <mat-form-field class="fuse-mat-dense fuse-mat-rounded min-w-64" [subscriptSizing]="'dynamic'">
+                <mat-select [(value)]="selectedValue" (selectionChange)="onStatusChanged()">
+                    <mat-option value="all">Tất cả</mat-option>
+                    <mat-option *ngFor="let status of machineStatusList" [value]="status">
+                        {{status.toString() | machineStatus}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
             <!-- <button mat-raised-button [color]="'primary'" (click)="openCreateMachineDialog()">
                 <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
             </button> -->
@@ -90,7 +98,12 @@
 
                                 <!-- Status -->
                                 <div class="hidden truncate sm:block">
-                                    {{machine.status}}
+                                    <div class="font-semibold rounded-full px-3 py-1 w-auto inline-block" [ngClass]="'text-white ' + 
+                                    (machine.status === 'Blocked' ? 'bg-gray-500' :
+                                    machine.status === 'Ongoing' ? 'bg-yellow-500 text-gray-900' :
+                                    machine.status === 'Idle' ? 'bg-green-500' :'')">
+                                        {{machine.status | machineStatus}}
+                                    </div>
                                 </div>
 
                                 <!-- Action -->

@@ -23,6 +23,7 @@ import { MachineDetailComponent } from './detail/machine-detail.component';
 import { MachineDetailResolver } from './detail/machine-detail.resolvers';
 import { MachineDetailMapsViewComponent } from './detail/maps-view/machine-detail-maps-view.component';
 import { MachinesResolver } from './machine.resolvers';
+import { MachineStatusPipeModule } from '@fuse/pipes/machine-status/machine-status-pipe.module';
 
 
 const machineRoutes: Route[] = [
@@ -68,7 +69,8 @@ const machineRoutes: Route[] = [
         FuseAlertModule,
         FuseCardModule,
         AgmCoreModule,
-        MatTableModule
+        MatTableModule,
+        MachineStatusPipeModule
     ],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA

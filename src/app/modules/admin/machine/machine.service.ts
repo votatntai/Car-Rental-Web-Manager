@@ -44,7 +44,7 @@ export class MachineService {
  * @param order
  * @param search
  */
-    getMachines(pageNumber: number = 0, pageSize: number = 10, sort: string = 'name', order: 'asc' | 'desc' | '' = 'asc', search?: string):
+    getMachines(pageNumber: number = 0, pageSize: number = 10, sort: string = 'name', order: 'asc' | 'desc' | '' = 'asc', search?: string, status?: string):
         Observable<{ pagination: MachinePagination; data: Machine[] }> {
         return this._httpClient.get<{ pagination: MachinePagination; data: Machine[] }>('/api/cars', {
             params: {
@@ -52,7 +52,8 @@ export class MachineService {
                 pageNumber: '' + pageNumber,
                 sort,
                 order,
-                name: search || ''
+                ...(search && { name: search }),
+                ...(status && { status: status })
             }
         }).pipe(
             tap((response) => {

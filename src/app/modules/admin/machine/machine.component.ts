@@ -6,6 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { debounceTime, map, merge, Observable, Subject, switchMap, takeUntil } from 'rxjs';
 import { MachineService } from './machine.service';
 import { Machine, MachinePagination } from './machine.type';
+import { MachineStatus } from '../const/machine-status.const';
 
 @Component({
     selector: 'app-machine',
@@ -25,6 +26,8 @@ export class MachineComponent implements OnInit, AfterViewInit {
     searchInputControl: UntypedFormControl = new UntypedFormControl();
     isLoading: boolean = false;
     pagination: MachinePagination;
+    machineStatusList = MachineStatus;
+    selectedValue: string = 'all';
 
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -81,7 +84,8 @@ export class MachineComponent implements OnInit, AfterViewInit {
             merge(this._sort.sortChange, this._paginator.page).pipe(
                 switchMap(() => {
                     this.isLoading = true;
-                    return this._machineService.getMachines(this._paginator.pageIndex, this._paginator.pageSize, this._sort.active, this._sort.direction, this.searchInputControl.value);
+                    return this._machineService.getMachines(this._paginator.pageIndex, this._paginator.pageSize, this._sort.active, this._sort.direction, this.searchInputControl.value,
+                        this.selectedValue !== 'all' ? this.selectedValue : null);
                 }),
                 map(() => {
                     this.isLoading = false;
@@ -98,7 +102,8 @@ export class MachineComponent implements OnInit, AfterViewInit {
                 debounceTime(300),
                 switchMap((query) => {
                     this.isLoading = true;
-                    return this._machineService.getMachines(0, 10, 'name', 'asc', query);
+                    return this._machineService.getMachines(0, 10, 'name', 'asc', query,
+                        this.selectedValue !== 'all' ? this.selectedValue : null);
                 }),
                 map(() => {
                     this.isLoading = false;
@@ -106,4 +111,11 @@ export class MachineComponent implements OnInit, AfterViewInit {
             ).subscribe();
     }
 
+    onStatusChanged() {
+        this._machineService.getMachines(this._paginator.pageIndex, this._paginator.pageSize, this._sort.active, this._sort.direction, this.searchInputControl.value,
+            this.selectedValue !== 'all' ? this.selectedValue : null)
+            .subscribe(a => {
+                this._changeDetectorRef.markForCheck();
+            });
+    }
 }
