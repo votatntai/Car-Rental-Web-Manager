@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Machine } from '../../machine.type';
+import { MachineService } from '../../machine.service';
 
 @Component({
     selector: 'app-machine-detail-maps-view',
@@ -24,12 +25,21 @@ export class MachineDetailMapsViewComponent implements OnInit {
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: Machine,
         public matDialogRef: MatDialogRef<MachineDetailMapsViewComponent>,
+        private _machineService: MachineService
     ) { }
 
     ngOnInit() {
         this.machine = this.data;
+
+        this._machineService.getMachineById(this.machine.id).subscribe(() => {
+            //Get car calendar
+            this._machineService.getMachineCalendarById(this.machine.id).subscribe(calendars => {
+                this.machine.carCalendars = calendars;
+                this.initialCarCalendar(this.machine);
+            });
+        });
+
         this.initCarLocation();
-        this.initialCarCalendar(this.machine);
     }
 
     initCarLocation() {
@@ -39,12 +49,14 @@ export class MachineDetailMapsViewComponent implements OnInit {
     }
 
     private initialCarCalendar(car: Machine) {
-        const allDays = this.weekdays.map(day => ({
-            weekday: day,
-            startTime: 'Cả ngày',
-            endTime: null,
-            ...car.carCalendars.map(c => c.calendar).find(c => c.weekday === day)
-        }));
-        this.dataSource = allDays;
+        if (car.carCalendars) {
+            const allDays = this.weekdays.map(day => ({
+                weekday: day,
+                startTime: 'Cả ngày',
+                endTime: null,
+                ...car.carCalendars.map(c => c.calendar).find(c => c.weekday === day)
+            }));
+            this.dataSource = allDays;
+        }
     }
 }

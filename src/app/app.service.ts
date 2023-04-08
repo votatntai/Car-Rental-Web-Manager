@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireMessaging } from '@angular/fire/compat/messaging';
-import { BehaviorSubject, mergeMapTo, Observable, tap } from 'rxjs';
+import { BehaviorSubject, map, mergeMapTo, Observable, switchMap, take, tap } from 'rxjs';
 import { AuthService } from './core/auth/auth.service';
 import { Notification, NotificationPagination } from './modules/types/notification.type';
 
@@ -81,6 +81,32 @@ export class AppService {
                 this._pagination.next(response.pagination);
                 this._notofications.next(response.data);
             }),
+        );
+    }
+
+    public markAllAsRead() {
+        return this._httpClient.put('/api/notifications/make-as-read', null);
+    }
+
+    public deleteNotification(id: string) {
+        return this.notifications$.pipe(
+            take(1),
+            switchMap(notifications => this._httpClient.delete('/api/notifications/' + id).pipe(
+                map((isDeleted: boolean) => {
+
+                    // Find the index of the deleted product
+                    const index = notifications.findIndex(item => item.id === id);
+
+                    // Delete the product
+                    notifications.splice(index, 1);
+
+                    // Update the products
+                    this._notofications.next(notifications);
+
+                    // Return the deleted status
+                    return isDeleted;
+                })
+            ))
         );
     }
 }

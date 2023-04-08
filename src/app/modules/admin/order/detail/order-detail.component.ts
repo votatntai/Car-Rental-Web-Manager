@@ -6,6 +6,8 @@ import { Subject, takeUntil } from 'rxjs';
 import { OrderService } from '../order.service';
 import { Order } from '../order.type';
 import { DenyOrderComponent } from './deny-order/deny-order.component';
+import { LicenseCheckComponent } from './license-check/deny-order.component';
+import { MachineDetailMapsViewComponent } from '../../machine/detail/maps-view/machine-detail-maps-view.component';
 
 @Component({
     selector: 'app-order-detail',
@@ -57,6 +59,20 @@ export class OrderDetailComponent implements OnInit {
         this._dialog.open(DenyOrderComponent, {
             width: '480px',
             data: this.order
+        })
+    }
+
+    checkLicense() {
+        this._dialog.open(LicenseCheckComponent, {
+            width: '1080px',
+        })
+    }
+
+    openMapsViewDialog() {
+        this._dialog.open(MachineDetailMapsViewComponent, {
+            width: '1080px',
+            data: this.order.orderDetails[0].car,
+            autoFocus: false
         })
     }
 

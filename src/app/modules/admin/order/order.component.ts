@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { fuseAnimations } from '@fuse/animations';
-import { debounceTime, map, merge, Observable, Subject, switchMap, take, takeUntil } from 'rxjs';
+import { Observable, Subject, debounceTime, map, merge, switchMap, takeUntil } from 'rxjs';
 import { OrderService } from './order.service';
 import { Order, OrderPagination } from './order.type';
 

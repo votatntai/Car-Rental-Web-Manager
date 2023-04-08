@@ -4,7 +4,41 @@
     <div class="inline-block p-6 sm:p-10 text-left print:p-0">
 
         <div class="flex gap-3 mb-6">
-            <fuse-card class="flex flex-col items-center justify-center max-w-80 w-full p-8 pb-6 filter-shopping">
+
+            <fuse-card class="flex flex-col items-center max-w-80 w-full filter-listing">
+                <img class="object-cover"
+                    src="https://web-assets.cdn.dealersolutions.com.au/modular.multisite.dealer.solutions/wp-content/uploads/2018/03/31104034/GR86-Image.jpg"
+                    alt="Card cover image">
+                <div class="w-full p-6 m-8 mb-4">
+                    <div class="flex justify-between">
+                        <div class="flex flex-col">
+                            <div class="text-secondary text-md">{{ order.orderDetails[0].car.productionCompany.name }} -
+                                {{
+                                order.orderDetails[0].car.name }}</div>
+                            <div class="text-2xl font-semibold text-green-500 leading-tight mt-1">{{
+                                order.orderDetails[0].car.price |
+                                number:'1.0-2' }} VNĐ</div>
+                        </div>
+                    </div>
+                    <hr class="border-b my-4">
+                    <div class="flex flex-col text-md">
+                        <span class="whitespace-nowrap">Sản xuất năm <b> {{
+                                order.orderDetails[0].car.model.yearOfManufacture}}</b></span>
+                        <span class="whitespace-nowrap"><b>{{ order.orderDetails[0].car.model.seater }}</b> chỗ
+                            ngồi</span>
+                        <span class="whitespace-nowrap">Sử dụng <b>{{ order.orderDetails[0].car.model.fuelType
+                                }}</b></span>
+                    </div>
+                    <hr class="border-b my-4">
+                    <div class="mt-3 -mx-3">
+                        <a class="px-3" mat-button [color]="'primary'" (click)="openMapsViewDialog()">
+                            Xem chi tiết
+                        </a>
+                    </div>
+                </div>
+            </fuse-card>
+
+            <fuse-card class="flex flex-col items-center max-w-80 w-full p-8 pb-6 filter-shopping">
                 <ng-container *ngIf="order.orderDetails[0].driver">
                     <img class="w-32 h-32 rounded-full" src="assets/images/avatars/male-04.jpg" alt="Card cover image">
                     <div class="text-secondary leading-tight text-center mt-8">Tài xế</div>
@@ -21,9 +55,11 @@
                             <span class="text-sm font-medium text-secondary">SỐ CHUYẾN</span>
                         </div>
                     </div>
-                    <a class="px-6 mt-8" mat-flat-button [color]="'primary'" [routerLink]="['./']">
-                        Đổi tài xế
-                    </a>
+                    <ng-container *ngIf="order.status == 'Pending'">
+                        <a class="px-6 mt-8" mat-flat-button [color]="'primary'" [routerLink]="['./']">
+                            Đổi tài xế
+                        </a>
+                    </ng-container>
                 </ng-container>
                 <ng-container *ngIf="!order.orderDetails[0].driver">
                     <a class="flex" mat-flat-button [color]="'accent'" [routerLink]="['./']">
@@ -36,34 +72,17 @@
                 <img class="w-32 h-32 rounded-full" src="assets/images/avatars/male-04.jpg" alt="Card cover image">
                 <div class="text-secondary leading-tight text-center mt-8">Khách hàng</div>
                 <div class="text-2xl font-semibold leading-tight text-center mt-1">{{ order.customer.name }}</div>
-            </fuse-card>
-
-            <fuse-card class="flex flex-col max-w-80 w-full filter-shopping">
-                <img class="object-cover" src="assets/images/cards/sneakers-01-320x200.jpg" alt="Card cover image">
-                <ng-container *ngIf="order.promotion">
-                    <div class="flex flex-col m-8 mb-0 justify-between">
-                        <div class="flex flex-col">
-                            <div class="text-2xl leading-tight">Black sneakers with white stripes</div>
-                            <div class="text-3xl font-semibold mt-2">240.00 %</div>
-                        </div>
-                        <hr class="border-b my-6">
-                        <div class="flex items-center text-md">
-                            <span class="text-secondary whitespace-nowrap mr-3">Hạn sử dụng đến:</span>
-                            <span class="mr-2">22-22-2222</span>
-                        </div>
-                        <div class="mt-6 -mx-8">
-                            <button class="w-full rounded-none" mat-flat-button [color]="'primary'">
-                                Mã khuyến mãi
-                            </button>
-                        </div>
+                <hr class="w-full border-t mt-8 mb-0">
+                <ng-container *ngIf="!order.orderDetails[0].driver">
+                    <div class="w-full mt-6">
+                        <a class="flex" mat-flat-button [color]="'primary'" [routerLink]="['./']"
+                            (click)="checkLicense()">
+                            Kiểm tra giấy phép
+                        </a>
                     </div>
                 </ng-container>
-                <ng-container *ngIf="!order.promotion">
-                    <a class="mt-5 mx-10" mat-flat-button [color]="'accent'" [routerLink]="['./']">
-                        Không có mã khuyến mãi
-                    </a>
-                </ng-container>
             </fuse-card>
+
         </div>
 
         <!-- Invoice -->

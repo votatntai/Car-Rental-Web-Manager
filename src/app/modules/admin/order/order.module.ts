@@ -21,6 +21,7 @@ import { DenyOrderComponent } from './detail/deny-order/deny-order.component';
 import { OrderDetailComponent } from './detail/order-detail.component';
 import { OrderDetailResolver } from './detail/order-detail.resolvers';
 import { OrdersResolver } from './order.resolvers';
+import { LicenseCheckComponent } from './detail/license-check/deny-order.component';
 
 const orderRoutes: Route[] = [
     {
@@ -43,7 +44,8 @@ const orderRoutes: Route[] = [
     declarations: [
         OrderComponent,
         OrderDetailComponent,
-        DenyOrderComponent
+        DenyOrderComponent,
+        LicenseCheckComponent
     ],
     imports: [
         CommonModule,

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable, switchMap, take, tap } from 'rxjs';
 import { Machine, MachinePagination } from './machine.type';
+import { CarCalendar } from 'app/modules/types/car-registration-calendar.type';
 
 @Injectable({ providedIn: 'root' })
 export class MachineService {
@@ -75,6 +76,25 @@ export class MachineService {
 
                     // Return the new contact
                     return machine;
+                })
+            ))
+        );
+    }
+
+    getMachineCalendarById(id: string): Observable<CarCalendar[]> {
+        return this.machines$.pipe(
+            take(1),
+            switchMap(() => this._httpClient.get<CarCalendar[]>('/api/cars/calendars/' + id).pipe(
+                map((calendars) => {
+
+                    var newMachine = this._machine.getValue();
+                    newMachine.carCalendars = calendars;
+
+                    // Set value for current machine
+                    this._machine.next(newMachine);
+
+                    // Return the new contact
+                    return calendars;
                 })
             ))
         );

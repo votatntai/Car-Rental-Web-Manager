@@ -110,7 +110,13 @@ export class NotificationsComponent implements OnInit, OnDestroy {
      */
     markAllAsRead(): void {
         // Mark all as read
-        // this._notificationsService.markAllAsRead().subscribe();
+        this._appService.markAllAsRead().subscribe(() => {
+            this.notifications.forEach(notification => {
+                notification.data.isRead = true
+            });
+            this.unreadCount = 0;
+            this._changeDetectorRef.markForCheck();
+        });
     }
 
     /**
@@ -129,7 +135,7 @@ export class NotificationsComponent implements OnInit, OnDestroy {
      */
     delete(notification: Notification): void {
         // Delete the notification
-        // this._notificationsService.delete(notification.id).subscribe();
+        this._appService.deleteNotification(notification.id).subscribe();
     }
 
     /**

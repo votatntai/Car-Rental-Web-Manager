@@ -1,0 +1,48 @@
+<div class="flex flex-col flex-auto -m-6">
+
+    <!-- Header -->
+    <div class="flex flex-0 items-center justify-between h-16 pr-3 sm:pr-5 pl-6 sm:pl-8">
+        <span class="font-semibold text-lg">
+            Giấy phép lái xe của khách hàng
+        </span>
+        <button mat-icon-button (click)="matDialogRef.close()" [tabIndex]="-1">
+            <mat-icon class="text-current" [svgIcon]="'heroicons_outline:x'"></mat-icon>
+        </button>
+    </div>
+    <div class="flex flex-col sm:flex-row flex-auto items-center sm:items-start p-8 pb-6 sm:pb-8 w-full">
+        <div class="w-full">
+            <div class="flex flex-wrap w-full mt-3 gap-6 justify-between">
+                <div class="w-56">
+                    <img class="cursor-pointer rounded-lg"
+                        src="https://danchoioto.vn/wp-content/uploads/2021/07/loi-khong-co-giay-dang-ky-xe-bi-phat-tien-tu-2-000-000-3-000-000-dong.jpg.webp"
+                        alt="">
+                </div>
+                <div class="w-56">
+                    <img class="cursor-pointer rounded-lg"
+                        src="https://viettelnet.vn/wp-content/uploads/2022/06/giay-to-xe-gom-nhung-gi-khong-mang-phat-bao-nhieu-3.jpg"
+                        alt="">
+                </div>
+                <div class="w-56">
+                    <img class="cursor-pointer rounded-lg"
+                        src="https://viettelnet.vn/wp-content/uploads/2022/06/giay-to-xe-gom-nhung-gi-khong-mang-phat-bao-nhieu-2.jpg"
+                        alt="">
+                </div>
+                <div class="w-56">
+                    <img class="cursor-pointer rounded-lg"
+                        src="https://nghiencar.com/wp-content/uploads/2022/11/BAO-HIEM-XE.jpg" alt="">
+                </div>
+            </div>
+            <div class="flex items-center mt-6">
+                <mat-icon class="icon-size-5 mr-3" [svgIcon]="'heroicons_solid:link'"></mat-icon>
+                <span class="leading-none">Bao gồm giấy phép lái xe và những giấy tờ
+                    liên quan theo quy định của pháp luật.
+                </span>
+            </div>
+            <div class="flex items-center mt-3">
+                <span class="leading-none font-semibold italic">Lưu ý, đây là thông tin cá nhân của khác hàng, không
+                    được để lộ bằng bất kỳ hình thức nào.
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
