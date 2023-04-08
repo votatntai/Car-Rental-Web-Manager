@@ -83,9 +83,9 @@
                                 <!-- Action -->
                                 <div class="hidden sm:block">
                                     <div class="flex gap-3">
-                                        <span [routerLink]="['/comercials/models', model.id]">
+                                        <span class="cursor-pointer" (click)="openUpdateModelDialog(model)">
                                             <mat-icon class="text-blue-500 icon-size-5 cursor-pointer"
-                                                [svgIcon]="'heroicons_outline:eye'"></mat-icon>
+                                                [svgIcon]="'heroicons_outline:pencil-alt'"></mat-icon>
                                         </span>
                                     </div>
                                 </div>
@@ -117,12 +117,12 @@
 
 <!-- Notification -->
 <a class="cursor-pointer" *ngIf="flashMessage">
-    <fuse-alert class="absolute bottom-0 right-0 z-999" [type]="'success'" [appearance]="'bmodel'"
+    <fuse-alert class="absolute bottom-0 right-0 z-999" [type]="'success'" [appearance]="'border'"
         *ngIf="flashMessage === 'success'">
         <span fuseAlertTitle>Thành công</span>
         {{message}}
     </fuse-alert>
-    <fuse-alert class="absolute bottom-0 right-0 z-999" [type]="'error'" [appearance]="'bmodel'"
+    <fuse-alert class="absolute bottom-0 right-0 z-999" [type]="'error'" [appearance]="'border'"
         *ngIf="flashMessage === 'error'">
         <span fuseAlertTitle>Có lỗi xảy ra</span>
         {{message}}

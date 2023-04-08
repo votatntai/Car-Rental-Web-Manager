@@ -4,10 +4,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { fuseAnimations } from '@fuse/animations';
-import { debounceTime, map, merge, Observable, Subject, switchMap, take, takeUntil } from 'rxjs';
+import { Observable, Subject, debounceTime, map, merge, switchMap, take, takeUntil } from 'rxjs';
+import { CreateModelComponent } from './create/create-model.component';
 import { ModelService } from './model.service';
 import { Model, ModelPagination } from './model.type';
-import { CreateModelComponent } from './create/create-model.component';
+import { UpdateModelComponent } from './update/update-model.component';
 
 @Component({
     selector: 'app-model',
@@ -118,6 +119,20 @@ export class ModelComponent implements OnInit, AfterViewInit {
             // After dialog closed
             if (result === 'success') {
                 this.showFlashMessage(result, 'Tạo mới thành công', 3000);
+            } else {
+                this.showFlashMessage(result, 'Đã có lỗi xảy ra', 3000);
+            }
+        })
+    }
+
+    openUpdateModelDialog(model: Model) {
+        this._dialog.open(UpdateModelComponent, {
+            width: '720px',
+            data: model
+        }).afterClosed().subscribe(result => {
+            // After dialog closed
+            if (result === 'success') {
+                this.showFlashMessage(result, 'Cập nhật thành công', 3000);
             } else {
                 this.showFlashMessage(result, 'Đã có lỗi xảy ra', 3000);
             }

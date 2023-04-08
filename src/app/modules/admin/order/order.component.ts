@@ -7,6 +7,7 @@ import { fuseAnimations } from '@fuse/animations';
 import { Observable, Subject, debounceTime, map, merge, switchMap, takeUntil } from 'rxjs';
 import { OrderService } from './order.service';
 import { Order, OrderPagination } from './order.type';
+import { OrderStatus } from '../const/order-status.const';
 
 @Component({
     selector: 'app-order',
@@ -16,6 +17,7 @@ import { Order, OrderPagination } from './order.type';
     changeDetection: ChangeDetectionStrategy.OnPush,
     animations: fuseAnimations
 })
+
 
 export class OrderComponent implements OnInit, AfterViewInit {
 
@@ -29,6 +31,8 @@ export class OrderComponent implements OnInit, AfterViewInit {
     searchInputControl: UntypedFormControl = new UntypedFormControl();
     isLoading: boolean = false;
     pagination: OrderPagination;
+    orderStatusList = OrderStatus;
+    selectedValue: string = 'all';
 
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -85,7 +89,8 @@ export class OrderComponent implements OnInit, AfterViewInit {
             merge(this._sort.sortChange, this._paginator.page).pipe(
                 switchMap(() => {
                     this.isLoading = true;
-                    return this._orderService.getOrders(this._paginator.pageIndex, this._paginator.pageSize, this._sort.active, this._sort.direction, this.searchInputControl.value);
+                    return this._orderService.getOrders(this._paginator.pageIndex, this._paginator.pageSize, this._sort.active, this._sort.direction, this.searchInputControl.value,
+                        this.selectedValue !== 'all' ? this.selectedValue : null);
                 }),
                 map(() => {
                     this.isLoading = false;
@@ -102,11 +107,20 @@ export class OrderComponent implements OnInit, AfterViewInit {
                 debounceTime(300),
                 switchMap((query) => {
                     this.isLoading = true;
-                    return this._orderService.getOrders(0, 10, 'name', 'asc', query);
+                    return this._orderService.getOrders(0, 10, 'name', 'asc', query, this.selectedValue !== 'all' ? this.selectedValue : null);
                 }),
                 map(() => {
                     this.isLoading = false;
                 })
             ).subscribe();
+    }
+
+    onStatusChanged() {
+        this._orderService.getOrders(this._paginator.pageIndex, this._paginator.pageSize, this._sort.active, this._sort.direction, this.searchInputControl.value,
+            this.selectedValue !== 'all' ? this.selectedValue : null)
+            .subscribe(a => {
+                console.log(a);
+                this._changeDetectorRef.markForCheck();
+            });
     }
 }

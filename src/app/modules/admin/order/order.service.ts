@@ -43,7 +43,7 @@ export class OrderService {
  * @param order
  * @param search
  */
-    getOrders(pageNumber: number = 0, pageSize: number = 10, sort: string = 'name', order: 'asc' | 'desc' | '' = 'asc', search?: string):
+    getOrders(pageNumber: number = 0, pageSize: number = 10, sort: string = 'name', order: 'asc' | 'desc' | '' = 'asc', search?: string, status?: string):
         Observable<{ pagination: OrderPagination; data: Order[] }> {
         return this._httpClient.get<{ pagination: OrderPagination; data: Order[] }>('/api/orders', {
             params: {
@@ -51,7 +51,8 @@ export class OrderService {
                 pageNumber: '' + pageNumber,
                 sort,
                 order,
-                name: search || ''
+                ...(search && { name: search }),
+                ...(status && { status: status })
             }
         }).pipe(
             tap((response) => {

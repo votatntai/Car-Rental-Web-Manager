@@ -1,5 +1,5 @@
 import { AgmCoreModule } from '@agm/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DecimalPipe } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,13 +20,9 @@ import { AccountStatusPipeModule } from '@fuse/pipes/status/status-pipe.module';
 import { TimeSpanPipeModule } from '@fuse/pipes/time-span/time-span-pipe.module';
 import { ModelComponent } from 'app/modules/admin/model/model.component';
 import { ModelsResolver } from './model.resolvers';
-import { CreateModelComponent } from './create/create-model.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-
-// import { ModelDetailComponent } from './detail/model-detail.component';
-// import { ModelDetailResolver } from './detail/model-detail.resolvers';
-// import { ModelsResolver } from './model.resolvers';
-
+import { CreateModelComponent } from './create/create-model.component';
+import { UpdateModelComponent } from './update/update-model.component';
 
 const modelRoutes: Route[] = [
     {
@@ -36,21 +32,13 @@ const modelRoutes: Route[] = [
             model: ModelsResolver
         },
     },
-    // {
-    //     path: ':id',
-    //     component: ModelDetailComponent,
-    //     resolve: {
-    //         modelDetail: ModelDetailResolver
-    //     }
-    // }
 ];
 
 @NgModule({
     declarations: [
         ModelComponent,
-        CreateModelComponent
-        // ModelDetailComponent,
-        // ModelDetailMapsViewComponent
+        CreateModelComponent,
+        UpdateModelComponent,
     ],
     imports: [
         CommonModule,
@@ -69,7 +57,6 @@ const modelRoutes: Route[] = [
         DayTranslatePipeModule,
         MatDialogModule,
         MatSelectModule,
-        FuseAlertModule,
         FuseCardModule,
         AgmCoreModule,
         MatTableModule,
@@ -79,6 +66,9 @@ const modelRoutes: Route[] = [
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA
     ],
+    providers: [
+        DecimalPipe
+    ]
 })
 export class ModelModule {
 }

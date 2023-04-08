@@ -37,7 +37,7 @@ export class CreateModelComponent implements OnInit {
     private initCreateModelForm() {
         this.createModelForm = this._formBuilder.group({
             name: ['', [Validators.required]],
-            ceilingPrice: ['', [Validators.required]],
+            cellingPrice: ['', [Validators.required]],
             floorPrice: ['', [Validators.required]],
             seater: ['', Validators.required],
             chassis: ['', Validators.required],

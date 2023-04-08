@@ -11,6 +11,15 @@
         <div class="text-4xl font-extrabold tracking-tight">Quản lý đơn hàng</div>
         <!-- Actions -->
         <div class="flex shrink-0 items-center mt-6 sm:mt-0 sm:ml-4 gap-3">
+            <mat-form-field class="fuse-mat-dense fuse-mat-rounded min-w-64" [subscriptSizing]="'dynamic'">
+                <mat-select [(value)]="selectedValue" (selectionChange)="onStatusChanged()">
+                    <mat-option value="all">Tất cả</mat-option>
+                    <mat-option *ngFor="let status of orderStatusList" [value]="status">
+                        {{status.toString() | orderStatus}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
             <!-- Search -->
             <mat-form-field class="fuse-mat-dense fuse-mat-rounded min-w-64" [subscriptSizing]="'dynamic'">
                 <mat-icon class="icon-size-5" matPrefix [svgIcon]="'heroicons_solid:search'"></mat-icon>

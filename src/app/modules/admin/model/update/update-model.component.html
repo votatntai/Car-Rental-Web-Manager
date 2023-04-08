@@ -3,7 +3,7 @@
     <!-- Header -->
     <div class="flex flex-0 items-center justify-between h-16 pr-3 sm:pr-5 pl-6 sm:pl-8 shadow">
         <span class="font-semibold text-lg">
-            Tạo mẫu xe
+            Chi tiết mẫu xe
         </span>
         <button mat-icon-button (click)="matDialogRef.close()" [tabIndex]="-1">
             <mat-icon class="text-current" [svgIcon]="'heroicons_outline:x'"></mat-icon>
@@ -12,7 +12,7 @@
 
     <div class="flex flex-col sm:flex-row flex-auto items-center sm:items-start p-8 pb-6 sm:pb-8">
 
-        <form [formGroup]="createModelForm" class="w-full">
+        <form [formGroup]="updateModelForm" class="w-full">
 
             <div class="grid grid-cols-3 gap-3">
 
@@ -97,9 +97,8 @@
 
             <div class="flex justify-end">
                 <!-- Submit button -->
-                <button mat-raised-button [color]="'primary'" (click)="createModel()">
-                    <span>Tạo</span>
-                    <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
+                <button mat-raised-button [color]="'primary'" (click)="updateModel()">
+                    <span>Cập nhật</span>
                 </button>
             </div>
 
