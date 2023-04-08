@@ -75,7 +75,7 @@
 
                                 <!-- Phone -->
                                 <div class="hidden truncate sm:block">
-                                    {{carRegistration.price | number:'1.0-2'}}
+                                    {{carRegistration.price | number:'1.0-2'}} VNĐ
                                 </div>
 
                                 <!-- Phone -->
@@ -89,9 +89,11 @@
                                 </div>
 
                                 <!-- Status -->
-                                <div class="hidden truncate sm:block font-semibold"
-                                    [ngClass]="carRegistration.status ? 'text-green-500' : ''">
-                                    {{carRegistration.status | registrationStatus}}
+                                <div class="hidden truncate sm:block">
+                                    <div class="font-semibold rounded-full px-3 py-1 w-auto inline-block" [ngClass]="'text-white ' + 
+                                    (carRegistration.status ? 'bg-green-500' : 'bg-gray-500')">
+                                        {{carRegistration.status | registrationStatus}}
+                                    </div>
                                 </div>
 
                                 <!-- Action -->
