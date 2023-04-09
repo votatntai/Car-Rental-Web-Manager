@@ -8,45 +8,58 @@
 
     <div class="flex flex-col flex-auto items-center overflow-hidden sm:overflow-y-auto">
         <div class="flex flex-col px-10 w-full">
-            <div class="grid grid-cols-3 w-full gap-4">
-                <fuse-card class="flex flex-col w-full filter-listing">
-                    <ng-container *ngIf="machine.driver">
-                        <div class="relative">
-                            <div class="absolute flex flex-col top-0 right-0 p-3">
-                                <div class="rounded-full cursor-pointer border-2 border-green-500 px-4 py-2"
-                                    #tooltip="matTooltip" matTooltip="{{ machine.driver.name }}">
-                                    <span class="text-green-500">Xe có tài xế</span>
+            <div class="grid grid-cols-4 w-full gap-4">
+                <div class="col-span-2">
+                    <fuse-card class="flex flex-col w-full filter-listing">
+                        <ng-container *ngIf="machine.driver">
+                            <div class="relative">
+                                <div class="absolute flex flex-col top-0 right-0 p-3">
+                                    <div class="rounded-full cursor-pointer border-2 border-green-500 px-4 py-2"
+                                        #tooltip="matTooltip" matTooltip="{{ machine.driver.name }}">
+                                        <span class="text-green-500">Xe có tài xế</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </ng-container>
-                    <img class="object-cover"
-                        src="https://web-assets.cdn.dealersolutions.com.au/modular.multisite.dealer.solutions/wp-content/uploads/2018/03/31104034/GR86-Image.jpg"
-                        alt="Card cover image">
-                    <div class="m-8 mb-4">
-                        <div class="flex justify-between">
-                            <div class="flex flex-col">
-                                <div class="text-secondary text-md">{{ machine.productionCompany.name }} - {{
-                                    machine.name }}</div>
-                                <div class="text-2xl font-semibold text-green-500 leading-tight mt-1">{{ machine.price |
-                                    number:'1.0-2' }} VNĐ</div>
+                        </ng-container>
+                        <ng-container *ngIf="machine.images.length > 0">
+                            <img class="object-cover h-96 w-auto"
+                                src="{{ selectedImage?.url || machine.images[1].url }}" alt="Card cover image">
+                            <div class="flex flex-wrap justify-center gap-2 px-4">
+                                <div class="my-3" *ngFor="let image of machine.images">
+                                    <span class=" cursor-pointer " (click)="selectImage(image)">
+                                        <img class="shadow-lg object-cover w-24 h-18 rounded-lg" src="{{ image.url }}"
+                                            alt="Card cover image">
+                                    </span>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <div class="m-8 mb-4">
+                            <div class="flex justify-between">
+                                <div class="flex flex-col">
+                                    <div class="text-secondary text-md">{{ machine.productionCompany.name }} - {{
+                                        machine.name }}</div>
+                                    <div class="text-2xl font-semibold text-green-500 leading-tight mt-1">{{
+                                        machine.price |
+                                        number:'1.0-2' }} VNĐ</div>
+                                </div>
+                            </div>
+                            <hr class="border-b my-4">
+                            <div class="flex flex-col text-md">
+                                <span class="whitespace-nowrap">Sản xuất năm <b> {{
+                                        machine.model.yearOfManufacture}}</b></span>
+                                <span class="whitespace-nowrap"><b>{{ machine.model.seater }}</b> chỗ ngồi</span>
+                                <span class="whitespace-nowrap">Sử dụng <b>{{ machine.model.fuelType }}</b></span>
+                            </div>
+                            <hr class="border-b my-4">
+                            <div class="mt-3 -mx-3">
+                                <a class="px-3" mat-button [color]="'primary'" (click)="openMapsViewDialog()">
+                                    Xem chi tiết
+                                </a>
                             </div>
                         </div>
-                        <hr class="border-b my-4">
-                        <div class="flex flex-col text-md">
-                            <span class="whitespace-nowrap">Sản xuất năm <b> {{
-                                    machine.model.yearOfManufacture}}</b></span>
-                            <span class="whitespace-nowrap"><b>{{ machine.model.seater }}</b> chỗ ngồi</span>
-                            <span class="whitespace-nowrap">Sử dụng <b>{{ machine.model.fuelType }}</b></span>
-                        </div>
-                        <hr class="border-b my-4">
-                        <div class="mt-3 -mx-3">
-                            <a class="px-3" mat-button [color]="'primary'" (click)="openMapsViewDialog()">
-                                Xem chi tiết
-                            </a>
-                        </div>
-                    </div>
-                </fuse-card>
+                    </fuse-card>
+                </div>
+
                 <fuse-card class="flex flex-col items-center w-full p-8 pb-6 filter-info">
                     <img class="w-32 h-32 rounded-full" src="assets/images/avatars/male-04.jpg" alt="Card cover image">
                     <div class="text-secondary leading-tight text-center mt-8">Chủ xe</div>

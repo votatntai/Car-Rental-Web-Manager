@@ -6,6 +6,7 @@ import { CarOwner } from "../car-owner/car-owner.type";
 import { Driver } from "../driver/driver.type";
 import { Model } from "../model/model.type";
 import { Showroom } from "../showroom/showroom.type";
+import { Image } from "app/modules/types/image.type";
 
 export interface Machine {
     id: string,
@@ -29,7 +30,7 @@ export interface Machine {
     status: string,
     carCalendars: CarCalendar[],
     productionCompany: ProductionCompany,
-    images: string[]
+    images: Image[]
 }
 
 export interface MachinePagination {

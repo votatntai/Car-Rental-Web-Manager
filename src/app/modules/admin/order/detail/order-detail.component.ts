@@ -10,6 +10,7 @@ import { LicenseCheckComponent } from './license-check/deny-order.component';
 import { MachineDetailMapsViewComponent } from '../../machine/detail/maps-view/machine-detail-maps-view.component';
 import { Machine } from '../../machine/machine.type';
 import { TrackingComponent } from '../../machine/detail/tracking/tracking.component';
+import { LocationSocketService } from 'app/modules/services/location-socket.service';
 
 @Component({
     selector: 'app-order-detail',
@@ -29,7 +30,8 @@ export class OrderDetailComponent implements OnInit {
         private _orderService: OrderService,
         private _changeDetectorRef: ChangeDetectorRef,
         private _fuseConfirmationService: FuseConfirmationService,
-        private _dialog: MatDialog
+        private _dialog: MatDialog,
+        private _locationSocket: LocationSocketService
     ) { }
 
     ngOnInit() {
@@ -83,6 +85,8 @@ export class OrderDetailComponent implements OnInit {
             width: '1080px',
             data: this.order.orderDetails[0].car,
             autoFocus: false
+        }).afterClosed().subscribe(() => {
+            this._locationSocket.stopConnection();
         })
     }
 

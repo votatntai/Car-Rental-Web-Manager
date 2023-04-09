@@ -5,6 +5,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { MachineService } from '../machine.service';
 import { Machine } from '../machine.type';
 import { MachineDetailMapsViewComponent } from './maps-view/machine-detail-maps-view.component';
+import { Image } from 'app/modules/types/image.type';
 
 @Component({
     selector: 'app-machine-detail',
@@ -16,6 +17,7 @@ import { MachineDetailMapsViewComponent } from './maps-view/machine-detail-maps-
 
 export class MachineDetailComponent implements OnInit {
 
+    selectedImage: Image;
     machine: Machine;
 
     private _unsubscribeAll: Subject<any> = new Subject<any>();
@@ -45,5 +47,24 @@ export class MachineDetailComponent implements OnInit {
             data: this.machine,
             autoFocus: false
         })
+    }
+
+    selectImage(image: Image) {
+        this.selectedImage = image;
+    }
+
+    public formData: FormData = new FormData();
+
+    onFileSelected(event: any) {
+        if (event.target.files.length > 0) {
+            for (let i = 0; i < event.target.files.length; i++) {
+                this.formData.append('licenses', event.target.files[i]);
+            }
+        }
+    }
+
+    onSubmit() {
+        // Use formData to send files to server
+        console.log(this.formData);
     }
 }
