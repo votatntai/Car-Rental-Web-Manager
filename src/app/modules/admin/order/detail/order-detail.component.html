@@ -31,9 +31,9 @@
                     </div>
                     <hr class="border-b my-4">
                     <div class="flex w-full justify-between items-center mt-3">
-                        <a class="px-3" mat-button [color]="'primary'" (click)="openMapsViewDialog()">
+                        <div class="cursor-pointer text-blue-500" (click)="openMapsViewDialog()">
                             Xem chi tiết
-                        </a>
+                        </div>
                         <ng-container *ngIf="order.status === 'Ongoing'">
                             <span class="cursor-pointer" (click)="openTrackingModel()">
                                 <mat-icon svgIcon="mat_outline:my_location"></mat-icon>
