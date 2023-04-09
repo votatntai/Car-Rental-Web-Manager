@@ -24,6 +24,7 @@ import { MachineDetailResolver } from './detail/machine-detail.resolvers';
 import { MachineDetailMapsViewComponent } from './detail/maps-view/machine-detail-maps-view.component';
 import { MachinesResolver } from './machine.resolvers';
 import { MachineStatusPipeModule } from '@fuse/pipes/machine-status/machine-status-pipe.module';
+import { TrackingComponent } from './detail/tracking/tracking.component';
 
 
 const machineRoutes: Route[] = [
@@ -47,7 +48,8 @@ const machineRoutes: Route[] = [
     declarations: [
         MachineComponent,
         MachineDetailComponent,
-        MachineDetailMapsViewComponent
+        MachineDetailMapsViewComponent,
+        TrackingComponent
     ],
     imports: [
         CommonModule,

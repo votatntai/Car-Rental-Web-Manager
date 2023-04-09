@@ -8,6 +8,7 @@ import { CarRegistrationService } from '../car-registration.service';
 import { CarRegistration } from '../car-registration.type';
 import { CreateCarComponent } from '../create-car/create-car.component';
 import { CarInformationComponent } from './car-information/car-information.component';
+import { LocationSocketService } from 'app/modules/services/location-socket.service';
 
 @Component({
     selector: 'app-car-registration-detail',
@@ -32,7 +33,7 @@ export class CarRegistrationDetailComponent implements OnInit {
         private _carRegistrationService: CarRegistrationService,
         private _changeDetectorRef: ChangeDetectorRef,
         private _dialog: MatDialog,
-        private _modelService: ModelService
+        private _modelService: ModelService,
     ) { }
 
     ngOnInit() {

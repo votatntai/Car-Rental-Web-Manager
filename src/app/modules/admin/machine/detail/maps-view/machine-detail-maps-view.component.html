@@ -147,9 +147,11 @@
                 <span class="leading-none font-bold">Vị trí
                 </span>
             </div>
-            <agm-map class="w-full h-100 rounded-xl" [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
-                <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
-            </agm-map>
+            <div class="w-full rounded-xl">
+                <agm-map class="w-full h-100" [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                    <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+                </agm-map>
+            </div>
         </div>
     </div>
 </div>

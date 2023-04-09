@@ -39,15 +39,6 @@ export class MachineDetailComponent implements OnInit {
             })
     }
 
-    // Update status for machine
-    // updateMachineStatus(id: string, status: boolean) {
-    //     this._fuseConfirmationService.open().afterClosed().subscribe(result => {
-    //         if (result === 'confirmed') {
-    //             this._machineService.updateMachineAccountStatus(id, status).subscribe();
-    //         }
-    //     })
-    // }
-
     openMapsViewDialog() {
         this._dialog.open(MachineDetailMapsViewComponent, {
             width: '1080px',
