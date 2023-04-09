@@ -20,7 +20,7 @@ export class LocationSocketService {
     public async startConnection(): Promise<void> {
         if (!this.isConnected) {
             this.hubConnection = new HubConnectionBuilder()
-                .withUrl('https://carrentalwebmanager.web.app/locationHub')
+                .withUrl('https://api-carrental.azurewebsites.net/locationHub')
                 .build();
 
             await this.hubConnection.start()
