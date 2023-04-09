@@ -20,10 +20,7 @@ export class LocationSocketService {
     public async startConnection(): Promise<void> {
         if (!this.isConnected) {
             this.hubConnection = new HubConnectionBuilder()
-                .withUrl('https://carrentalwebmanager.web.app/locationHub', {
-                    skipNegotiation: true,
-                    transport: signalR.HttpTransportType.WebSockets
-                })
+                .withUrl('https://carrentalwebmanager.web.app/locationHub')
                 .build();
 
             await this.hubConnection.start()
