@@ -30,6 +30,20 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 icon: 'heroicons_outline:database',
                 link: '/materials/models'
             },
+            {
+                id: 'materials.showrooms',
+                title: 'Quản Lý Showroom',
+                type: 'basic',
+                icon: 'heroicons_outline:library',
+                link: '/materials/showrooms'
+            },
+            {
+                id: 'materials.showroom-machines',
+                title: 'Xe Của Showroom',
+                type: 'basic',
+                icon: 'heroicons_outline:puzzle',
+                link: '/materials/showroom-machines'
+            },
         ]
     },
     {
@@ -77,6 +91,20 @@ export const compactNavigation: FuseNavigationItem[] = [
                 type: 'basic',
                 icon: 'heroicons_outline:database',
                 link: '/materials/models'
+            },
+            {
+                id: 'materials.showrooms',
+                title: 'Quản Lý Showroom',
+                type: 'basic',
+                icon: 'heroicons_outline:library',
+                link: '/materials/showrooms'
+            },
+            {
+                id: 'materials.showroom-machines',
+                title: 'Xe Của Showroom',
+                type: 'basic',
+                icon: 'heroicons_outline:puzzle',
+                link: '/materials/showroom-machines'
             },
         ]
     },
@@ -126,6 +154,20 @@ export const futuristicNavigation: FuseNavigationItem[] = [
                 icon: 'heroicons_outline:database',
                 link: '/materials/models'
             },
+            {
+                id: 'materials.showrooms',
+                title: 'Quản Lý Showroom',
+                type: 'basic',
+                icon: 'heroicons_outline:library',
+                link: '/materials/showrooms'
+            },
+            {
+                id: 'materials.showroom-machines',
+                title: 'Xe Của Showroom',
+                type: 'basic',
+                icon: 'heroicons_outline:puzzle',
+                link: '/materials/showroom-machines'
+            },
         ]
     },
     {
@@ -173,6 +215,20 @@ export const horizontalNavigation: FuseNavigationItem[] = [
                 type: 'basic',
                 icon: 'heroicons_outline:database',
                 link: '/materials/models'
+            },
+            {
+                id: 'materials.showrooms',
+                title: 'Quản Lý Showroom',
+                type: 'basic',
+                icon: 'heroicons_outline:library',
+                link: '/materials/showrooms'
+            },
+            {
+                id: 'materials.showroom-machines',
+                title: 'Xe Của Showroom',
+                type: 'basic',
+                icon: 'heroicons_outline:puzzle',
+                link: '/materials/showroom-machines'
             },
         ]
     },

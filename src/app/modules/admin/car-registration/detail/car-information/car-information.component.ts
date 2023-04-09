@@ -19,7 +19,7 @@ export class CarInformationComponent implements OnInit {
     location: any = {
         carId: '3087f92b-689e-49f8-ae67-c03f3db3b3c7',
         longitude: 12.02312313,
-        latitude: 0
+        latitude: 11.02312313
     }
 
     constructor(
@@ -39,9 +39,8 @@ export class CarInformationComponent implements OnInit {
 
     public async startConnection(): Promise<void> {
         this.hubConnection = new HubConnectionBuilder()
-            .withUrl('https://localhost:7277/locationHub', {
-                skipNegotiation: true,
-                transport: signalR.HttpTransportType.WebSockets
+            .withUrl('https://api-carrental.azurewebsites.net/locationHub', {
+                transport: signalR.HttpTransportType.LongPolling
             })
             .build();
 
@@ -49,22 +48,6 @@ export class CarInformationComponent implements OnInit {
             .then(() => console.log('Connection started'))
             .catch(err => console.log('Error while starting connection: ' + err));
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public getLocationUpdates(): Observable<any> {
         this.hubConnection.on('ReceiveLocation', (clientId: string, location: string) => {
