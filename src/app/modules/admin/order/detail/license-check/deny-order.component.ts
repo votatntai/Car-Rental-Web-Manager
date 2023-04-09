@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Customer } from 'app/modules/admin/customer/customer.type';
 import { OrderService } from '../../order.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class LicenseCheckComponent implements OnInit {
     denyForm: UntypedFormGroup;
 
     constructor(
-        @Inject(MAT_DIALOG_DATA) public data: any,
+        @Inject(MAT_DIALOG_DATA) public data: Customer,
         public matDialogRef: MatDialogRef<LicenseCheckComponent>,
         private _formBuilder: UntypedFormBuilder,
         private _orderService: OrderService

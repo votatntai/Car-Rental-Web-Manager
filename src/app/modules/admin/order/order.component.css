@@ -22,27 +22,27 @@
 /* Large devices (laptops/desktops, 960px and up) */
 @media only screen and (min-width: 960px) {
     .order-grid {
-        grid-template-columns: 96px 72px 96px 96px auto auto 96px;
+        grid-template-columns: 96px 72px 96px 96px auto 96px;
     }
 }
 
 /* Extra large devices (large laptops and desktops, 1280px and up) */
 @media only screen and (min-width: 1280px) {
     .order-grid {
-        grid-template-columns: 168px 168px 96px 96px auto auto 96px;
+        grid-template-columns: 168px 168px 96px 96px auto 96px;
     }
 }
 
 /* Extra large devices (large laptops and desktops, 1520px and up) */
 @media only screen and (min-width: 1520px) {
     .order-grid {
-        grid-template-columns: 168px 168px 112px 112px auto auto 112px;
+        grid-template-columns: 168px 168px 112px 112px auto 112px;
     }
 }
 
 /* Extra large devices (large laptops and desktops, 1680px and up) */
 @media only screen and (min-width: 1660px) {
     .order-grid {
-        grid-template-columns: 196px 268px 168px 168px auto auto 168px;
+        grid-template-columns: 196px 268px 168px 168px auto 168px;
     }
 }

@@ -104,26 +104,14 @@
                 <span class="leading-none font-semibold">Giấy tờ liên quan:
                 </span>
             </div>
-            <div class="flex flex-wrap w-full mt-3 gap-6 justify-between">
-                <div class="w-56">
-                    <img class="cursor-pointer rounded-lg"
-                        src="https://danchoioto.vn/wp-content/uploads/2021/07/loi-khong-co-giay-dang-ky-xe-bi-phat-tien-tu-2-000-000-3-000-000-dong.jpg.webp"
-                        alt="">
-                </div>
-                <div class="w-56">
-                    <img class="cursor-pointer rounded-lg"
-                        src="https://viettelnet.vn/wp-content/uploads/2022/06/giay-to-xe-gom-nhung-gi-khong-mang-phat-bao-nhieu-3.jpg"
-                        alt="">
-                </div>
-                <div class="w-56">
-                    <img class="cursor-pointer rounded-lg"
-                        src="https://viettelnet.vn/wp-content/uploads/2022/06/giay-to-xe-gom-nhung-gi-khong-mang-phat-bao-nhieu-2.jpg"
-                        alt="">
-                </div>
-                <div class="w-56">
-                    <img class="cursor-pointer rounded-lg"
-                        src="https://nghiencar.com/wp-content/uploads/2022/11/BAO-HIEM-XE.jpg" alt="">
-                </div>
+            <div class="flex flex-wrap w-full mt-3 justify-start gap-3">
+                <ng-container *ngIf="carRegistration.images.length > 0">
+                    <ng-container *ngFor="let image of carRegistration.images">
+                        <div class="object-cover h-56 w-auto shadow-lg rounded-lg" *ngIf="image.type === 'License'">
+                            <img class="w-full h-full cursor-pointer rounded-lg" [src]="image.url" alt="">
+                        </div>
+                    </ng-container>
+                </ng-container>
             </div>
         </div>
 

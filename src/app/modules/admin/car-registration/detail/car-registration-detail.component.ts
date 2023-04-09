@@ -8,7 +8,7 @@ import { CarRegistrationService } from '../car-registration.service';
 import { CarRegistration } from '../car-registration.type';
 import { CreateCarComponent } from '../create-car/create-car.component';
 import { CarInformationComponent } from './car-information/car-information.component';
-import { LocationSocketService } from 'app/modules/services/location-socket.service';
+import { Image } from 'app/modules/types/image.type';
 
 @Component({
     selector: 'app-car-registration-detail',
@@ -20,6 +20,7 @@ import { LocationSocketService } from 'app/modules/services/location-socket.serv
 
 export class CarRegistrationDetailComponent implements OnInit {
 
+    selectedImage: Image;
     carRegistration: CarRegistration;
 
     dataSource: MatTableDataSource<any>;
@@ -97,6 +98,10 @@ export class CarRegistrationDetailComponent implements OnInit {
             width: '1080px',
             data: this.carRegistration
         })
+    }
+
+    selectImage(image: Image) {
+        this.selectedImage = image;
     }
 
 }

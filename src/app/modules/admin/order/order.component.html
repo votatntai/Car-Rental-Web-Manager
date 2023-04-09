@@ -44,9 +44,6 @@
                         Tổng cộng
                     </div>
                     <div class="hidden sm:block">Trạng thái</div>
-                    <div class="hidden sm:block">
-                        Thanh toán
-                    </div>
                     <div class="hidden sm:block">Chi tiết</div>
                 </div>
                 <!-- Rows -->
@@ -91,14 +88,6 @@
                                     order.status === 'Finished' ? 'bg-gray-500' : ''
                                   )">
                                         {{order.status | orderStatus}}
-                                    </div>
-                                </div>
-
-                                <!-- Phone -->
-                                <div class="hidden sm:block truncate">
-                                    <div class="font-semibold rounded-full px-3 py-1 w-auto inline-block" [ngClass]="'text-white ' + 
-                                    (order.isPaid ? 'bg-green-500' : 'bg-gray-500')">
-                                        {{order.isPaid | payment}}
                                     </div>
                                 </div>
 

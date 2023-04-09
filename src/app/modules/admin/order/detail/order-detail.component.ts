@@ -69,6 +69,7 @@ export class OrderDetailComponent implements OnInit {
     checkLicense() {
         this._dialog.open(LicenseCheckComponent, {
             width: '1080px',
+            data: this.order.customer
         })
     }
 
