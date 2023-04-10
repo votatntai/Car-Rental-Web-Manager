@@ -63,6 +63,7 @@ export class CreateCarComponent implements OnInit {
             name: [this.carRegistration.name, [Validators.required]],
             price: [this.carRegistration.price, [Validators.required]],
             licensePlate: [this.carRegistration.licensePlate, [Validators.required]],
+            registrationId: [this.carRegistration.id, [Validators.required]]
         });
         this.filteredModels = this.carForm.controls.model.valueChanges.pipe(
             startWith(''),
