@@ -33,8 +33,10 @@ export class MachineDetailComponent implements OnInit {
         this._machineService.machine$
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(machine => {
+
                 // Update the machine
                 this.machine = machine;
+                console.log(this.machine);
 
                 // Mark for check
                 this._changeDetectorRef.markForCheck();

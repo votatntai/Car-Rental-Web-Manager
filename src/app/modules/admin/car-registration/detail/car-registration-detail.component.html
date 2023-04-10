@@ -29,7 +29,7 @@
                 <fuse-card class="flex flex-col w-full filter-listing">
                     <ng-container *ngIf="carRegistration.images.length > 0">
                         <img class="object-cover h-96 w-auto"
-                            src="{{ selectedImage?.url || carRegistration.images[1].url }}" alt="Card cover image">
+                            src="{{ selectedImage?.url || carRegistration.images[0].url }}" alt="Card cover image">
                         <div class="flex flex-wrap justify-center gap-2 px-4">
                             <div class="my-3" *ngFor="let image of carRegistration.images">
                                 <ng-container *ngIf="image.type === 'Thumbnail'">

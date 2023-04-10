@@ -23,7 +23,7 @@
                         </ng-container>
                         <ng-container *ngIf="machine.images && machine.images.length > 0">
                             <img class="object-cover h-96 w-auto"
-                                src="{{ selectedImage?.url || machine.images[1].url }}" alt="Card cover image">
+                                src="{{ selectedImage?.url || machine.images[0].url }}" alt="Card cover image">
                             <div class="flex flex-wrap justify-center gap-2 px-4">
                                 <div class="my-3" *ngFor="let image of machine.images">
                                     <span class=" cursor-pointer " (click)="selectImage(image)">
