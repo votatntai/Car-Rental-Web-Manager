@@ -21,7 +21,7 @@
                                 </div>
                             </div>
                         </ng-container>
-                        <ng-container *ngIf="machine.images.length > 0">
+                        <ng-container *ngIf="machine.images && machine.images.length > 0">
                             <img class="object-cover h-96 w-auto"
                                 src="{{ selectedImage?.url || machine.images[1].url }}" alt="Card cover image">
                             <div class="flex flex-wrap justify-center gap-2 px-4">
