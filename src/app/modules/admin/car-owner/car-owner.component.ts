@@ -66,6 +66,8 @@ export class CarOwnerComponent implements OnInit, AfterViewInit {
                 disableClear: true
             });
 
+            this._paginator._intl.itemsPerPageLabel = "Số dòng mỗi trang";
+
             // Detect changes
             this._changeDetectorRef.detectChanges();
 

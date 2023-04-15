@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ExtraOptions, PreloadAllModules, RouterModule } from '@angular/router';
 import { FuseModule } from '@fuse';
 import { FuseMockApiModule } from '@fuse/lib/mock-api';
+import { DayTranslatePipeModule } from '@fuse/pipes/day-translate/day-translate.module';
+import { MachineStatusPipeModule } from '@fuse/pipes/machine-status/machine-status-pipe.module';
 import { FuseConfigModule } from '@fuse/services/config';
 import { AppComponent } from 'app/app.component';
 import { appRoutes } from 'app/app.routing';

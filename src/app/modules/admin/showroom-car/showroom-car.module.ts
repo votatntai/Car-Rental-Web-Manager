@@ -1,6 +1,6 @@
 import { AgmCoreModule } from '@agm/core';
 import { CommonModule } from '@angular/common';
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -15,43 +15,42 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { Route, RouterModule } from '@angular/router';
 import { FuseAlertModule } from '@fuse/components/alert';
 import { FuseCardModule } from '@fuse/components/card';
-import { MachineComponent } from 'app/modules/admin/machine/machine.component';
-import { MachineDetailComponent } from './detail/machine-detail.component';
-import { MachineDetailResolver } from './detail/machine-detail.resolvers';
-import { MachineDetailMapsViewComponent } from './detail/maps-view/machine-detail-maps-view.component';
-import { TrackingComponent } from './detail/tracking/tracking.component';
-import { MachinesResolver } from './machine.resolvers';
 import { MachineStatusPipeModule } from '@fuse/pipes/machine-status/machine-status-pipe.module';
-import { DayTranslatePipeModule } from '@fuse/pipes/day-translate/day-translate.module';
+import { ShowroomCarComponent } from 'app/modules/admin/showroom-car/showroom-car.component';
+import { CreateMachineComponent } from './create/creare-machine.component';
+import { ShowroomMachineDetailMapsViewComponent } from './detail/maps-view/machine-detail-maps-view.component';
+import { ShowroomMachineDetailComponent } from './detail/showroom-machine-detail.component';
+import { ShowroomMachineDetailResolver } from './detail/showroom-machine-detail.resolvers';
+import { ShowroomsResolver } from './showroom-car.resolvers';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
-
-const machineRoutes: Route[] = [
+const showroomCarRoutes: Route[] = [
     {
         path: '',
-        component: MachineComponent,
+        component: ShowroomCarComponent,
         resolve: {
-            machine: MachinesResolver
+            showroomCar: ShowroomsResolver
         },
     },
     {
         path: ':id',
-        component: MachineDetailComponent,
+        component: ShowroomMachineDetailComponent,
         resolve: {
-            machineDetail: MachineDetailResolver
+            showroomCarDetail: ShowroomMachineDetailResolver
         }
     }
 ];
 
 @NgModule({
     declarations: [
-        MachineComponent,
-        MachineDetailComponent,
-        MachineDetailMapsViewComponent,
-        TrackingComponent,
+        ShowroomCarComponent,
+        ShowroomMachineDetailComponent,
+        ShowroomMachineDetailMapsViewComponent,
+        CreateMachineComponent
     ],
     imports: [
         CommonModule,
-        RouterModule.forChild(machineRoutes),
+        RouterModule.forChild(showroomCarRoutes),
         MatIconModule,
         MatFormFieldModule,
         MatInputModule,
@@ -61,7 +60,6 @@ const machineRoutes: Route[] = [
         MatTooltipModule,
         MatPaginatorModule,
         MachineStatusPipeModule,
-        DayTranslatePipeModule,
         MatSortModule,
         MatDialogModule,
         MatSelectModule,
@@ -69,11 +67,8 @@ const machineRoutes: Route[] = [
         FuseCardModule,
         AgmCoreModule,
         MatTableModule,
-
-    ],
-    schemas: [
-        CUSTOM_ELEMENTS_SCHEMA
+        MatAutocompleteModule
     ],
 })
-export class MachineModule {
+export class ShowroomCarModule {
 }

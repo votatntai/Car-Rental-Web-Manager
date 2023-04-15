@@ -103,6 +103,7 @@
             </div>
         </div>
 
+
         <ng-container *ngIf="machine.carCalendars">
             <table class="border-collapse table-auto w-full">
                 <thead>
@@ -110,7 +111,7 @@
                         <th class="w-1/7 font-bold text-center py-2 px-4 border border-gray-400"></th>
                         <ng-container *ngFor="let day of weekdays">
                             <th class="w-1/7 font-bold text-center py-2 px-4 border border-gray-400">{{day |
-                                dayTranslate }}
+                                dayTranslate}}
                             </th>
                         </ng-container>
                     </tr>

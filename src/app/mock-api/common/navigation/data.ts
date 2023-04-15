@@ -32,14 +32,14 @@ export const defaultNavigation: FuseNavigationItem[] = [
             },
             {
                 id: 'materials.showrooms',
-                title: 'Quản Lý Showroom (Chưa hoàn thành)',
+                title: 'Quản Lý Nhà Xe',
                 type: 'basic',
                 icon: 'heroicons_outline:library',
                 link: '/materials/showrooms'
             },
             {
                 id: 'materials.showroom-machines',
-                title: 'Xe Của Showroom (Chưa hoàn thành)',
+                title: 'Xe Của Công Ty',
                 type: 'basic',
                 icon: 'heroicons_outline:puzzle',
                 link: '/materials/showroom-machines'
@@ -94,14 +94,14 @@ export const compactNavigation: FuseNavigationItem[] = [
             },
             {
                 id: 'materials.showrooms',
-                title: 'Quản Lý Showroom (Chưa hoàn thành)',
+                title: 'Quản Lý Nhà Xe',
                 type: 'basic',
                 icon: 'heroicons_outline:library',
                 link: '/materials/showrooms'
             },
             {
                 id: 'materials.showroom-machines',
-                title: 'Xe Của Showroom (Chưa hoàn thành)',
+                title: 'Xe Của Công Ty',
                 type: 'basic',
                 icon: 'heroicons_outline:puzzle',
                 link: '/materials/showroom-machines'
@@ -156,14 +156,14 @@ export const futuristicNavigation: FuseNavigationItem[] = [
             },
             {
                 id: 'materials.showrooms',
-                title: 'Quản Lý Showroom (Chưa hoàn thành)',
+                title: 'Quản Lý Nhà Xe',
                 type: 'basic',
                 icon: 'heroicons_outline:library',
                 link: '/materials/showrooms'
             },
             {
                 id: 'materials.showroom-machines',
-                title: 'Xe Của Showroom (Chưa hoàn thành)',
+                title: 'Xe Của Công Ty',
                 type: 'basic',
                 icon: 'heroicons_outline:puzzle',
                 link: '/materials/showroom-machines'
@@ -218,14 +218,14 @@ export const horizontalNavigation: FuseNavigationItem[] = [
             },
             {
                 id: 'materials.showrooms',
-                title: 'Quản Lý Showroom (Chưa hoàn thành)',
+                title: 'Quản Lý Nhà Xe',
                 type: 'basic',
                 icon: 'heroicons_outline:library',
                 link: '/materials/showrooms'
             },
             {
                 id: 'materials.showroom-machines',
-                title: 'Xe Của Showroom (Chưa hoàn thành)',
+                title: 'Xe Của Công Ty',
                 type: 'basic',
                 icon: 'heroicons_outline:puzzle',
                 link: '/materials/showroom-machines'

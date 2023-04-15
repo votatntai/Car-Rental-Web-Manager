@@ -13,14 +13,15 @@ import { Route, RouterModule } from '@angular/router';
 import { FuseAlertModule } from '@fuse/components/alert';
 import { AccountStatusPipeModule } from '@fuse/pipes/status/status-pipe.module';
 import { ShowroomComponent } from 'app/modules/admin/showroom/showroom.component';
+import { ShowroomsResolver } from './showroom.resolvers';
 
 const showroomRoutes: Route[] = [
     {
         path: '',
         component: ShowroomComponent,
-        // resolve: {
-        //     showroom: ShowroomsResolver
-        // },
+        resolve: {
+            showroom: ShowroomsResolver
+        },
     },
     // {
     //     path: ':id',

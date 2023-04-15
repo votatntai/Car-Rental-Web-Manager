@@ -5,3 +5,9 @@ export interface Showroom {
     location: Location,
     images: string[]
 }
+
+export interface ShowroomPagination {
+    pageSize: number;
+    pageNumber: number;
+    totalRow: number;
+}

@@ -3,45 +3,51 @@ import { UntypedFormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { debounceTime, map, merge, Observable, Subject, switchMap, take, takeUntil } from 'rxjs';
-import { CarRegistrationService } from './car-registration.service';
-import { CarRegistration, CarRegistrationPagination } from './car-registration.type';
+import { Observable, Subject, debounceTime, map, merge, switchMap, take, takeUntil } from 'rxjs';
+import { MachineStatus } from '../const/machine-status.const';
+import { Machine, MachinePagination } from '../machine/machine.type';
+import { ShowroomCarService } from './showroom-car.service';
+import { CreateMachineComponent } from './create/creare-machine.component';
+import { ModelService } from '../model/model.service';
 
 @Component({
-    selector: 'app-car-registration',
-    templateUrl: 'car-registration.component.html',
-    styleUrls: ['car-registration.component.css']
+    selector: 'app-showroom-car',
+    templateUrl: 'showroom-car.component.html',
+    styleUrls: ['showroom-car.component.css']
 })
 
-export class CarRegistrationComponent implements OnInit, AfterViewInit {
+export class ShowroomCarComponent implements OnInit, AfterViewInit {
 
     @ViewChild(MatPaginator) private _paginator: MatPaginator;
     @ViewChild(MatSort) private _sort: MatSort;
 
-    carRegistrations$: Observable<CarRegistration[]>;
+    machines$: Observable<Machine[]>;
 
     flashMessage: 'success' | 'error' | null = null;
     message: string = null;
     searchInputControl: UntypedFormControl = new UntypedFormControl();
     isLoading: boolean = false;
-    pagination: CarRegistrationPagination;
+    pagination: MachinePagination;
+    machineStatusList = MachineStatus;
+    selectedValue: string = 'all';
 
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
     constructor(
-        private _carRegistrationService: CarRegistrationService,
+        private _machineService: ShowroomCarService,
         private _changeDetectorRef: ChangeDetectorRef,
-        private _dialog: MatDialog
+        private _dialog: MatDialog,
+        private _modelService: ModelService
     ) { }
 
     ngOnInit() {
-        // Get the car registration
-        this.carRegistrations$ = this._carRegistrationService.carRegistrations$;
+        // Get the products
+        this.machines$ = this._machineService.machines$;
 
         // Get the pagination
-        this._carRegistrationService.pagination$
+        this._machineService.pagination$
             .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((pagination: CarRegistrationPagination) => {
+            .subscribe((pagination: MachinePagination) => {
 
                 // Update the pagination
                 this.pagination = pagination;
@@ -83,7 +89,8 @@ export class CarRegistrationComponent implements OnInit, AfterViewInit {
             merge(this._sort.sortChange, this._paginator.page).pipe(
                 switchMap(() => {
                     this.isLoading = true;
-                    return this._carRegistrationService.getCarRegistrations(this._paginator.pageIndex, this._paginator.pageSize, this._sort.active, this._sort.direction, this.searchInputControl.value);
+                    return this._machineService.getMachines(this._paginator.pageIndex, this._paginator.pageSize, this._sort.active, this._sort.direction, this.searchInputControl.value,
+                        this.selectedValue !== 'all' ? this.selectedValue : null);
                 }),
                 map(() => {
                     this.isLoading = false;
@@ -100,7 +107,8 @@ export class CarRegistrationComponent implements OnInit, AfterViewInit {
                 debounceTime(300),
                 switchMap((query) => {
                     this.isLoading = true;
-                    return this._carRegistrationService.getCarRegistrations(0, 10, 'name', 'asc', query);
+                    return this._machineService.getMachines(0, 10, 'name', 'asc', query,
+                        this.selectedValue !== 'all' ? this.selectedValue : null);
                 }),
                 map(() => {
                     this.isLoading = false;
@@ -108,4 +116,30 @@ export class CarRegistrationComponent implements OnInit, AfterViewInit {
             ).subscribe();
     }
 
+    onStatusChanged() {
+        this._machineService.getMachines(this._paginator.pageIndex, this._paginator.pageSize, this._sort.active, this._sort.direction, this.searchInputControl.value,
+            this.selectedValue !== 'all' ? this.selectedValue : null)
+            .subscribe(a => {
+                this._changeDetectorRef.markForCheck();
+            });
+    }
+
+    openCreateShowroomCarDialog() {
+        this._modelService.getModels().pipe(take(1)).subscribe(response => {
+            this._dialog.open(CreateMachineComponent, {
+                width: '1080px',
+                data: {
+                    models: response.data
+                },
+                autoFocus: false
+            }).afterClosed().subscribe(result => {
+                // After dialog closed
+                // if (result === 'success') {
+                //     this.showFlashMessage(result, 'Phê duyệt nhật thành công', 3000);
+                // } else {
+                //     this.showFlashMessage(result, 'Đã có lỗi khôn mong muống vui lòng liên hệ bộ phận hổ trợ', 3000);
+                // }
+            })
+        })
+    }
 }

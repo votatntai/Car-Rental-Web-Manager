@@ -1,21 +1,21 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { fuseAnimations } from '@fuse/animations';
-import { Subject, takeUntil } from 'rxjs';
-import { MachineService } from '../machine.service';
-import { Machine } from '../machine.type';
-import { MachineDetailMapsViewComponent } from './maps-view/machine-detail-maps-view.component';
 import { Image } from 'app/modules/types/image.type';
+import { Subject, takeUntil } from 'rxjs';
+import { Machine } from '../../machine/machine.type';
+import { ShowroomCarService } from '../showroom-car.service';
+import { ShowroomMachineDetailMapsViewComponent } from './maps-view/machine-detail-maps-view.component';
 
 @Component({
-    selector: 'app-machine-detail',
-    templateUrl: 'machine-detail.component.html',
+    selector: 'app-showroom-machine-detail',
+    templateUrl: 'showroom-machine-detail.component.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     animations: fuseAnimations
 })
 
-export class MachineDetailComponent implements OnInit {
+export class ShowroomMachineDetailComponent implements OnInit {
 
     selectedImage: Image;
     machine: Machine;
@@ -23,7 +23,7 @@ export class MachineDetailComponent implements OnInit {
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
     constructor(
-        private _machineService: MachineService,
+        private _machineService: ShowroomCarService,
         private _changeDetectorRef: ChangeDetectorRef,
         private _dialog: MatDialog,
     ) { }
@@ -43,7 +43,7 @@ export class MachineDetailComponent implements OnInit {
     }
 
     openMapsViewDialog() {
-        this._dialog.open(MachineDetailMapsViewComponent, {
+        this._dialog.open(ShowroomMachineDetailMapsViewComponent, {
             width: '1080px',
             data: this.machine,
             autoFocus: false

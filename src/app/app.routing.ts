@@ -102,6 +102,8 @@ export const appRoutes: Route[] = [
                 path: 'car-registrations', loadChildren: () => import('app/modules/admin/car-registration/car-registration.module').then(m => m.CarRegistrationModule)
             },
             { path: 'models', loadChildren: () => import('app/modules/admin/model/model.module').then(m => m.ModelModule) },
+            { path: 'showroom-machines', loadChildren: () => import('app/modules/admin/showroom-car/showroom-car.module').then(m => m.ShowroomCarModule) },
+            { path: 'showrooms', loadChildren: () => import('app/modules/admin/showroom/showroom.module').then(m => m.ShowroomModule) },
         ]
     },
 

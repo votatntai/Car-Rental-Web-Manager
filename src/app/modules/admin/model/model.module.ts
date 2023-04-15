@@ -2,6 +2,7 @@ import { AgmCoreModule } from '@agm/core';
 import { CommonModule, DecimalPipe } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -15,13 +16,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { Route, RouterModule } from '@angular/router';
 import { FuseAlertModule } from '@fuse/components/alert';
 import { FuseCardModule } from '@fuse/components/card';
-import { DayTranslatePipeModule } from '@fuse/pipes/day-translate/day-translate.module';
-import { AccountStatusPipeModule } from '@fuse/pipes/status/status-pipe.module';
-import { TimeSpanPipeModule } from '@fuse/pipes/time-span/time-span-pipe.module';
 import { ModelComponent } from 'app/modules/admin/model/model.component';
-import { ModelsResolver } from './model.resolvers';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { CreateModelComponent } from './create/create-model.component';
+import { ModelsResolver } from './model.resolvers';
 import { UpdateModelComponent } from './update/update-model.component';
 
 const modelRoutes: Route[] = [
@@ -52,9 +49,6 @@ const modelRoutes: Route[] = [
         MatTooltipModule,
         MatPaginatorModule,
         MatSortModule,
-        AccountStatusPipeModule,
-        TimeSpanPipeModule,
-        DayTranslatePipeModule,
         MatDialogModule,
         MatSelectModule,
         FuseCardModule,

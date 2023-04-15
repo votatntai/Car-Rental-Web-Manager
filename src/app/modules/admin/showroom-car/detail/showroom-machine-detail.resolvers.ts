@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { Observable, forkJoin } from 'rxjs';
-import { ShowroomService } from './showroom.service';
+import { Observable } from 'rxjs';
+import { ShowroomCarService } from '../showroom-car.service';
+import { Machine } from '../../machine/machine.type';
 
 @Injectable({
     providedIn: 'root'
 })
 
-export class ShowroomsResolver implements Resolve<any>
+export class ShowroomMachineDetailResolver implements Resolve<any>
 {
     /**
      * Constructor
      */
-    constructor(private _showroomService: ShowroomService) {
+    constructor(private _machineService: ShowroomCarService) {
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -25,9 +26,7 @@ export class ShowroomsResolver implements Resolve<any>
      * @param route
      * @param state
      */
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-        return forkJoin([
-            this._showroomService.getShowrooms(),
-        ]);
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Machine> {
+        return this._machineService.getMachineById(route.paramMap.get('id'));
     }
 }

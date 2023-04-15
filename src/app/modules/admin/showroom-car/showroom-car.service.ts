@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable, switchMap, take, tap } from 'rxjs';
-import { Machine, MachinePagination } from './machine.type';
 import { CarCalendar } from 'app/modules/types/car-registration-calendar.type';
+import { Machine, MachinePagination } from '../machine/machine.type';
 
 @Injectable({ providedIn: 'root' })
-export class MachineService {
+export class ShowroomCarService {
 
     private _machine: BehaviorSubject<Machine | null> = new BehaviorSubject(null);
     private _machines: BehaviorSubject<Machine[] | null> = new BehaviorSubject(null);
@@ -52,7 +52,7 @@ export class MachineService {
                 pageNumber: '' + pageNumber,
                 sort,
                 order,
-                hasShowroom: false,
+                hasShowroom: true,
                 ...(search && { name: search }),
                 ...(status && { status: status })
             }
@@ -112,7 +112,7 @@ export class MachineService {
                 map((newMachine) => {
 
                     // Update machine list with current page size
-                    this._machines.next([newMachine, ...machines].slice(0, this._pagination.value.pageSize));
+                    // this._machines.next([newMachine, ...machines].slice(0, this._pagination.value.pageSize));
 
                     return newMachine;
                 })

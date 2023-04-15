@@ -1,0 +1,112 @@
+<div class="flex flex-col flex-auto -m-6">
+
+    <!-- Header -->
+    <div class="flex flex-0 items-center justify-between h-16 pr-3 sm:pr-5 pl-6 sm:pl-8 shadow">
+        <span class="font-semibold text-lg">
+            Đăng ký xe của công ty
+        </span>
+        <button mat-icon-button (click)="matDialogRef.close()" [tabIndex]="-1">
+            <mat-icon class="text-current" [svgIcon]="'heroicons_outline:x'"></mat-icon>
+        </button>
+    </div>
+    <div class="flex flex-col sm:flex-row flex-auto items-center sm:items-start p-8 pb-6 sm:pb-8 w-full">
+
+        <form class="w-full" [formGroup]="carForm">
+            <div class="grid grid-cols-3 gap-3 w-full">
+                <mat-form-field class="w-full">
+                    <mat-label>Tên xe</mat-label>
+                    <input matInput type="text" placeholder="Name" formControlName="name" readonly>
+                </mat-form-field>
+                <mat-form-field class="w-full">
+                    <mat-label>Biển số</mat-label>
+                    <input matInput type="text" placeholder="License Plate" formControlName="licensePlate" readonly>
+                </mat-form-field>
+                <mat-form-field class="w-full">
+                    <mat-label>Nhà xe</mat-label>
+                    <input matInput type="text" placeholder="Transmission Type" formControlName="showroomId" readonly>
+                </mat-form-field>
+            </div>
+            <div class="grid grid-cols-3 gap-3 w-full">
+                <mat-form-field class="w-full">
+                    <mat-label>Mẫu mã</mat-label>
+                    <input type="text" placeholder="Model" formControlName="model" matInput [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayModel"
+                        (optionSelected)="onSelectModel($event.option.value)">
+                        <mat-option *ngFor="let model of filteredModels | async" [value]="model" [ngValue]="model">
+                            {{ model.name }}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <mat-form-field class="w-full">
+                    <mat-label>Năm sản xuất</mat-label>
+                    <input matInput type="number" placeholder="Year of Manufacture" formControlName="yearOfManufacture"
+                        readonly>
+                </mat-form-field>
+                <mat-form-field class="w-full">
+                    <mat-label>Truyền động</mat-label>
+                    <input matInput type="text" placeholder="Transmission Type" formControlName="transmissionType"
+                        readonly>
+                </mat-form-field>
+            </div>
+            <div class="grid grid-cols-4 gap-3 w-full">
+                <mat-form-field class="w-full">
+                    <mat-label>Số chỗ ngồi</mat-label>
+                    <input matInput type="number" placeholder="Seater" formControlName="seater" readonly>
+                </mat-form-field>
+                <mat-form-field class="w-full">
+                    <mat-label>Khung gầm</mat-label>
+                    <input matInput type="text" placeholder="Chassic" formControlName="chassis" readonly>
+                </mat-form-field>
+                <mat-form-field class="w-full">
+                    <mat-label>Loại nhiên liệu</mat-label>
+                    <input matInput type="text" placeholder="Fuel Type" formControlName="fuelType" readonly>
+                </mat-form-field>
+                <mat-form-field class="w-full">
+                    <mat-label>Tiêu hao nhiên liệu</mat-label>
+                    <input matInput type="text" placeholder="Fuel Consumption" formControlName="fuelConsumption"
+                        readonly>
+                </mat-form-field>
+            </div>
+            <div class="grid grid-cols-2 gap-3 w-full">
+
+                <div class="flex items-center justify-center w-full">
+                    <label for="dropzone-file"
+                        class="flex flex-col items-center justify-center w-full h-48 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                            <mat-icon class="icon-size-12 mb-3" svgIcon="mat_outline:collections"></mat-icon>
+                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Chọn
+                                    ảnh cho xe</span></p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)
+                            </p>
+                        </div>
+                        <input id="dropzone-file" name="file-upload" type="file" class="hidden" multiple
+                            (change)="onImageFileSelected($event)">
+                    </label>
+                </div>
+
+                <div class="flex items-center justify-center w-full">
+                    <label for="dropzone-file"
+                        class="flex flex-col items-center justify-center w-full h-48 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                            <mat-icon class="icon-size-12 mb-3" svgIcon="mat_outline:account_box"></mat-icon>
+                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Chọn
+                                    giấy tờ xe</span></p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)
+                            </p>
+                        </div>
+                        <input id="dropzone-file" name="file-upload" type="file" class="hidden" multiple
+                            (change)="onLicenseFileSelected($event)">
+                    </label>
+                </div>
+            </div>
+
+            <div class="flex w-full justify-end mt-6">
+                <button class="flex gap-2" mat-raised-button [color]="'primary'" (click)="createCar()">
+                    <mat-icon [svgIcon]="'heroicons_outline:check'"></mat-icon>
+                    Xác nhận
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>

@@ -8,9 +8,13 @@
             <mat-progress-bar [mode]="'indeterminate'"></mat-progress-bar>
         </div>
         <!-- Title -->
-        <div class="text-4xl font-extrabold tracking-tight">Quản lý xe</div>
+        <div class="text-4xl font-extrabold tracking-tight">Quản lý xe của công ty</div>
         <!-- Actions -->
         <div class="flex shrink-0 items-center mt-6 sm:mt-0 sm:ml-4 gap-3">
+            <!-- Search -->
+            <button mat-raised-button [color]="'primary'" (click)="openCreateShowroomCarDialog()">
+                <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
+            </button>
             <mat-form-field class="fuse-mat-dense fuse-mat-rounded min-w-64" [subscriptSizing]="'dynamic'">
                 <mat-select [(value)]="selectedValue" (selectionChange)="onStatusChanged()">
                     <mat-option value="all">Tất cả</mat-option>
@@ -32,7 +36,7 @@
         <ng-container *ngIf="(machines$ | async) as machines">
             <div class="grid">
                 <!-- Header -->
-                <div class="machine-grid z-10 sticky top-0 grid gap-4 py-4 px-6 md:px-8 shadow text-md font-semibold text-secondary bg-gray-50 dark:bg-black dark:bg-opacity-5"
+                <div class="showroom-car-grid z-10 sticky top-0 grid gap-4 py-4 px-6 md:px-8 shadow text-md font-semibold text-secondary bg-gray-50 dark:bg-black dark:bg-opacity-5"
                     matSort matSortDisableClear>
                     <div>Ảnh</div>
                     <div [mat-sort-header]="'name'">Tên</div>
@@ -53,7 +57,7 @@
                 <ng-container *ngIf="machines.length > 0; else noMachines">
                     <ng-container *ngIf="(machines$ | async) as machines">
                         <ng-container *ngFor="let machine of machines; trackBy: trackByFn">
-                            <div class="machine-grid grid items-center gap-4 py-3 px-6 md:px-8 border-b">
+                            <div class="showroom-car-grid grid items-center gap-4 py-3 px-6 md:px-8 border-b">
 
                                 <!-- Image -->
                                 <div class="flex items-center">
@@ -106,7 +110,7 @@
                                 <!-- Action -->
                                 <div class="hidden truncate sm:block">
                                     <div class="flex gap-3">
-                                        <span [routerLink]="['/materials/machines', machine.id]">
+                                        <span [routerLink]="['/materials/showroom-machines', machine.id]">
                                             <mat-icon class="text-blue-500 icon-size-5 cursor-pointer"
                                                 [svgIcon]="'heroicons_outline:eye'"></mat-icon>
                                         </span>
