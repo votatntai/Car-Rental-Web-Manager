@@ -60,11 +60,11 @@
                             <span class="text-sm font-medium text-secondary">SỐ CHUYẾN</span>
                         </div>
                     </div>
-                    <ng-container *ngIf="order.status == 'Pending'">
+                    <!-- <ng-container *ngIf="order.status == 'Pending'">
                         <a class="px-6 mt-8" mat-flat-button [color]="'primary'" [routerLink]="['./']">
                             Đổi tài xế
                         </a>
-                    </ng-container>
+                    </ng-container> -->
                 </ng-container>
                 <ng-container *ngIf="!order.orderDetails[0].driver">
                     <a class="flex" mat-flat-button [color]="'accent'" [routerLink]="['./']">
