@@ -6,6 +6,9 @@ import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { Observable, map, startWith } from 'rxjs';
 import { MachineService } from '../../machine/machine.service';
 import { Model } from '../../model/model.type';
+import { Showroom } from '../../showroom/showroom.type';
+import { VnLicensePlateValidator } from '@fuse/validators/custom-validator';
+import { ShowroomCarService } from '../showroom-car.service';
 
 @Component({
     selector: 'app-create-machine',
@@ -18,29 +21,37 @@ import { Model } from '../../model/model.type';
 export class CreateMachineComponent implements OnInit {
     @ViewChild("placesRef") placesRef: GooglePlaceDirective;
     models: Model[];
+    showrooms: Showroom[];
     carForm: UntypedFormGroup;
     filteredModels: Observable<any[]>;
+    filteredShowrooms: Observable<any[]>;
+
     fileControl = new FormControl();
-    files: any[] = [];
+    imgFiles: any[] = [];
+    licenseFiles: any[] = [];
+
+    formData: FormData = new FormData();
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,
         public matDialogRef: MatDialogRef<CreateMachineComponent>,
         private _formBuilder: UntypedFormBuilder,
-        private _machineService: MachineService,
+        private _showroomCarService: ShowroomCarService,
     ) { }
 
     ngOnInit() {
         this.models = this.data.models;
+        this.showrooms = this.data.showrooms;
         this.initCarForm();
     }
 
     initCarForm() {
         this.carForm = this._formBuilder.group({
             name: [null, [Validators.required]],
-            licensePlate: [null, [Validators.required]],
+            licensePlate: [null, [Validators.required, VnLicensePlateValidator()]],
             showroomId: [null, [Validators.required]],
-            model: [null, [Validators.required]],
+            showroom: [null],
+            model: [null],
             yearOfManufacture: [null, [Validators.required]],
             transmissionType: [null, [Validators.required]],
             seater: [null, [Validators.required]],
@@ -48,21 +59,26 @@ export class CreateMachineComponent implements OnInit {
             fuelType: [null, [Validators.required]],
             fuelConsumption: [null, [Validators.required]],
             modelId: [null, [Validators.required]],
-            additionalCharge: [null, [Validators.required]],
-            carOwnerId: [null, [Validators.required]],
-            location: [null, [Validators.required]],
             price: [null, [Validators.required]],
-            registrationId: [null, [Validators.required]]
         });
         this.filteredModels = this.carForm.controls.model.valueChanges.pipe(
             startWith(''),
             map(value => this._filter(value))
+        );
+        this.filteredShowrooms = this.carForm.controls.showroom.valueChanges.pipe(
+            startWith(''),
+            map(value => this._filterShowroom(value))
         );
     }
 
     private _filter(value: string): Model[] {
         const filterValue = value.toString().toLowerCase();
         return this.models.filter(model => model.name.toLowerCase().includes(filterValue));
+    }
+
+    private _filterShowroom(value: string): Showroom[] {
+        const filterValue = value.toString().toLowerCase();
+        return this.showrooms.filter(showroom => showroom.name.toLowerCase().includes(filterValue));
     }
 
     onSelectModel(model: Model) {
@@ -77,14 +93,24 @@ export class CreateMachineComponent implements OnInit {
         });
     }
 
+    onSelectShowroom(showroom: Showroom) {
+        this.carForm.patchValue({
+            showroomId: showroom.id,
+        });
+    }
+
     displayModel(model: Model): string {
         return model ? model.name : '';
     }
 
+    displayShowroom(showroom: Showroom): string {
+        return showroom ? showroom.name : '';
+    }
+
     createCar() {
         if (this.carForm.valid) {
-            this._machineService.createMachine(this.carForm.value).subscribe(result => {
-                console.log(result);
+            this._showroomCarService.createShowroomMachine(this.carForm.value, this.formData).subscribe(result => {
+                this.matDialogRef.close();
             })
         }
     }
@@ -92,22 +118,20 @@ export class CreateMachineComponent implements OnInit {
     onLicenseFileSelected(event: any) {
         const selectedFiles = event.target.files;
         for (let i = 0; i < selectedFiles.length; i++) {
-            this.files.push(selectedFiles[i]);
+            this.licenseFiles.push(selectedFiles[i]);
         }
-        const formData = new FormData();
-        for (let i = 0; i < this.files.length; i++) {
-            formData.append('images[]', this.files[i]);
+        for (let i = 0; i < this.licenseFiles.length; i++) {
+            this.formData.append('licenses', this.licenseFiles[i], this.licenseFiles[i].name);
         }
     }
 
     onImageFileSelected(event: any) {
         const selectedFiles = event.target.files;
         for (let i = 0; i < selectedFiles.length; i++) {
-            this.files.push(selectedFiles[i]);
+            this.imgFiles.push(selectedFiles[i]);
         }
-        const formData = new FormData();
-        for (let i = 0; i < this.files.length; i++) {
-            formData.append('images[]', this.files[i]);
+        for (let i = 0; i < this.imgFiles.length; i++) {
+            this.formData.append('images', this.imgFiles[i], this.imgFiles[i].name);
         }
     }
 }

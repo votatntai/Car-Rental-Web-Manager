@@ -92,7 +92,8 @@
                                 <div class="hidden truncate sm:block">
                                     <div class="font-semibold rounded-full px-3 py-1 w-auto inline-block" [ngClass]="'text-white ' + 
                                     (carRegistration.status ? 'bg-green-500' : 'bg-gray-500')">
-                                        {{carRegistration.status | registrationStatus}}
+                                        {{ !carRegistration.status && carRegistration.description ? 'Đã từ chối' :
+                                        carRegistration.status | registrationStatus }}
                                     </div>
                                 </div>
 

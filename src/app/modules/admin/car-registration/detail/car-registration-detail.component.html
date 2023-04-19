@@ -5,8 +5,8 @@
         <!-- Title -->
         <div class="text-4xl font-extrabold tracking-tight">Thông tin đăng ký xe</div>
         <div class="flex shrink-0 items-center mt-6 sm:mt-0 sm:ml-4 gap-3">
-            <ng-container *ngIf="!carRegistration.status">
-                <button class="flex gap-2" mat-raised-button [color]="'warn'">
+            <ng-container *ngIf="!carRegistration.status && !carRegistration.description">
+                <button class="flex gap-2" mat-raised-button [color]="'warn'" (click)="openDenyCarRegistrationDialog()">
                     <mat-icon [svgIcon]="'heroicons_outline:x'"></mat-icon>
                     Từ chối
                 </button>
@@ -18,6 +18,11 @@
             <ng-container *ngIf="carRegistration.status">
                 <div class="text-green-500 font-bold border-green-500 border-2 rounded-full p-3 cursor-pointer">
                     Phiếu đăng ký đã được phê duyệt
+                </div>
+            </ng-container>
+            <ng-container *ngIf="!carRegistration.status && carRegistration.description">
+                <div class="text-red-500 font-bold border-red-500 border-2 rounded-full p-3 cursor-pointer">
+                    Phiếu đăng ký đã bị từ chối
                 </div>
             </ng-container>
         </div>
@@ -126,8 +131,16 @@
                     </div>
                 </fuse-card>
             </div>
+            <ng-container *ngIf="carRegistration.description">
+                <fuse-alert class="mt-5 w-full" [type]="'error'" [appearance]="'border'">
+                    Phiếu đăng ký này đã bị từ chối với lý do <span class="text-red-500">{{ carRegistration.description
+                        }}</span>
+                    {{message}}
+                </fuse-alert>
+            </ng-container>
         </div>
     </div>
+
 </div>
 
 <!-- Notification -->

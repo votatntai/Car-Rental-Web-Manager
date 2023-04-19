@@ -9,6 +9,7 @@ import { CarRegistration } from '../car-registration.type';
 import { CreateCarComponent } from '../create-car/create-car.component';
 import { CarInformationComponent } from './car-information/car-information.component';
 import { Image } from 'app/modules/types/image.type';
+import { DenyCarRegistrationComponent } from './deny-car-registration/deny-car-registration.component';
 
 @Component({
     selector: 'app-car-registration-detail',
@@ -81,6 +82,15 @@ export class CarRegistrationDetailComponent implements OnInit {
                 }
             })
         })
+    }
+
+    openDenyCarRegistrationDialog() {
+        this._dialog.open(DenyCarRegistrationComponent, {
+            width: '720px',
+            data: this.carRegistration
+        }).afterClosed().subscribe(() => {
+            this._changeDetectorRef.markForCheck();
+        });
     }
 
     private showFlashMessage(type: 'success' | 'error', message: string, time: number): void {

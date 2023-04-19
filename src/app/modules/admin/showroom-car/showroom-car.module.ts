@@ -23,6 +23,7 @@ import { ShowroomMachineDetailComponent } from './detail/showroom-machine-detail
 import { ShowroomMachineDetailResolver } from './detail/showroom-machine-detail.resolvers';
 import { ShowroomsResolver } from './showroom-car.resolvers';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { DayTranslatePipeModule } from '@fuse/pipes/day-translate/day-translate.module';
 
 const showroomCarRoutes: Route[] = [
     {
@@ -60,6 +61,7 @@ const showroomCarRoutes: Route[] = [
         MatTooltipModule,
         MatPaginatorModule,
         MachineStatusPipeModule,
+        DayTranslatePipeModule,
         MatSortModule,
         MatDialogModule,
         MatSelectModule,

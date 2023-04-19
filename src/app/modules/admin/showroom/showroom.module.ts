@@ -14,6 +14,11 @@ import { FuseAlertModule } from '@fuse/components/alert';
 import { AccountStatusPipeModule } from '@fuse/pipes/status/status-pipe.module';
 import { ShowroomComponent } from 'app/modules/admin/showroom/showroom.component';
 import { ShowroomsResolver } from './showroom.resolvers';
+import { CreateShowroomComponent } from './create/create-showroom.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { AgmCoreModule } from '@agm/core';
+import { LocationPipeModule } from '@fuse/pipes/location/location.pipe.module';
 
 const showroomRoutes: Route[] = [
     {
@@ -35,6 +40,7 @@ const showroomRoutes: Route[] = [
 @NgModule({
     declarations: [
         ShowroomComponent,
+        CreateShowroomComponent
     ],
     imports: [
         CommonModule,
@@ -50,7 +56,11 @@ const showroomRoutes: Route[] = [
         AccountStatusPipeModule,
         MatDialogModule,
         MatSelectModule,
-        FuseAlertModule
+        FuseAlertModule,
+        MatAutocompleteModule,
+        GooglePlaceModule,
+        AgmCoreModule,
+        LocationPipeModule
     ],
 })
 export class ShowroomModule {

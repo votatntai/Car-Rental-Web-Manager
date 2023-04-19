@@ -12,24 +12,36 @@
     <div class="flex flex-col sm:flex-row flex-auto items-center sm:items-start p-8 pb-6 sm:pb-8 w-full">
 
         <form class="w-full" [formGroup]="carForm">
-            <div class="grid grid-cols-3 gap-3 w-full">
+            <div class="grid grid-cols-4 gap-3 w-full">
                 <mat-form-field class="w-full">
                     <mat-label>Tên xe</mat-label>
-                    <input matInput type="text" placeholder="Name" formControlName="name" readonly>
+                    <input matInput type="text" placeholder="Tên xe" formControlName="name">
                 </mat-form-field>
                 <mat-form-field class="w-full">
                     <mat-label>Biển số</mat-label>
-                    <input matInput type="text" placeholder="License Plate" formControlName="licensePlate" readonly>
+                    <input matInput type="text" placeholder="Biển số xe" formControlName="licensePlate">
                 </mat-form-field>
                 <mat-form-field class="w-full">
                     <mat-label>Nhà xe</mat-label>
-                    <input matInput type="text" placeholder="Transmission Type" formControlName="showroomId" readonly>
+                    <input type="text" placeholder="Nhà xe" formControlName="showroom" matInput
+                        [matAutocomplete]="auto1">
+                    <mat-autocomplete #auto1="matAutocomplete" [displayWith]="displayShowroom"
+                        (optionSelected)="onSelectShowroom($event.option.value)">
+                        <mat-option *ngFor="let showroom of filteredShowrooms | async" [value]="showroom"
+                            [ngValue]="showroom">
+                            {{ showroom.name }}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <mat-form-field class="w-full">
+                    <mat-label>Giá</mat-label>
+                    <input matInput type="number" placeholder="Giá" formControlName="price">
                 </mat-form-field>
             </div>
             <div class="grid grid-cols-3 gap-3 w-full">
                 <mat-form-field class="w-full">
                     <mat-label>Mẫu mã</mat-label>
-                    <input type="text" placeholder="Model" formControlName="model" matInput [matAutocomplete]="auto">
+                    <input type="text" placeholder="Mẫu xe" formControlName="model" matInput [matAutocomplete]="auto">
                     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayModel"
                         (optionSelected)="onSelectModel($event.option.value)">
                         <mat-option *ngFor="let model of filteredModels | async" [value]="model" [ngValue]="model">
@@ -39,32 +51,30 @@
                 </mat-form-field>
                 <mat-form-field class="w-full">
                     <mat-label>Năm sản xuất</mat-label>
-                    <input matInput type="number" placeholder="Year of Manufacture" formControlName="yearOfManufacture"
+                    <input matInput type="number" placeholder="Năm sản xuất" formControlName="yearOfManufacture"
                         readonly>
                 </mat-form-field>
                 <mat-form-field class="w-full">
                     <mat-label>Truyền động</mat-label>
-                    <input matInput type="text" placeholder="Transmission Type" formControlName="transmissionType"
-                        readonly>
+                    <input matInput type="text" placeholder="Truyền động" formControlName="transmissionType" readonly>
                 </mat-form-field>
             </div>
             <div class="grid grid-cols-4 gap-3 w-full">
                 <mat-form-field class="w-full">
                     <mat-label>Số chỗ ngồi</mat-label>
-                    <input matInput type="number" placeholder="Seater" formControlName="seater" readonly>
+                    <input matInput type="number" placeholder="Chỗ ngồi" formControlName="seater" readonly>
                 </mat-form-field>
                 <mat-form-field class="w-full">
                     <mat-label>Khung gầm</mat-label>
-                    <input matInput type="text" placeholder="Chassic" formControlName="chassis" readonly>
+                    <input matInput type="text" placeholder="Khung gầm" formControlName="chassis" readonly>
                 </mat-form-field>
                 <mat-form-field class="w-full">
                     <mat-label>Loại nhiên liệu</mat-label>
-                    <input matInput type="text" placeholder="Fuel Type" formControlName="fuelType" readonly>
+                    <input matInput type="text" placeholder="Nhiên liệu" formControlName="fuelType" readonly>
                 </mat-form-field>
                 <mat-form-field class="w-full">
                     <mat-label>Tiêu hao nhiên liệu</mat-label>
-                    <input matInput type="text" placeholder="Fuel Consumption" formControlName="fuelConsumption"
-                        readonly>
+                    <input matInput type="text" placeholder="Tiêu hao" formControlName="fuelConsumption" readonly>
                 </mat-form-field>
             </div>
             <div class="grid grid-cols-2 gap-3 w-full">
@@ -85,7 +95,7 @@
                 </div>
 
                 <div class="flex items-center justify-center w-full">
-                    <label for="dropzone-file"
+                    <label for="dropzone-file-license"
                         class="flex flex-col items-center justify-center w-full h-48 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                         <div class="flex flex-col items-center justify-center pt-5 pb-6">
                             <mat-icon class="icon-size-12 mb-3" svgIcon="mat_outline:account_box"></mat-icon>
@@ -94,7 +104,7 @@
                             <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)
                             </p>
                         </div>
-                        <input id="dropzone-file" name="file-upload" type="file" class="hidden" multiple
+                        <input id="dropzone-file-license" name="file-upload" type="file" class="hidden" multiple
                             (change)="onLicenseFileSelected($event)">
                     </label>
                 </div>

@@ -9,6 +9,7 @@ import { Machine, MachinePagination } from '../machine/machine.type';
 import { ShowroomCarService } from './showroom-car.service';
 import { CreateMachineComponent } from './create/creare-machine.component';
 import { ModelService } from '../model/model.service';
+import { ShowroomService } from '../showroom/showroom.service';
 
 @Component({
     selector: 'app-showroom-car',
@@ -37,7 +38,8 @@ export class ShowroomCarComponent implements OnInit, AfterViewInit {
         private _machineService: ShowroomCarService,
         private _changeDetectorRef: ChangeDetectorRef,
         private _dialog: MatDialog,
-        private _modelService: ModelService
+        private _modelService: ModelService,
+        private _showroomService: ShowroomService
     ) { }
 
     ngOnInit() {
@@ -125,20 +127,24 @@ export class ShowroomCarComponent implements OnInit, AfterViewInit {
     }
 
     openCreateShowroomCarDialog() {
-        this._modelService.getModels().pipe(take(1)).subscribe(response => {
-            this._dialog.open(CreateMachineComponent, {
-                width: '1080px',
-                data: {
-                    models: response.data
-                },
-                autoFocus: false
-            }).afterClosed().subscribe(result => {
-                // After dialog closed
-                // if (result === 'success') {
-                //     this.showFlashMessage(result, 'Phê duyệt nhật thành công', 3000);
-                // } else {
-                //     this.showFlashMessage(result, 'Đã có lỗi khôn mong muống vui lòng liên hệ bộ phận hổ trợ', 3000);
-                // }
+        this._modelService.getModels().pipe(take(1)).subscribe(modelResponse => {
+            this._showroomService.getShowrooms().pipe(take(1)).subscribe(showroomResponse => {
+                this._dialog.open(CreateMachineComponent, {
+                    width: '1080px',
+                    data: {
+                        models: modelResponse.data,
+                        showrooms: showroomResponse.data
+                    },
+                    autoFocus: false
+                }).afterClosed().subscribe(result => {
+                    // After dialog closed
+                    // if (result === 'success') {
+                    //     this.showFlashMessage(result, 'Phê duyệt nhật thành công', 3000);
+                    // } else {
+                    //     this.showFlashMessage(result, 'Đã có lỗi khôn mong muống vui lòng liên hệ bộ phận hổ trợ', 3000);
+                    // }
+                    this._changeDetectorRef.markForCheck();
+                })
             })
         })
     }

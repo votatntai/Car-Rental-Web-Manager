@@ -12,7 +12,7 @@
         <!-- Actions -->
         <div class="flex shrink-0 items-center mt-6 sm:mt-0 sm:ml-4 gap-3">
             <!-- Search -->
-            <button mat-raised-button [color]="'primary'">
+            <button mat-raised-button [color]="'primary'" (click)="openCreateShowroomDialog()">
                 <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
             </button>
             <!-- Search -->
@@ -53,17 +53,22 @@
 
                                 <!-- Name -->
                                 <div class="truncate">
-                                    {{showroom.productionCompany.name }}
+                                    {{showroom.numberOfCar }}
                                 </div>
 
                                 <!-- Gender -->
                                 <div class="hidden sm:block">
-                                    {{showroom.seater}}
+                                    <div class="flex gap-3">
+                                        <span class="cursor-pointer" (click)="openUpdateModelDialog(showroom)">
+                                            <mat-icon class="text-green-500 icon-size-5 cursor-pointer"
+                                                svgIcon="mat_outline:my_location"></mat-icon>
+                                        </span>
+                                    </div>
                                 </div>
 
                                 <!-- Phone -->
                                 <div class="hidden sm:block">
-                                    {{showroom.transmissionType}}
+                                    {{showroom.description}}
                                 </div>
 
                                 <!-- Action -->

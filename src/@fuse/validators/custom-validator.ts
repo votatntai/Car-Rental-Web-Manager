@@ -30,3 +30,11 @@ export function phoneValidator(): ValidatorFn {
         return PHONE_REGEX.test(value) ? null : { phone: true };
     };
 }
+
+export function VnLicensePlateValidator(): ValidatorFn {
+    const regex = /^[0-9]{1,2}[A-Za-z]-[0-9]{1,2}\.[0-9]{3,4}$/;
+    return (control: AbstractControl): { [key: string]: any } | null => {
+        const value = control.value;
+        return regex.test(value) ? null : { phone: true };
+    };
+}

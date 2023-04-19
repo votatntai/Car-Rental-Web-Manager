@@ -13,7 +13,7 @@ export class ShowroomsResolver implements Resolve<any>
     /**
      * Constructor
      */
-    constructor(private _machineService: ShowroomCarService) {
+    constructor(private _showroomCar: ShowroomCarService) {
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -27,6 +27,6 @@ export class ShowroomsResolver implements Resolve<any>
      * @param state
      */
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<{ pagination: MachinePagination; data: Machine[] }> {
-        return this._machineService.getMachines();
+        return this._showroomCar.getMachines();
     }
 }

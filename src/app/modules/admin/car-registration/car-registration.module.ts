@@ -24,6 +24,7 @@ import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { AgmCoreModule } from '@agm/core';
 import { RegistrationStatusPipeModule } from '@fuse/pipes/registration-status/registration-status-pipe.module';
 import { CarInformationComponent } from './detail/car-information/car-information.component';
+import { DenyCarRegistrationComponent } from './detail/deny-car-registration/deny-car-registration.component';
 
 const machineRoutes: Route[] = [
     {
@@ -47,7 +48,8 @@ const machineRoutes: Route[] = [
         CarRegistrationComponent,
         CarRegistrationDetailComponent,
         CreateCarComponent,
-        CarInformationComponent
+        CarInformationComponent,
+        DenyCarRegistrationComponent
     ],
     imports: [
         CommonModule,

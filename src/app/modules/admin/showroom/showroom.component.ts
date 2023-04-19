@@ -4,11 +4,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { fuseAnimations } from '@fuse/animations';
-import { Observable, Subject, debounceTime, map, merge, switchMap, take, takeUntil } from 'rxjs';
-// import { CreateShowroomComponent } from './create/create-showroom.component';
+import { Observable, Subject, debounceTime, map, merge, switchMap, takeUntil } from 'rxjs';
+import { CreateShowroomComponent } from './create/create-showroom.component';
 import { ShowroomService } from './showroom.service';
 import { Showroom, ShowroomPagination } from './showroom.type';
-// import { UpdateShowroomComponent } from './update/update-showroom.component';
 
 @Component({
     selector: 'app-showroom',
@@ -55,7 +54,6 @@ export class ShowroomComponent implements OnInit, AfterViewInit {
                 // Mark for check
                 this._changeDetectorRef.markForCheck();
             });
-
         // Search input value change
         this.subscribeSearchInput();
     }
@@ -114,18 +112,18 @@ export class ShowroomComponent implements OnInit, AfterViewInit {
             ).subscribe();
     }
 
-    // openCreateShowroomDialog() {
-    //     this._dialog.open(CreateShowroomComponent, {
-    //         width: '720px'
-    //     }).afterClosed().subscribe(result => {
-    //         // After dialog closed
-    //         if (result === 'success') {
-    //             this.showFlashMessage(result, 'Tạo mới thành công', 3000);
-    //         } else {
-    //             this.showFlashMessage(result, 'Đã có lỗi xảy ra', 3000);
-    //         }
-    //     })
-    // }
+    openCreateShowroomDialog() {
+        this._dialog.open(CreateShowroomComponent, {
+            width: '720px'
+        }).afterClosed().subscribe(result => {
+            // After dialog closed
+            if (result === 'success') {
+                this.showFlashMessage(result, 'Tạo mới thành công', 3000);
+            } else {
+                this.showFlashMessage(result, 'Đã có lỗi xảy ra', 3000);
+            }
+        })
+    }
 
     // openUpdateShowroomDialog(showroom: Showroom) {
     //     this._dialog.open(UpdateShowroomComponent, {

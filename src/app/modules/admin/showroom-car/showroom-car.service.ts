@@ -112,8 +112,29 @@ export class ShowroomCarService {
                 map((newMachine) => {
 
                     // Update machine list with current page size
-                    // this._machines.next([newMachine, ...machines].slice(0, this._pagination.value.pageSize));
+                    this._machines.next([newMachine, ...machines].slice(0, this._pagination.value.pageSize));
 
+                    return newMachine;
+                })
+            ))
+        )
+    }
+
+    /**
+* Create machine
+*/
+    createShowroomMachine(data, formData) {
+        const httpOptions = {
+            params: data
+        };
+        return this.machines$.pipe(
+            take(1),
+            switchMap((machines) => this._httpClient.post<Machine>('/api/cars/showrooms', formData, httpOptions).pipe(
+                map((newMachine) => {
+
+                    // Update machine list with current page size
+                    const newMachines = [newMachine, ...machines].slice(0, this._pagination.value.pageSize);
+                    this._machines.next(newMachines);
                     return newMachine;
                 })
             ))

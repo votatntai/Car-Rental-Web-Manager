@@ -4,7 +4,14 @@ import { Pipe, PipeTransform } from '@angular/core';
     name: 'registrationStatus'
 })
 export class RegistrationStatussPipe implements PipeTransform {
-    transform(value: boolean): string {
-        return value ? 'Đã duyệt' : 'Chưa duyệt';
+    transform(value: boolean | string): string {
+        if (value) {
+            return 'Đã duyệt'
+        }
+        if (!value) {
+            return 'Chưa duyệt'
+        } else {
+            return 'Đã từ chối'
+        }
     }
 }
