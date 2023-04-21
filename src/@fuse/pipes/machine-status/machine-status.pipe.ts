@@ -12,6 +12,8 @@ export class MachineStatusPipe implements PipeTransform {
                 return 'Đã được thuê';
             case 'Blocked':
                 return 'Đang bảo dưỡng';
+            case 'InOrder':
+                return 'Đang được đặt';
             default:
                 return value;
         }

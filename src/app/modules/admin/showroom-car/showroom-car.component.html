@@ -101,6 +101,7 @@
                                 <div class="hidden truncate sm:block">
                                     <div class="font-semibold rounded-full px-3 py-1 w-auto inline-block" [ngClass]="'text-white ' + 
                                     (machine.status === 'Blocked' ? 'bg-gray-500' :
+                                    machine.status === 'InOrder' ? 'bg-pink-500' :
                                     machine.status === 'Ongoing' ? 'bg-yellow-500 text-gray-900' :
                                     machine.status === 'Idle' ? 'bg-green-500' :'')">
                                         {{machine.status | machineStatus}}
