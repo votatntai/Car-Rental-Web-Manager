@@ -9,6 +9,7 @@ export interface Customer {
     address: string,
     status: boolean,
     bankName: string,
+    isLicenseValid: boolean,
     bankAccountNumber: string,
     wallet: {
         id: string,

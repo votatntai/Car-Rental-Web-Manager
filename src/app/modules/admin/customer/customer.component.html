@@ -71,6 +71,10 @@
                                     {{customer.phone}}
                                 </div>
 
+                                <div class="hidden sm:block">
+                                    {{customer.isLicenseValid}}
+                                </div>
+
                                 <!-- Active -->
                                 <div class="hidden sm:block">
                                     <ng-container *ngIf="customer.status">
