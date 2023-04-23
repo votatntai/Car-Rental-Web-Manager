@@ -110,7 +110,15 @@ export class CreateMachineComponent implements OnInit {
     createCar() {
         if (this.carForm.valid) {
             this._showroomCarService.createShowroomMachine(this.carForm.value, this.formData).subscribe(result => {
-                this.matDialogRef.close();
+                if (result) {
+                    this.matDialogRef.close('success');
+                } else {
+                    this.matDialogRef.close('error');
+                }
+            }, error => {
+                if (error.status === 400) {
+                    this.matDialogRef.close('error_duplicate');
+                }
             })
         }
     }

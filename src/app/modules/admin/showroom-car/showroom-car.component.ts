@@ -138,14 +138,26 @@ export class ShowroomCarComponent implements OnInit, AfterViewInit {
                     autoFocus: false
                 }).afterClosed().subscribe(result => {
                     // After dialog closed
-                    // if (result === 'success') {
-                    //     this.showFlashMessage(result, 'Phê duyệt nhật thành công', 3000);
-                    // } else {
-                    //     this.showFlashMessage(result, 'Đã có lỗi khôn mong muống vui lòng liên hệ bộ phận hổ trợ', 3000);
-                    // }
+                    if (result === 'success') {
+                        this.showFlashMessage(result, 'Phê duyệt nhật thành công', 3000);
+                    } else if (result === 'error_duplicate') {
+                        this.showFlashMessage('error', 'Biển số xe này đã được đăng ký', 3000);
+                    } else {
+                        this.showFlashMessage('error', 'Đã có lỗi khôn mong muống vui lòng liên hệ bộ phận hổ trợ', 3000);
+                    }
                     this._changeDetectorRef.markForCheck();
                 })
             })
         })
+    }
+
+    private showFlashMessage(type: 'success' | 'error', message: string, time: number): void {
+        this.flashMessage = type;
+        this.message = message;
+        this._changeDetectorRef.markForCheck();
+        setTimeout(() => {
+            this.flashMessage = this.message = null;
+            this._changeDetectorRef.markForCheck();
+        }, time);
     }
 }

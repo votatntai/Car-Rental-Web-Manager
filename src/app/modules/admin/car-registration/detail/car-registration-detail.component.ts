@@ -77,8 +77,10 @@ export class CarRegistrationDetailComponent implements OnInit {
                 // After dialog closed
                 if (result === 'success') {
                     this.showFlashMessage(result, 'Phê duyệt nhật thành công', 3000);
+                } else if (result === 'error_duplicate') {
+                    this.showFlashMessage('error', 'Biển số xe này đã có người đăng ký', 3000);
                 } else {
-                    this.showFlashMessage(result, 'Đã có lỗi khôn mong muống vui lòng liên hệ bộ phận hổ trợ', 3000);
+                    this.showFlashMessage('error', 'Đã có lỗi khôn mong muống vui lòng liên hệ bộ phận hổ trợ', 3000);
                 }
             })
         })

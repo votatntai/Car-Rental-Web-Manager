@@ -107,6 +107,10 @@ export class CreateCarComponent implements OnInit {
                         }
                     })
                 }
+            }, error => {
+                if (error.status === 400) {
+                    this.matDialogRef.close('error_duplicate');
+                }
             })
         }
     }
