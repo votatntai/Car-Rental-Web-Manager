@@ -81,15 +81,15 @@
                                 <div class="hidden sm:block truncate">
                                     <div class="font-semibold rounded-full px-3 py-1 w-auto inline-block" [ngClass]="'text-white ' + 
                                     (order.status === 'Canceled' ? 'bg-red-500' :
-                                    order.status === 'Pending' ? 'bg-yellow-500 text-gray-900' :
+                                    order.status === 'Pending' ? 'bg-cyan-500' :
                                     order.status === 'ManagerConfirmed' ? 'bg-green-500' :
                                     order.status === 'Ongoing' ? 'bg-blue-500' :
                                     order.status === 'ReceivedTheCar' ? 'bg-teal-500' :
                                     order.status === 'ArrivedAtPickUpPoint' ? 'bg-indigo-500' :
                                     order.status === 'ReceivedGuests' ? 'bg-purple-500' :
                                     order.status === 'CarOwnerApproved' ? 'bg-pink-500' :
-                                    order.status === 'Paid' ? 'bg-gray-500' :
-                                    order.status === 'ReturnedTheCar' ? 'bg-yellow-500 text-gray-900' :
+                                    order.status === 'Paid' ? 'bg-orange-500' :
+                                    order.status === 'ReturnedTheCar' ? 'bg-lime-500' :
                                     order.status === 'Finished' ? 'bg-gray-500' : ''
                                   )">
                                         {{order.status | orderStatus}}

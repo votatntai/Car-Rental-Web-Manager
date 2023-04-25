@@ -147,13 +147,8 @@ export class ShowroomCarService {
     updateMachine(id: string, data) {
         return this.machines$.pipe(
             take(1),
-            switchMap((machines) => this._httpClient.put<Machine>('/api/cars/' + id, data).pipe(
+            switchMap(() => this._httpClient.put<Machine>('/api/cars/' + id, data).pipe(
                 map((updatedMachine) => {
-
-                    // Find and replace updated machine
-                    const index = machines.findIndex(item => item.id === id);
-                    machines[index] = updatedMachine;
-                    this._machines.next(machines);
 
                     // Update machine
                     this._machine.next(updatedMachine);

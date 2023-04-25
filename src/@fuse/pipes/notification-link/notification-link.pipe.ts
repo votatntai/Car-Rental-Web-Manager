@@ -9,6 +9,9 @@ export class NotificationLinksPipe implements PipeTransform {
         if (data.type === 'Order') {
             return '/comercials/orders/' + data.link;
         }
+        if (data.type === 'CarRegistration') {
+            return '/materials/car-registrations/' + data.link;
+        }
         return null;
     }
 }

@@ -8,7 +8,7 @@ export interface Notification {
 export interface NotificationData {
     isRead: boolean,
     createAt: string,
-    type: 'Order' | 'None',
+    type: 'Order' | 'CarRegistration' | 'None',
     link: string,
 }
 

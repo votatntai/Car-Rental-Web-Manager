@@ -54,11 +54,12 @@
                                 <div class="flex items-center">
                                     <div
                                         class="relative flex flex-0 items-center justify-center w-12 h-12 mr-6 rounded overflow-hidden border">
-                                        <img class="w-8" *ngIf="carRegistration.avartarUrl"
-                                            [alt]="'Machine thumbnail image'" [src]="carRegistration.avartarUrl">
+                                        <img class="w-8"
+                                            *ngIf="carRegistration.images && carRegistration.images.length > 0"
+                                            [alt]="'Ảnh'" [src]="carRegistration.images[0].url">
                                         <div class="flex items-center justify-center w-full h-full text-xs font-semibold leading-none text-center uppercase"
-                                            *ngIf="!carRegistration.avartarUrl">
-                                            NO THUMB
+                                            *ngIf="carRegistration.images && carRegistration.images.length == 0">
+                                            TRỐNG
                                         </div>
                                     </div>
                                 </div>

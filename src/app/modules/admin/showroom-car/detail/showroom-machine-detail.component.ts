@@ -6,6 +6,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { Machine } from '../../machine/machine.type';
 import { ShowroomCarService } from '../showroom-car.service';
 import { ShowroomMachineDetailMapsViewComponent } from './maps-view/machine-detail-maps-view.component';
+import { FuseConfirmationService } from '@fuse/services/confirmation';
 
 @Component({
     selector: 'app-showroom-machine-detail',
@@ -25,6 +26,7 @@ export class ShowroomMachineDetailComponent implements OnInit {
     constructor(
         private _machineService: ShowroomCarService,
         private _changeDetectorRef: ChangeDetectorRef,
+        private _fuseConfirmationService: FuseConfirmationService,
         private _dialog: MatDialog,
     ) { }
 
@@ -33,10 +35,8 @@ export class ShowroomMachineDetailComponent implements OnInit {
         this._machineService.machine$
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(machine => {
-
                 // Update the machine
                 this.machine = machine;
-
                 // Mark for check
                 this._changeDetectorRef.markForCheck();
             })
@@ -62,6 +62,26 @@ export class ShowroomMachineDetailComponent implements OnInit {
                 this.formData.append('licenses', event.target.files[i]);
             }
         }
+    }
+
+    openBlockConfirmDialog() {
+        this._fuseConfirmationService.open({
+            message: 'Xe này sẽ được khóa lại cho đến khi bạn mở khóa'
+        }).afterClosed().subscribe(result => {
+            if (result === 'confirmed') {
+                this._machineService.updateMachine(this.machine.id, { status: 'Blocked' }).subscribe();
+            }
+        })
+    }
+
+    openUnBlockConfirmDialog() {
+        this._fuseConfirmationService.open({
+            message: 'Mở khóa xe đồng nghĩa với việc mọi người có thể tìm kiếm xe này'
+        }).afterClosed().subscribe(result => {
+            if (result === 'confirmed') {
+                this._machineService.updateMachine(this.machine.id, { status: 'Idle' }).subscribe();
+            }
+        })
     }
 
     onSubmit() {
