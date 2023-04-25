@@ -8,7 +8,7 @@
             <mat-progress-bar [mode]="'indeterminate'"></mat-progress-bar>
         </div>
         <!-- Title -->
-        <div class="text-4xl font-extrabold tracking-tight">Quản lý mẫu xe</div>
+        <div class="text-4xl font-extrabold tracking-tight">Quản lý dòng xe</div>
         <!-- Actions -->
         <div class="flex shrink-0 items-center mt-6 sm:mt-0 sm:ml-4 gap-3">
             <!-- Search -->
@@ -30,13 +30,13 @@
                 <!-- Header -->
                 <div class="model-grid z-10 sticky top-0 grid gap-4 py-4 px-6 md:px-8 shadow text-md font-semibold text-secondary bg-gray-50 dark:bg-black dark:bg-opacity-5"
                     matSort matSortDisableClear>
-                    <div>Tên mẫu xe</div>
+                    <div>Tên dòng xe</div>
                     <div>Tên hãng xe</div>
                     <div class="hidden sm:block">
                         Số ghế
                     </div>
                     <div class="hidden sm:block">
-                        Truyền động
+                        Hộp số
                     </div>
                     <div class="hidden sm:block">Loại nhiên liệu</div>
                     <div class="hidden sm:block">
@@ -106,7 +106,7 @@
         </ng-container>
 
         <ng-template #noModels>
-            <div class="p-8 sm:p-16 bmodel-t text-4xl font-semibold tracking-tight text-center">Không tìm thấy mẫu xe
+            <div class="p-8 sm:p-16 bmodel-t text-4xl font-semibold tracking-tight text-center">Không tìm thấy dòng xe
                 nào!
             </div>
         </ng-template>

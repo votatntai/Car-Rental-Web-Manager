@@ -24,25 +24,26 @@
                     </div>
                     <div class="flex items-center mt-4">
                         <mat-icon class="icon-size-5 mr-3" [svgIcon]="'heroicons_solid:tag'"></mat-icon>
-                        <span class="leading-none">Mẫu:
+                        <span class="leading-none">Dòng xe:
                             <span class="font-bold">
-                                {{ machine.model.name }}
+                                {{ machine.model.productionCompany.name }}
+                                {{ machine.name }}
                             </span>
                         </span>
                     </div>
                     <div class="flex items-center mt-4">
                         <mat-icon class="icon-size-5 mr-3" [svgIcon]="'heroicons_solid:user'"></mat-icon>
-                        <span class="leading-none">Hãng xe:
+                        <span class="leading-none">Loại xe:
                             <span class="font-bold">
-                                {{ machine.model.productionCompany.name }}
+                                {{ machine.model.name }}
                             </span>
                         </span>
                     </div>
-                    <div class="flex items-center mt-4">
+                    <!-- <div class="flex items-center mt-4">
                         <mat-icon class="icon-size-5 mr-3" [svgIcon]="'heroicons_solid:calendar'"></mat-icon>
                         <span class="leading-none font-bold">Lịch hoạt động
                         </span>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="col-span-1">
@@ -56,10 +57,10 @@
                         </span>
                     </div>
                     <div class="flex items-center mt-4">
-                        <mat-icon class="icon-size-5 mr-3" [svgIcon]="'heroicons_solid:trending-up'"></mat-icon>
-                        <span class="leading-none">Độ cao gầm:
+                        <mat-icon class="icon-size-5 mr-3" [svgIcon]="'heroicons_solid:chip'"></mat-icon>
+                        <span class="leading-none">Hộp số:
                             <span class="font-bold">
-                                {{ machine.model.chassis }}
+                                {{ machine.model.transmissionType }}
                             </span>
                         </span>
                     </div>
@@ -84,10 +85,10 @@
                         </span>
                     </div>
                     <div class="flex items-center mt-4">
-                        <mat-icon class="icon-size-5 mr-3" [svgIcon]="'heroicons_solid:chip'"></mat-icon>
-                        <span class="leading-none">Truyền động:
+                        <mat-icon class="icon-size-5 mr-3" [svgIcon]="'heroicons_solid:trending-up'"></mat-icon>
+                        <span class="leading-none">Độ cao gầm:
                             <span class="font-bold">
-                                {{ machine.model.transmissionType }}
+                                {{ machine.model.chassis }}
                             </span>
                         </span>
                     </div>
@@ -104,7 +105,7 @@
         </div>
 
 
-        <ng-container *ngIf="machine.carCalendars">
+        <!-- <ng-container *ngIf="machine.carCalendars">
             <table class="border-collapse table-auto w-full">
                 <thead>
                     <tr>
@@ -139,7 +140,7 @@
             <div class="italic">
                 Xe chưa được xếp lích
             </div>
-        </ng-container>
+        </ng-container> -->
 
         <div class="flex flex-col gap-4 w-full">
             <div class="flex items-center">

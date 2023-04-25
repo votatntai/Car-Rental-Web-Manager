@@ -22,11 +22,11 @@
                     </div>
                     <hr class="border-b my-4">
                     <div class="flex flex-col text-md">
-                        <span class="whitespace-nowrap">Sản xuất năm <b> {{
-                                order.orderDetails[0].car.model.yearOfManufacture}}</b></span>
-                        <span class="whitespace-nowrap"><b>{{ order.orderDetails[0].car.model.seater }}</b> chỗ
-                            ngồi</span>
-                        <span class="whitespace-nowrap">Sử dụng <b>{{ order.orderDetails[0].car.model.fuelType
+                        <span class="whitespace-nowrap">Số ghế <b> {{
+                                order.orderDetails[0].car.model.seater}}</b></span>
+                        <span class="whitespace-nowrap">Hộp số <b> {{
+                                order.orderDetails[0].car.model.transmissionType}}</b></span>
+                        <span class="whitespace-nowrap">Nhiên liệu <b>{{ order.orderDetails[0].car.model.fuelType
                                 }}</b></span>
                     </div>
                     <hr class="border-b my-4">
@@ -52,11 +52,12 @@
                     <hr class="w-full border-t mt-8 mb-0">
                     <div class="w-full flex items-center justify-between my-4 px-2">
                         <div class="flex flex-col items-center">
-                            <span class="font-bold">{{ order.orderDetails[0].driver.star || 'Chưa có' }}</span>
+                            <span class="font-bold">{{ order.orderDetails[0].driver.star | number:'1.1-2' || 'Chưa có'
+                                }}</span>
                             <span class="text-sm font-medium text-secondary">ĐÁNH GIÁ</span>
                         </div>
                         <div class="flex flex-col items-center">
-                            <span class="font-bold">{{ 0 }}</span>
+                            <span class="font-bold">{{ order.orderDetails[0].driver.finished || 'Chưa có' }}</span>
                             <span class="text-sm font-medium text-secondary">SỐ CHUYẾN</span>
                         </div>
                     </div>

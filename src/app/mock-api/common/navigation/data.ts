@@ -25,7 +25,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
             },
             {
                 id: 'materials.models',
-                title: 'Quản Lý Mẫu Xe',
+                title: 'Quản Lý Dòng Xe',
                 type: 'basic',
                 icon: 'heroicons_outline:database',
                 link: '/materials/models'
@@ -87,7 +87,7 @@ export const compactNavigation: FuseNavigationItem[] = [
             },
             {
                 id: 'materials.models',
-                title: 'Quản Lý Mẫu Xe',
+                title: 'Quản Lý Dòng Xe',
                 type: 'basic',
                 icon: 'heroicons_outline:database',
                 link: '/materials/models'
@@ -149,7 +149,7 @@ export const futuristicNavigation: FuseNavigationItem[] = [
             },
             {
                 id: 'materials.models',
-                title: 'Quản Lý Mẫu Xe',
+                title: 'Quản Lý Dòng Xe',
                 type: 'basic',
                 icon: 'heroicons_outline:database',
                 link: '/materials/models'
@@ -211,7 +211,7 @@ export const horizontalNavigation: FuseNavigationItem[] = [
             },
             {
                 id: 'materials.models',
-                title: 'Quản Lý Mẫu Xe',
+                title: 'Quản Lý Dòng Xe',
                 type: 'basic',
                 icon: 'heroicons_outline:database',
                 link: '/materials/models'

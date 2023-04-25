@@ -41,7 +41,7 @@
             <div class="grid grid-cols-3 gap-3 w-full">
                 <mat-form-field class="w-full">
                     <mat-label>Mẫu mã</mat-label>
-                    <input type="text" placeholder="Mẫu xe" formControlName="model" matInput [matAutocomplete]="auto">
+                    <input type="text" placeholder="Dòng xe" formControlName="model" matInput [matAutocomplete]="auto">
                     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayModel"
                         (optionSelected)="onSelectModel($event.option.value)">
                         <mat-option *ngFor="let model of filteredModels | async" [value]="model" [ngValue]="model">
@@ -55,8 +55,8 @@
                         readonly>
                 </mat-form-field>
                 <mat-form-field class="w-full">
-                    <mat-label>Truyền động</mat-label>
-                    <input matInput type="text" placeholder="Truyền động" formControlName="transmissionType" readonly>
+                    <mat-label>Hộp số</mat-label>
+                    <input matInput type="text" placeholder="Hộp số" formControlName="transmissionType" readonly>
                 </mat-form-field>
             </div>
             <div class="grid grid-cols-4 gap-3 w-full">

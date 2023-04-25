@@ -14,7 +14,7 @@
         <form class="w-full" [formGroup]="carForm">
             <div class="grid grid-cols-3 gap-3 w-full">
                 <mat-form-field class="w-full">
-                    <mat-label>Mẫu mã</mat-label>
+                    <mat-label>Dòng xe</mat-label>
                     <input type="text" placeholder="Model" formControlName="model" matInput [matAutocomplete]="auto">
                     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayModel"
                         (optionSelected)="onSelectModel($event.option.value)">
@@ -29,7 +29,7 @@
                         readonly>
                 </mat-form-field>
                 <mat-form-field class="w-full">
-                    <mat-label>Truyền động</mat-label>
+                    <mat-label>Hộp số</mat-label>
                     <input matInput type="text" placeholder="Transmission Type" formControlName="transmissionType"
                         readonly>
                 </mat-form-field>
@@ -48,7 +48,7 @@
                     <input matInput type="text" placeholder="Fuel Type" formControlName="fuelType" readonly>
                 </mat-form-field>
                 <mat-form-field class="w-full">
-                    <mat-label>Tiêu hao nhiên liệu</mat-label>
+                    <mat-label>Mức tiêu hao nhiên liệu</mat-label>
                     <input matInput type="text" placeholder="Fuel Consumption" formControlName="fuelConsumption"
                         readonly>
                 </mat-form-field>

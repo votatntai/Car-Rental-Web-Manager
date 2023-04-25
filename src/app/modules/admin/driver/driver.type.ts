@@ -6,6 +6,8 @@ export interface Driver {
     avatarUrl: string,
     address: string,
     status: string,
+    star: number,
+    finished: number,
     bankName: string,
     bankAccountNumber: string,
     wallet: {

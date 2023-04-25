@@ -36,6 +36,7 @@
                 <div class="order-grid z-10 sticky top-0 grid gap-4 py-4 px-6 md:px-8 shadow text-md font-semibold text-secondary bg-gray-50 dark:bg-black dark:bg-opacity-5"
                     matSort matSortDisableClear>
                     <div>Khách hàng</div>
+                    <div>Xe</div>
                     <div [mat-sort-header]="'createAt'">Thời gian tạo</div>
                     <div class="hidden sm:block">
                         Đơn giá
@@ -55,6 +56,10 @@
                                 <!-- Customer -->
                                 <div class="truncate">
                                     {{order.customer.name}}
+                                </div>
+
+                                <div class="truncate">
+                                    {{order.orderDetails[0].car.name}}
                                 </div>
 
                                 <!-- Name -->

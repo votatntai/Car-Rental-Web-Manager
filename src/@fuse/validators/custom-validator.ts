@@ -32,7 +32,7 @@ export function phoneValidator(): ValidatorFn {
 }
 
 export function VnLicensePlateValidator(): ValidatorFn {
-    const regex = /^[0-9]{1,2}[A-Za-z]-[0-9]{1,2}\.[0-9]{3,4}$/;
+    const regex = /^[0-9]{2}[A-Z][\-][0-9]{3}[\.][0-9]{2}$/;
     return (control: AbstractControl): { [key: string]: any } | null => {
         const value = control.value;
         return regex.test(value) ? null : { phone: true };

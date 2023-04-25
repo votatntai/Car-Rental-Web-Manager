@@ -8,8 +8,8 @@ export class MachineStatusPipe implements PipeTransform {
         switch (value) {
             case 'Idle':
                 return 'Đang sãn sàng';
-            case 'Ongoing':
-                return 'Đã được thuê';
+            case 'OnGoing':
+                return 'Đang được thuê';
             case 'Blocked':
                 return 'Đang bảo dưỡng';
             case 'InOrder':
