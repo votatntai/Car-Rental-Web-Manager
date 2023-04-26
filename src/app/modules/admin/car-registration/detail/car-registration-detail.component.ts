@@ -44,6 +44,8 @@ export class CarRegistrationDetailComponent implements OnInit {
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(carRegistration => {
 
+                console.log(carRegistration);
+
                 // Update the car registration
                 this.carRegistration = carRegistration;
                 this.initialCarCalendar(carRegistration);

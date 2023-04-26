@@ -2,15 +2,15 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewEnca
 import { MatDialog } from '@angular/material/dialog';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
+import { LocationSocketService } from 'app/modules/services/location-socket.service';
 import { Subject, takeUntil } from 'rxjs';
+import { MachineDetailMapsViewComponent } from '../../machine/detail/maps-view/machine-detail-maps-view.component';
+import { TrackingComponent } from '../../machine/detail/tracking/tracking.component';
 import { OrderService } from '../order.service';
 import { Order } from '../order.type';
 import { DenyOrderComponent } from './deny-order/deny-order.component';
 import { LicenseCheckComponent } from './license-check/deny-order.component';
-import { MachineDetailMapsViewComponent } from '../../machine/detail/maps-view/machine-detail-maps-view.component';
 import { Machine } from '../../machine/machine.type';
-import { TrackingComponent } from '../../machine/detail/tracking/tracking.component';
-import { LocationSocketService } from 'app/modules/services/location-socket.service';
 
 @Component({
     selector: 'app-order-detail',
@@ -23,6 +23,7 @@ import { LocationSocketService } from 'app/modules/services/location-socket.serv
 export class OrderDetailComponent implements OnInit {
 
     order: Order;
+    car: Machine;
 
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -42,6 +43,8 @@ export class OrderDetailComponent implements OnInit {
 
                 // Update the order
                 this.order = order;
+
+                this.car = order.orderDetails[0].car;
 
                 // Mark for check
                 this._changeDetectorRef.markForCheck();
