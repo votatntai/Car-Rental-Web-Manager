@@ -88,6 +88,10 @@ export class AppService {
         return this._httpClient.put('/api/notifications/make-as-read', null);
     }
 
+    public markAsRead(id: string, isRead: boolean) {
+        return this._httpClient.put('/api/notifications/' + id, { isRead: isRead });
+    }
+
     public deleteNotification(id: string) {
         return this.notifications$.pipe(
             take(1),

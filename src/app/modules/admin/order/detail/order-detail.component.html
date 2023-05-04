@@ -52,7 +52,7 @@
                     <hr class="w-full border-t mt-8 mb-0">
                     <div class="w-full flex items-center justify-between my-4 px-2">
                         <div class="flex flex-col items-center">
-                            <span class="font-bold">{{ order.orderDetails[0].driver.star | number:'1.1-2' || 'Chưa có'
+                            <span class="font-bold">{{ (order.orderDetails[0].driver.star | number:'1.1-2') || 'Chưa có'
                                 }}</span>
                             <span class="text-sm font-medium text-secondary">ĐÁNH GIÁ</span>
                         </div>
@@ -100,7 +100,8 @@
                     <div class="text-4xl tracking-tight text-secondary">ĐƠN HÀNG</div>
                     <div></div>
                     <div class="font-medium tracking-tight text-secondary">NGÀY TẠO</div>
-                    <div class="font-medium">{{ order.createAt | date:'dd-MM-YYYY' }}</div>
+                    <div class="font-medium">{{ order.createAt | date:'dd-MM-YYYY' }} lúc {{ order.createAt|
+                        date:'hh:mm' }}</div>
                     <div class="font-medium tracking-tight text-secondary">GIÁ TRỊ ĐƠN HÀNG</div>
                     <div class="font-medium">{{ order.amount | number:'1.0-2' }} VNĐ</div>
                     <div class="font-medium tracking-tight text-secondary">TRẠNG THÁI</div>
@@ -116,9 +117,9 @@
                         <img class="w-24" src="assets/images/logo/logo.svg">
                     </div>
                     <div class="pl-10 border-l text-md">
-                        <div class="font-medium">Fcar Inc.</div>
-                        <div>2810 Country Club Road</div>
-                        <div>Cranford, NJ 07016</div>
+                        <div class="font-medium">Công Ty Fcar</div>
+                        <div>15A Tân Hòa 2</div>
+                        <div>Thủ Đức, TP HCM</div>
                         <div>+66 123 455 87</div>
                         <div>support@fcar.com</div>
                         <div>www.fcar.com</div>

@@ -76,7 +76,7 @@
                                 <div class="flex flex-col">
                                     <span class="whitespace-nowrap">Hộp số <b> {{
                                             machine.model.transmissionType}}</b></span>
-                                    <span class="whitespace-nowrap">Độ cao gầm <b>{{ machine.model.chassis }}</b></span>
+                                    <!-- <span class="whitespace-nowrap">Độ cao gầm <b>{{ machine.model.chassis }}</b></span> -->
                                 </div>
                                 <div class="flex flex-col">
                                     <span class="whitespace-nowrap">Sử dụng <b>{{ machine.model.fuelType
@@ -95,9 +95,9 @@
                     </fuse-card>
                 </div>
 
-                <!-- <fuse-card class="flex flex-col items-center w-full p-8 pb-6 filter-info">
+                <fuse-card class="flex flex-col items-center w-full p-8 pb-6 filter-info">
                     <img class="w-32 h-32 rounded-full" src="assets/images/avatars/male-04.jpg" alt="Card cover image">
-                    <div class="text-secondary leading-tight text-center mt-8">Chủ xe</div>
+                    <div class="text-secondary leading-tight text-center mt-8">{{ machine.showroom.name }}</div>
                     <div class="text-2xl font-semibold leading-tight text-center mt-1">{{ machine.carOwner.name }}</div>
                     <hr class="w-full border-t mt-8 mb-0">
                     <div class="flex flex-col w-full my-4">
@@ -114,10 +114,7 @@
                             <span class="leading-none">{{ machine.carOwner.gender }}</span>
                         </div>
                     </div>
-                    <hr class="w-full border-t mt-0 mb-8">
-                    <div class="text-center text-secondary">Chủ xe có thể sở hữu nhiều xe và có thể trở thành tài xế
-                    </div>
-                </fuse-card> -->
+                </fuse-card>
                 <fuse-card class="flex flex-col w-full p-8 pt-6 filter-list">
                     <div class="flex items-center justify-between">
                         <div class="text-2xl font-semibold leading-tight">Phụ phí</div>

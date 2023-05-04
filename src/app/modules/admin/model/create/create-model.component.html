@@ -61,20 +61,27 @@
 
                 <!-- Gender -->
                 <mat-form-field class="w-full">
-                    <mat-label>Kiểu truyền động</mat-label>
-                    <input matInput type="text" [formControlName]="'transmissionType'" />
+                    <mat-label>Hộp số</mat-label>
+                    <mat-select [formControlName]="'transmissionType'">
+                        <mat-option value="Số tự động">Số tự động</mat-option>
+                        <mat-option value="Số sàn">Số sàn</mat-option>
+                    </mat-select>
                 </mat-form-field>
+
             </div>
 
             <div class="grid grid-cols-2 gap-3 w-full mb-3">
                 <!-- Bank name -->
-                <mat-form-field class="w-full mb-3">
+                <mat-form-field class="w-full">
                     <mat-label>Loại nhiên liệu</mat-label>
-                    <input matInput type="text" [formControlName]="'fuelType'" />
+                    <mat-select [formControlName]="'fuelType'">
+                        <mat-option value="Xăng">Xăng</mat-option>
+                        <mat-option value="Dầu">Dầu</mat-option>
+                    </mat-select>
                 </mat-form-field>
 
                 <!-- Bank account number -->
-                <mat-form-field class="w-full mb-3">
+                <mat-form-field class="w-full">
                     <mat-label>Mức tiêu hao nhiên liệu</mat-label>
                     <input matInput type="text" [formControlName]="'fuelConsumption'" />
                 </mat-form-field>

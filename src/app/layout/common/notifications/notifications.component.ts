@@ -127,7 +127,7 @@ export class NotificationsComponent implements OnInit, OnDestroy {
         notification.data.isRead = !notification.data.isRead;
 
         // Update the notification
-        // this._notificationsService.update(notification.id, notification).subscribe();
+        this._appService.markAsRead(notification.id, notification.data.isRead).subscribe();
     }
 
     /**
