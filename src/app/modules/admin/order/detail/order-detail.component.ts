@@ -24,6 +24,7 @@ export class OrderDetailComponent implements OnInit {
 
     order: Order;
     car: Machine;
+    carImage: string;
 
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -45,6 +46,8 @@ export class OrderDetailComponent implements OnInit {
                 this.order = order;
 
                 this.car = order.orderDetails[0].car;
+
+                this.carImage = order.orderDetails[0].car.images.filter(img => img.type == 'Thumbnail')[0].url;
 
                 // Mark for check
                 this._changeDetectorRef.markForCheck();
