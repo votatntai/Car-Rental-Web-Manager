@@ -99,8 +99,14 @@
                         </div>
                     </div>
                     <hr class="w-full border-t mt-0 mb-8">
-                    <div class="text-center text-secondary">Chủ xe có thể sở hữu nhiều xe và có thể trở thành tài xế
-                    </div>
+                    <ng-container *ngIf="machine.driver == null">
+                        <button mat-raised-button [color]="'primary'" (click)="openAddDriverConfirmDialog()">
+                            Thêm tài xế cho xe
+                        </button>
+                    </ng-container>
+                    <ng-container *ngIf="machine.driver != null">
+                        <div class="italic">Xe này đã có tài xế</div>
+                    </ng-container>
                 </fuse-card>
                 <fuse-card class="flex flex-col w-full p-8 pt-6 filter-list">
                     <div class="flex items-center justify-between">

@@ -6,6 +6,7 @@ import { MachineService } from '../machine.service';
 import { Machine } from '../machine.type';
 import { MachineDetailMapsViewComponent } from './maps-view/machine-detail-maps-view.component';
 import { Image } from 'app/modules/types/image.type';
+import { FuseConfirmationService } from '@fuse/services/confirmation';
 
 @Component({
     selector: 'app-machine-detail',
@@ -26,6 +27,7 @@ export class MachineDetailComponent implements OnInit {
         private _machineService: MachineService,
         private _changeDetectorRef: ChangeDetectorRef,
         private _dialog: MatDialog,
+        private _fuseConfirmationService: FuseConfirmationService
     ) { }
 
     ngOnInit() {
@@ -68,4 +70,13 @@ export class MachineDetailComponent implements OnInit {
         // Use formData to send files to server
         console.log(this.formData);
     }
+
+    openAddDriverConfirmDialog() {
+        this._fuseConfirmationService.open().afterClosed().subscribe(result => {
+            if (result === 'confirmed') {
+                this._machineService.updateMachine(this.machine.id, { driverId: this.machine.carOwner.id }).subscribe();
+            }
+        })
+    }
+
 }
