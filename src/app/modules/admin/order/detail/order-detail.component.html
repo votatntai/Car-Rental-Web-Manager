@@ -140,7 +140,8 @@
                 <div class="col-span-7 text-lg font-medium">THỜI GIAN THUÊ</div>
                 <div class="self-center text-right">{{ order.rentalTime }}</div>
                 <div class="self-center text-right">Ngày</div>
-                <div class="col-span-2 self-center text-right">{{ order.unitPrice | number:'1.0-2' }} VNĐ</div>
+                <div class="col-span-2 self-center text-right">{{ order.rentalTime * order.unitPrice | number:'1.0-2' }}
+                    VNĐ</div>
 
                 <!-- Divider -->
                 <div class="col-span-12 my-4 border-b"></div>
@@ -150,7 +151,7 @@
                     <!-- Item -->
                     <div class="col-span-7 text-lg font-medium">PHÍ TÀI XẾ</div>
                     <div class="self-center text-right">{{ order.rentalTime }}</div>
-                    <div class="self-center text-right">ngày</div>
+                    <div class="self-center text-right">Ngày</div>
                     <div class="col-span-2 self-center text-right">{{ order.rentalTime * 200000 | number:'1.0-2' }} VNĐ
                     </div>
 
@@ -160,8 +161,9 @@
                     <!-- Item -->
                     <div class="col-span-7 text-lg font-medium">PHÍ QUA ĐÊM</div>
                     <div class="self-center text-right">{{ order.rentalTime > 2 ? order.rentalTime - 1 : 0 }}</div>
-                    <div class="self-center text-right">ngày</div>
-                    <div class="col-span-2 self-center text-right">{{ (order.rentalTime > 2 ? order.rentalTime * 300000
+                    <div class="self-center text-right">Ngày</div>
+                    <div class="col-span-2 self-center text-right">{{ (order.rentalTime > 2 ? (order.rentalTime - 1) *
+                        300000
                         : 0)
                         | number:'1.0-2' }} VNĐ</div>
 
@@ -203,26 +205,9 @@
                 <!-- Spacer -->
                 <div class="col-span-12 mt-16"></div>
 
-                <!-- Subtotal -->
-                <div class="col-span-10 self-center font-medium tracking-tight text-secondary">TẠM TÍNH</div>
-                <div class="col-span-2 text-right text-lg">{{ order.amount | number:'1.0-2' }} VNĐ</div>
-
-                <!-- Divider -->
-                <div class="col-span-12 my-3 border-b"></div>
-
-                <!-- Discount -->
-                <div class="col-span-10 self-center font-medium tracking-tight text-secondary">KHUYẾN MÃI</div>
-                <div class="col-span-2 text-right text-lg">{{ (order.promotion != null ? (car.price +
-                    order.rentalTime * 200000) *
-                    order.promotion.discount / 100 : 0) | number:'1.0-2' }} VNĐ</div>
-
-                <!-- Divider -->
-                <div class="col-span-12 my-3 border-b"></div>
-
                 <!-- Total -->
                 <div class="col-span-10 self-center text-2xl font-medium tracking-tight text-secondary">TỔNG CỘNG</div>
-                <div class="col-span-2 text-right text-2xl font-medium">{{ (order.promotion != null ? order.amount -
-                    order.deposit : order.amount) | number:'1.0-2' }} VNĐ</div>
+                <div class="col-span-2 text-right text-2xl font-medium">{{ order.amount | number:'1.0-2' }} VNĐ</div>
             </div>
 
         </div>
