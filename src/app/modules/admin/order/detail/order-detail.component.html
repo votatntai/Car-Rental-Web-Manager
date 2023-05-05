@@ -146,6 +146,25 @@
                 <div class="col-span-12 my-4 border-b"></div>
 
                 <!-- Item -->
+                <div class="col-span-7 text-lg font-medium">PHÍ TÀI XẾ</div>
+                <div class="self-center text-right">{{ order.rentalTime }}</div>
+                <div class="self-center text-right">ngày</div>
+                <div class="col-span-2 self-center text-right">{{ order.rentalTime * 200000 | number:'1.0-2' }}</div>
+
+                <!-- Divider -->
+                <div class="col-span-12 my-4 border-b"></div>
+
+                <!-- Item -->
+                <div class="col-span-7 text-lg font-medium">PHÍ QUA ĐÊM</div>
+                <div class="self-center text-right">{{ order.rentalTime > 2 ? order.rentalTime - 1 : 0 }}</div>
+                <div class="self-center text-right">ngày</div>
+                <div class="col-span-2 self-center text-right">{{ (order.rentalTime > 2 ? order.rentalTime * 300000 : 0)
+                    | number:'1.0-2' }}</div>
+
+                <!-- Divider -->
+                <div class="col-span-12 my-4 border-b"></div>
+
+                <!-- Item -->
                 <div class="col-span-7 text-lg font-medium">PHÍ GIAO XE</div>
                 <div class="self-center text-right">{{ order.deliveryDistance | number:'1.2-2'}}</div>
                 <div class="self-center text-right">Km</div>
@@ -158,7 +177,8 @@
                 <div class="col-span-7 text-lg font-medium">KHUYẾN MÃI</div>
                 <div class="self-center text-right">{{ (order.promotion?.discount || 0) | number:'1.0-0'}}</div>
                 <div class="self-center text-right">%</div>
-                <div class="col-span-2 self-center text-right">{{ (order.promotion != null ? (car.price *
+                <div class="col-span-2 self-center text-right">{{ (order.promotion != null ? ((car.price +
+                    order.rentalTime * 200000) *
                     order.promotion?.discount / 100) : 0) |
                     number:'1.0-2' }} VNĐ</div>
 
@@ -186,7 +206,8 @@
 
                 <!-- Discount -->
                 <div class="col-span-10 self-center font-medium tracking-tight text-secondary">KHUYẾN MÃI</div>
-                <div class="col-span-2 text-right text-lg">{{ (order.promotion != null ? car.price *
+                <div class="col-span-2 text-right text-lg">{{ (order.promotion != null ? (car.price +
+                    order.rentalTime * 200000) *
                     order.promotion.discount / 100 : 0) | number:'1.0-2' }} VNĐ</div>
 
                 <!-- Divider -->
